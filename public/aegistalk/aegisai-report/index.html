@@ -1,0 +1,85 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>AegisAI L2 — 目前測試報告</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;color:#1f2328;background:#f6f8fa;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:30px 20px 60px}
+header{background:linear-gradient(135deg,#0d3b66,#1a7f8c);color:#fff;border-radius:16px;padding:26px 30px;margin-bottom:22px}
+header h1{margin:0 0 6px;font-size:23px}header p{margin:2px 0;opacity:.92;font-size:13.5px}
+h2{font-size:18px;margin:30px 0 10px;padding-bottom:8px;border-bottom:2px solid #d0d7de}
+h2 .n{display:inline-block;width:24px;height:24px;line-height:24px;text-align:center;background:#1a7f8c;color:#fff;border-radius:6px;font-size:13px;margin-right:8px}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #d0d7de;border-radius:12px;overflow:hidden;font-size:13.5px}
+th,td{padding:9px 12px;text-align:center;border-bottom:1px solid #eaeef2}th{background:#f6f8fa;color:#424a53}
+td.name{text-align:left;font-weight:600}td.dim,.dim{color:#7a828c;font-weight:400}tr:last-child td{border-bottom:none}
+.tag{color:#fff;font-size:11px;padding:1px 9px;border-radius:10px}.tag.s{background:#1a7f37}.tag.n{background:#8a8f96}
+.bar{position:relative;background:#eef1f4;border-radius:6px;height:20px;min-width:120px}.bar .fill{height:100%;border-radius:6px}.bar span{position:absolute;right:8px;top:0;font-size:12px;line-height:20px}
+.cards{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0}.card{flex:1;min-width:150px;background:#fff;border:1px solid #d0d7de;border-radius:12px;padding:16px}
+.card .k{font-size:12px;color:#656d76}.card .v{font-size:25px;font-weight:700;margin-top:4px}
+.flip{display:flex;gap:16px;flex-wrap:wrap;margin:14px 0}.flip>div{flex:1;min-width:240px;border-radius:12px;padding:16px;border:1px solid}
+.bad{background:#fff5f5;border-color:#ffc9c9}.good{background:#eafaef;border-color:#a7e3b8}
+.bad h3,.good h3{margin:0 0 8px;font-size:15px}.bad .big{font-size:30px;font-weight:800;color:#cf222e}.good .big{font-size:30px;font-weight:800;color:#1a7f37}
+.note{background:#fff8c5;border:1px solid #eac54f;border-radius:10px;padding:13px 16px;font-size:13.5px;margin:14px 0}.note b{color:#7d4e00}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:720px){.two{grid-template-columns:1fr}}
+.mbox{background:#fff;border:1px solid #d0d7de;border-radius:12px;padding:16px;font-size:13.5px}.mbox h3{margin:0 0 6px;font-size:15px}
+footer{margin-top:36px;font-size:12px;color:#7a828c;text-align:center}
+</style></head><body><div class="wrap">
+
+<header><h1>AegisAI L2 詐騙偵測 — 目前測試報告</h1>
+<p>聊天訊息級 · 繁體 · 社交工程詐騙　|　測試集 26,137 則（詐騙 10,389）</p>
+<p>產生時間：2026-05-22 15:36　·　數字現場由模型重算</p></header>
+
+<h2><span class="n">1</span>最重要的發現：資料對不對 &gt; 模型多強</h2>
+<div class="flip">
+  <div class="bad"><h3>✗ 用錯資料（ChiFraud 網頁廣告）</h3>
+    <div class="big">漏 100%</div>
+    <p style="font-size:13px;margin:6px 0 0">ChiFraud 訓練的模型，測真實對話詐騙(Fraud-R1)→ 辨識率僅 0.1%。模型學的是「微信号/賣貨」廣告詞，看不懂禮貌的社交工程。</p></div>
+  <div class="good"><h3>✓ 用對資料（對話型詐騙）</h3>
+    <div class="big">抓 100%</div>
+    <p style="font-size:13px;margin:6px 0 0">同一套 pipeline，改用對話詐騙資料重訓 → Fraud-R1 社交工程辨識率 99.6%、誤報 &lt;3%。證明方法可行。</p></div>
+</div>
+
+<div class="cards">
+  <div class="card"><div class="k">fastText 整體 F1</div><div class="v" style="color:#1a7f37">0.981</div></div>
+  <div class="card"><div class="k">整體辨識率</div><div class="v">98.5%</div></div>
+  <div class="card"><div class="k">整體誤報率</div><div class="v">2.4%</div></div>
+  <div class="card"><div class="k">規則 F1</div><div class="v">0.892</div></div>
+</div>
+
+<h2><span class="n">2</span>逐來源辨識率（兩個模型）</h2>
+<table>
+  <tr><th>資料來源</th><th>類型</th><th>樣本</th><th>fastText</th><th>YAML 規則</th><th></th></tr>
+  <tr><td class="name">Fraud-R1 社交工程</td><td><span class="tag s">詐騙</span></td>
+        <td class="dim">2,559</td><td><div class="bar"><div class="fill" style="width:100%;background:#1a7f37"></div><span>99.6%</span></div></td><td><div class="bar"><div class="fill" style="width:84%;background:#1a7f37"></div><span>84.3%</span></div></td><td class="dim">辨識率</td></tr><tr><td class="name">SMS 廣告詐騙</td><td><span class="tag s">詐騙</span></td>
+        <td class="dim">3,993</td><td><div class="bar"><div class="fill" style="width:98%;background:#1a7f37"></div><span>98.2%</span></div></td><td><div class="bar"><div class="fill" style="width:79%;background:#1a7f37"></div><span>78.6%</span></div></td><td class="dim">辨識率</td></tr><tr><td class="name">ChiFraud 廣告</td><td><span class="tag s">詐騙</span></td>
+        <td class="dim">3,834</td><td><div class="bar"><div class="fill" style="width:98%;background:#1a7f37"></div><span>98.1%</span></div></td><td><div class="bar"><div class="fill" style="width:89%;background:#1a7f37"></div><span>88.8%</span></div></td><td class="dim">辨識率</td></tr><tr><td class="name">SMS 正常</td><td><span class="tag n">正常</span></td>
+        <td class="dim">9,968</td><td><div class="bar"><div class="fill" style="width:2%;background:#cf222e"></div><span>0.8%</span></div></td><td><div class="bar"><div class="fill" style="width:2%;background:#cf222e"></div><span>2.0%</span></div></td><td class="dim">誤報率</td></tr><tr><td class="name">ChiFraud 正常</td><td><span class="tag n">正常</span></td>
+        <td class="dim">5,783</td><td><div class="bar"><div class="fill" style="width:3%;background:#cf222e"></div><span>3.0%</span></div></td><td><div class="bar"><div class="fill" style="width:4%;background:#cf222e"></div><span>3.9%</span></div></td><td class="dim">誤報率</td></tr>
+</table>
+<div class="note"><b>讀法：</b>詐騙來源看「辨識率」(越高越好)、正常來源看「誤報率」(越低越好)。fastText 在最難的 Fraud-R1 社交工程上辨識率最高；規則略低但<b>可解釋、可維護</b>。</div>
+
+<h2><span class="n">3</span>兩個模型（相輔相成）</h2>
+<div class="two">
+  <div class="mbox"><h3>① YAML 規則</h3>
+    <p>關鍵字/加權(log-odds 正負分)/AND 邏輯組合。<b>可解釋、可維護、極輕、可遠端即時改</b>。缺點：靜態，需持續餵新話術。</p></div>
+  <div class="mbox"><h3>② fastText（.ftz ~6MB）</h3>
+    <p>char-level 量化模型，<b>端上(WASM/Native)可跑</b>、機率泛化、抓字面外變體。缺點：黑盒（可用 occlusion 反查理由）。</p></div>
+</div>
+<p style="font-size:13.5px;color:#424a53">合用＝級聯：AI 先判 + 規則補抓，分級 block(低誤報)/warn(撈長尾)。</p>
+
+<h2><span class="n">4</span>誠實的限制（別過度樂觀）</h2>
+<div class="note">
+  <p>① 上面是 <b>in-domain 樂觀值</b>：Fraud-R1 為 LLM 生成、風格一致(雖按案例 held-out)。真實世界全新人為話術會更低。</p>
+  <p>② 要有上線信心，需 <b>真實多樣的台灣對話詐騙語料</b>（AegisTalk 使用者回報、165 curation）——由 AegisTrack 持續收集。</p>
+  <p>③ 詐騙話術逐年漂移，門檻與模型需定期重訓重校。</p>
+</div>
+
+<h2><span class="n">5</span>資料來源</h2>
+<table>
+  <tr><th>來源</th><th>內容</th><th>用途</th></tr>
+  <tr><td class="name">Fraud-R1</td><td class="dim">多輪對話詐騙(冒充/釣魚/養套殺/假徵才/假服務)</td><td>社交工程正樣本</td></tr>
+  <tr><td class="name">中文 SMS 80萬</td><td class="dim">spam/ham 標註簡訊</td><td>短訊息 正/負樣本</td></tr>
+  <tr><td class="name">ChiFraud</td><td class="dim">網頁廣告詐騙 + 正常長文</td><td>廣告正樣本 + 長正常負樣本</td></tr>
+  <tr><td class="name">全部</td><td class="dim">opencc s2twp 轉繁體</td><td>對齊台灣產品</td></tr>
+</table>
+
+<footer>AegisAI · 資料收集由 AegisTrack 持續供給 · 報告可由 generate_current_report.py 重生</footer>
+</div></body></html>

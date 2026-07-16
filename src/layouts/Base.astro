@@ -58,7 +58,7 @@ const canonical = new URL(Astro.url.pathname, 'https://aegisrd.com').href;
         ))}
         <li><a href={isEn ? (altPath ?? '/') : (altPath ?? '/en')} title={t('English', '中文')}>{t('EN', '中文')}</a></li>
       </ul>
-      <a href={isEn ? '/en/aegistalk' : '/aegistalk'} class="nav-cta">{t('下載 AegisTalk →', 'Get AegisTalk →')}</a>
+
     </nav>
 
     <slot />

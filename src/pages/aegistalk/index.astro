@@ -58,6 +58,42 @@ import Base from '../../layouts/Base.astro';
     </div>
   </section>
 
+  <!-- AegisAI / AegisID 深度區（點按鈕看真實測試報告） -->
+  <section class="moat">
+    <div class="container">
+      <div class="section-label">// UNDER THE HOOD</div>
+      <h2 class="section-title reveal">引擎與身份 — 不只宣稱，附上實測報告</h2>
+      <div class="eco-grid" style="margin-top:3rem">
+        <div class="eco-card talk reveal">
+          <div class="eco-step">AI 引擎</div>
+          <h3>AegisAI</h3>
+          <div class="tagline">三層防詐引擎</div>
+          <p>
+            L1 黑白名單毫秒攔截 → L2 53,640 條可解釋規則 × fastText（&lt;6MB）語意融合 →
+            L3 26 維行為基線 Isolation Forest 本地訓練。逾 26 萬行引擎程式碼，
+            98.5% 偵測率 / 99.6% 準確率 / F1 0.981（26,137 則實測，域內測試）。
+          </p>
+          <p style="margin-top:1.25rem">
+            <a href="/aegistalk/aegisai-report/" target="_blank" class="btn-primary" style="padding:.6rem 1.4rem;font-size:.9rem">📊 查看 AegisAI L2 實測報告 →</a>
+          </p>
+        </div>
+        <div class="eco-card pay reveal">
+          <div class="eco-step">身份引擎</div>
+          <h3>AegisID</h3>
+          <div class="tagline">裝置無關的生物身份</div>
+          <p>
+            AuraFace（ResNet100 + ArcFace）512 維臉部特徵向量 + YuNet 五點對齊 + 活體防偽。
+            僅存向量、不存照片；換手機刷臉 + PIN 帳號原地回來。
+            FEI 受控測試 FRR 0%、LFW 843 萬組比對驗證。
+          </p>
+          <p style="margin-top:1.25rem">
+            <a href="/aegistalk/aegisid-report/" target="_blank" class="btn-primary" style="padding:.6rem 1.4rem;font-size:.9rem">🪪 查看 AegisID 人臉唯一性報告 →</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 功能區塊 -->
   <section class="ecosystem">
     <div class="container">
@@ -113,7 +149,7 @@ import Base from '../../layouts/Base.astro';
         <div class="tagline">付款前的最後一道閘門</div>
         <p>轉帳之前，AI 先看一眼對話 —— 高風險交易自動進入冷靜期。非託管架構，AegisRD 永不經手你的資金。</p>
         <span class="eco-badge badge-plan">預計 2027 上線</span>
-        <p style="margin-top:1rem"><a href="/aegistalk/pay" style="color:var(--accent)">了解 AegisPay →</a></p>
+        <p style="margin-top:1rem"><a href="/aegistalk/pay" class="btn-primary" style="padding:.6rem 1.4rem;font-size:.9rem">💠 AegisPay 完整介紹（含合規架構）→</a></p>
       </div>
     </div>
   </section>
