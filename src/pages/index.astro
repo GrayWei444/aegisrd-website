@@ -9,26 +9,16 @@ import Base from '../layouts/Base.astro';
   altPath="/en"
   active="home"
 >
-  <!-- Banner — 公司門面 -->
-  <section class="hero" style="min-height:78vh;text-align:left">
-    <div class="container" style="display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;position:relative;z-index:1">
-      <div>
-        <div class="hero-badge">🛡️ AegisRD 安心研創</div>
-        <h1 style="font-size:clamp(2.2rem,4.5vw,3.6rem)">端對端加密<br />通訊與傳輸<span class="gradient">技術公司</span></h1>
-        <p style="margin:1.5rem 0 2rem;max-width:560px">
-          「安心」不靠政策承諾，由架構保證 —— 加密在裝置端、AI 在本地、內容 100% 點對點。
-        </p>
-        <div class="hero-actions" style="justify-content:flex-start">
-          <a href="/aegistalk" class="btn-primary">💬 AegisTalk 安心說</a>
-          <a href="/aegistrans" class="btn-primary" style="background:linear-gradient(135deg,var(--blue),#60a5fa);box-shadow:0 4px 20px rgba(59,130,246,0.3)">📡 AegisTrans 安心傳</a>
-          <a href="#contact" class="btn-ghost">聯絡我們</a>
-        </div>
-      </div>
-      <div style="position:relative;min-height:400px" aria-hidden="true">
-        <img src="/images/trans-message-stream.png" alt="" loading="eager"
-          style="position:absolute;right:0;top:0;width:88%;border-radius:16px;border:1px solid var(--border);box-shadow:0 24px 60px rgba(0,0,0,.5)" />
-        <img src="/images/talk-risk-alert.jpg" alt="" loading="eager"
-          style="position:absolute;left:0;bottom:-30px;width:32%;border-radius:16px;border:1px solid var(--border);box-shadow:0 24px 60px rgba(0,0,0,.6)" />
+  <!-- Banner — 公司門面（文字置中） -->
+  <section class="hero" style="min-height:72vh">
+    <div class="hero-content">
+      <div class="hero-badge">🛡️ AegisRD 安心研創</div>
+      <h1 style="font-size:clamp(2.4rem,5vw,4rem)">端對端加密<br />通訊與傳輸<span class="gradient">技術公司</span></h1>
+      <p>「安心」不靠政策承諾，由架構保證 —— 加密在裝置端、AI 在本地、內容 100% 點對點。</p>
+      <div class="hero-actions">
+        <a href="/aegistalk" class="btn-primary">💬 AegisTalk 安心說</a>
+        <a href="/aegistrans" class="btn-primary" style="background:linear-gradient(135deg,var(--blue),#60a5fa);box-shadow:0 4px 20px rgba(59,130,246,0.3)">📡 AegisTrans 安心傳</a>
+        <a href="#contact" class="btn-ghost">聯絡我們</a>
       </div>
     </div>
   </section>
@@ -39,7 +29,7 @@ import Base from '../layouts/Base.astro';
       <span style="color:var(--text2);font-size:.9rem">🔐 Signal Protocol 端對端加密</span>
       <span style="color:var(--text2);font-size:.9rem">🕸️ 100% P2P · 伺服器零內容</span>
       <span style="color:var(--text2);font-size:.9rem">🧠 本地 Edge AI（Rust + WASM）</span>
-      <a href="/technology" style="color:var(--accent);font-size:.9rem">技術架構 →</a>
+      <a href="#technology" style="color:var(--accent);font-size:.9rem">核心技術 ↓</a>
     </div>
   </section>
 
@@ -74,6 +64,45 @@ import Base from '../layouts/Base.astro';
           <div class="tagline">你的檔案，只走你的裝置</div>
           <p style="color:var(--accent);margin-top:1rem">了解更多 →</p>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 核心技術（原 /technology 分頁併入首頁） -->
+  <section class="ai-engine" id="technology">
+    <div class="container">
+      <div class="section-label">// TECHNOLOGY</div>
+      <h2 class="section-title reveal">核心技術 — 兩個產品，同一副骨架</h2>
+      <p class="section-desc reveal">隱私是架構保證，不是政策承諾。</p>
+      <div class="ai-layers" style="max-width:860px">
+        <div class="ai-layer reveal">
+          <div class="layer-badge l1">🔐</div>
+          <div class="layer-info">
+            <h4>端對端加密 — Signal Protocol</h4>
+            <p>X3DH 金鑰協商 + Double Ratchet 前向保密。訊息與檔案離開裝置前就已加密 —— 我們想看也看不到。</p>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l2">🕸️</div>
+          <div class="layer-info">
+            <h4>100% P2P — 伺服器零內容</h4>
+            <p>內容走 WebRTC DataChannel 點對點直達，伺服器只做信令 —— 零中繼、零留存、零可外洩。</p>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l3">🧠</div>
+          <div class="layer-info">
+            <h4>本地 Edge AI — Rust + WASM</h4>
+            <p>三層防詐引擎（黑白名單 / 53,640 條規則 × fastText 語意融合 / 行為基線）全部跑在裝置上 —— 98.5% 偵測率、F1 0.981（26,137 則實測，域內測試）。</p>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l1">🪪</div>
+          <div class="layer-info">
+            <h4>AegisID 生物身份 — 僅存向量，不存照片</h4>
+            <p>AuraFace 512 維臉部特徵向量 + 活體防偽。換手機不掉帳號；受控測試 FRR 0%、LFW 843 萬組比對驗證。</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>

@@ -25,7 +25,6 @@ const nav = isEn
       { href: '/', key: 'home', label: '首頁' },
       { href: '/aegistalk', key: 'aegistalk', label: 'AegisTalk' },
       { href: '/aegistrans', key: 'aegistrans', label: 'AegisTrans' },
-      { href: '/technology', key: 'technology', label: '技術' },
       { href: '/about', key: 'about', label: '關於' },
     ];
 const canonical = new URL(Astro.url.pathname, 'https://aegisrd.com').href;
@@ -73,7 +72,7 @@ const canonical = new URL(Astro.url.pathname, 'https://aegisrd.com').href;
         <div class="footer-links">
           {!isEn && <a href="/aegistalk">AegisTalk</a>}
           {!isEn && <a href="/aegistrans">AegisTrans</a>}
-          {!isEn && <a href="/technology">技術</a>}
+          {!isEn && <a href="/#technology">技術</a>}
           {isEn && <a href="/en/aegistalk">AegisTalk</a>}
           <a href={isEn ? '/en/legal/terms' : '/legal/terms'}>{t('服務條款', 'Terms')}</a>
           <a href={isEn ? '/en/legal/privacy' : '/legal/privacy'}>{t('隱私政策', 'Privacy')}</a>
