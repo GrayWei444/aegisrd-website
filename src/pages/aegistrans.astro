@@ -17,7 +17,8 @@ import Base from '../layouts/Base.astro';
         任意大小檔案、端對端加密、100% P2P：連我們的伺服器都看不到內容。
       </p>
       <div class="hero-actions">
-        <a href="#scenarios" class="btn-primary">它能做什麼 ↓</a>
+        <a href="#download" class="btn-primary">直接下載桌面版 ↓</a>
+        <a href="#scenarios" class="btn-ghost">它能做什麼 ↓</a>
         <a href="/#technology" class="btn-ghost">共用技術底座</a>
       </div>
     </div>
@@ -107,17 +108,31 @@ import Base from '../layouts/Base.astro';
     </div>
   </section>
 
-  <!-- 實機展示（2026-07-16 實機截圖；email/檔名已打碼） -->
+  <!-- 實機展示（一列三張：登入 → 配對 → 訊息流；截圖已打碼） -->
   <section class="screenshots">
     <div class="container">
       <div class="section-label">// SCREENSHOTS</div>
       <h2 class="section-title reveal">產品實機展示</h2>
-      <div class="ss-scroll">
-        <div class="ss-item" style="width:420px"><img src="/images/trans-message-stream.png" alt="iPhone 照片直傳 Mac" loading="lazy" /><div class="ss-label">手機拍的，秒進電腦 — 跨裝置訊息檔案流</div></div>
-        <div class="ss-item" style="width:420px"><img src="/images/trans-welcome.png" alt="多裝置清單" loading="lazy" /><div class="ss-label">Mac / Windows / iPhone 同帳號自動配對</div></div>
-        <div class="ss-item" style="width:420px"><img src="/images/trans-screenshare-request.png" alt="螢幕分享請求" loading="lazy" /><div class="ss-label">跨裝置螢幕投放 — 一鍵接受</div></div>
-        <div class="ss-item" style="width:420px"><img src="/images/trans-screencast-fullscreen.png" alt="接收 Windows 畫面" loading="lazy" /><div class="ss-label">Mac 即時接收 Windows PC 畫面</div></div>
-        <div class="ss-item" style="width:420px"><img src="/images/trans-login.png" alt="工作階段鎖定" loading="lazy" /><div class="ss-label">工作階段密碼鎖 — 離開就上鎖</div></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem" class="trans-shots">
+        <div class="ss-item" style="width:auto"><img src="/images/trans-login.png" alt="登入" loading="lazy" /><div class="ss-label">① Email + 密碼登入 — 工作階段密碼鎖</div></div>
+        <div class="ss-item" style="width:auto"><img src="/images/trans-welcome.png" alt="同帳號多裝置配對" loading="lazy" /><div class="ss-label">② 同帳號登入即自動配對 — Mac / Windows / iPhone</div></div>
+        <div class="ss-item" style="width:auto"><img src="/images/trans-message-stream.png" alt="訊息檔案流" loading="lazy" /><div class="ss-label">③ 手機拍的，秒進電腦 — 跨裝置訊息檔案流</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 螢幕投放與延伸（獨立卡片介紹 + 實機圖） -->
+  <section class="moat">
+    <div class="container">
+      <div class="section-label">// SCREEN CAST</div>
+      <h2 class="section-title reveal">螢幕投放與延伸 — 桌面版獨家</h2>
+      <p class="section-desc reveal">
+        Windows 的畫面直接投到 Mac（鏡像），或把另一台電腦當<b>延伸螢幕</b>用 ——
+        走同一條端對端加密 P2P 通道，畫面內容不經伺服器。收端一鍵接受，隨時關閉。
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2.5rem" class="trans-shots">
+        <div class="ss-item" style="width:auto"><img src="/images/trans-screenshare-request.png" alt="收到螢幕分享請求" loading="lazy" /><div class="ss-label">收到分享請求 — 拒絕 / 一鍵接受</div></div>
+        <div class="ss-item" style="width:auto"><img src="/images/trans-screencast-fullscreen.png" alt="Mac 即時接收 Windows 畫面" loading="lazy" /><div class="ss-label">Mac 即時接收 Windows PC 畫面（可全螢幕）</div></div>
       </div>
     </div>
   </section>
@@ -136,10 +151,22 @@ import Base from '../layouts/Base.astro';
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <h2>想搶先體驗？</h2>
-    <p>AegisTrans 目前為 Beta 測試 —— 正式版將透過官方應用商店與官網發佈。</p>
-    <a href="mailto:contact@aegisrd.com?subject=AegisTrans%20Beta" class="btn-primary">聯絡我們加入測試 →</a>
+  <!-- 下載（桌面版 Beta 直接下載） -->
+  <section class="cta-section" id="download">
+    <h2>下載 AegisTrans 桌面版（Beta）</h2>
+    <p>Mac 版已簽章公證可直接下載；Windows 安裝檔打包中、iOS 測試中、Linux 尚未提供。</p>
+    <div class="hero-actions" style="justify-content:center">
+      <a href="/downloads/AegisTrans-mac.zip" class="btn-primary">🍎 下載 Mac 版（.zip）</a>
+      <span class="btn-ghost" style="cursor:default">🪟 Windows 版 · 準備中</span>
+      <span class="btn-ghost" style="cursor:default">🐧 Linux · 尚未提供</span>
+    </div>
+    <p style="margin-top:1.5rem;color:var(--text2);font-size:.9rem">
+      問題回報／搶先功能建議：<a href="mailto:contact@aegisrd.com?subject=AegisTrans%20Beta" style="color:var(--accent)">contact@aegisrd.com</a>
+    </p>
   </section>
+<style>
+  @media (max-width: 900px) {
+    .trans-shots { grid-template-columns: 1fr !important; }
+  }
+</style>
 </Base>
