@@ -143,9 +143,10 @@ import Base from '../layouts/Base.astro';
       <div class="section-label">// AVAILABILITY</div>
       <h2 class="section-title reveal">平台進度</h2>
       <div class="problem-stat">
-        <div class="stat-card reveal"><div class="number" style="font-size:2rem">🖥️ Mac</div><div class="desc">桌面版已開發 — 含螢幕投放/延伸</div></div>
-        <div class="stat-card reveal"><div class="number" style="font-size:2rem">🪟 Windows</div><div class="desc">桌面版已開發</div></div>
+        <div class="stat-card reveal"><div class="number" style="font-size:2rem">🖥️ Mac</div><div class="desc">Beta 可下載 — 含螢幕投放/延伸（已簽章公證）</div></div>
+        <div class="stat-card reveal"><div class="number" style="font-size:2rem">🪟 Windows</div><div class="desc">Beta 可下載</div></div>
         <div class="stat-card reveal"><div class="number" style="font-size:2rem">📱 iOS</div><div class="desc">實機測試中</div></div>
+        <div class="stat-card reveal"><div class="number" style="font-size:2rem">🐧 Linux</div><div class="desc">Beta 可下載（AppImage）</div></div>
         <div class="stat-card reveal"><div class="number" style="font-size:2rem">🤖 Android</div><div class="desc">規劃中</div></div>
       </div>
     </div>
@@ -154,11 +155,11 @@ import Base from '../layouts/Base.astro';
   <!-- 下載（桌面版 Beta 直接下載） -->
   <section class="cta-section" id="download">
     <h2>下載 AegisTrans 桌面版（Beta）</h2>
-    <p>Mac 版已簽章公證可直接下載；Windows 安裝檔打包中、iOS 測試中、Linux 尚未提供。</p>
+    <p>Mac 版已簽章公證；Windows / Linux 為 Beta 安裝檔（未簽章，安裝時系統可能提示）。iOS 實機測試中。</p>
     <div class="hero-actions" style="justify-content:center">
       <a href="/downloads/AegisTrans-mac.zip" class="btn-primary">🍎 下載 Mac 版（.zip）</a>
-      <span class="btn-ghost" style="cursor:default">🪟 Windows 版 · 準備中</span>
-      <span class="btn-ghost" style="cursor:default">🐧 Linux · 尚未提供</span>
+      <a href="/downloads/AegisTrans-win-setup.exe" class="btn-primary" style="background:linear-gradient(135deg,var(--blue),#60a5fa)">🪟 下載 Windows 版（.exe）</a>
+      <a href="/downloads/AegisTrans-linux.AppImage" class="btn-primary" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">🐧 下載 Linux 版（AppImage）</a>
     </div>
     <p style="margin-top:1.5rem;color:var(--text2);font-size:.9rem">
       問題回報／搶先功能建議：<a href="mailto:contact@aegisrd.com?subject=AegisTrans%20Beta" style="color:var(--accent)">contact@aegisrd.com</a>
