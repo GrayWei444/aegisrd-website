@@ -1,105 +1,182 @@
 ---
-// AegisPay 模組頁（中文）— 規格 v1.2 §3.3（KYB 關鍵頁；英文版 /en/aegistalk/pay 與 KYB 問卷對齊）
-// 語源：AEGISPAY_MASTER_SUMMARY_2026-07-04 + AEGISPAY_STRATEGY_2026-07-03
+// AegisPay 技術介紹頁（2026-07-16 重寫）— AegisTalk 內建模組，與 AegisAI/AegisID 同級。
+// 語源：AegisPay 專案 MASTER_SUMMARY / CHAIN_RAIL_SPEC / SECURITY_ARCHITECTURE + AegisTalk 實作實況
+//（Crossmint ERC-4337 testnet 全驗、K_id 身份衍生簽名器、語境閘、時間鎖、G6/G8）。
+// 狀態照實：核心功能已完成鏈上實測（testnet）；正式上線前不提供交易服務（KYB 紅線維持）。
 import Base from '../../layouts/Base.astro';
 ---
 <Base
-  title="AegisPay 安心付 — 付款前的最後一道閘門（開發中）"
-  description="AegisPay：AegisTalk 內建支付風控模組。對話語境 AI 閘控、非託管架構、AegisRD 永不經手資金。法幣進出由持牌合作方處理。開發中，預計 2027 上線。"
+  title="AegisPay 安心付 — 對話語境風控 × 非託管鏈上支付（AegisTalk 內建模組）"
+  description="AegisPay：全球唯一在轉帳送出前看見對話風險的支付層。安心幣（1:1 美元穩定幣 USDC）、ERC-4337 智能合約錢包、AegisID 身份衍生金鑰、風險動態時間鎖後悔期。核心已完成鏈上實測。"
   altPath="/en/aegistalk/pay"
   active="aegistalk"
 >
   <section class="hero" style="min-height:70vh">
     <div class="hero-content">
-      <div class="hero-badge">💠 AegisPay 安心付 · <span style="color:var(--warn)">開發中 · 預計 2027 上線</span></div>
+      <div class="hero-badge">💠 AegisPay 安心付 · AegisTalk 內建模組 · <span style="color:var(--green)">核心已完成鏈上實測</span></div>
       <h1>付款前的<span class="gradient">最後一道閘門</span></h1>
       <p>
-        詐騙的終點是「轉帳」。AegisPay 把 AI 風控放在你按下付款鍵之前 ——
-        看得懂對話語境的支付防線，內建於 AegisTalk。
+        詐騙的終點是「轉帳」。AegisPay 是全球唯一能在<b>轉帳送出之前</b>看見對話風險脈絡的支付層 ——
+        與 AegisAI、AegisID 同一副骨架，內建於 AegisTalk。
       </p>
-    </div>
-  </section>
-
-  <!-- 合規架構 -->
-  <section class="problem">
-    <div class="container">
-      <div class="section-label">// ARCHITECTURE</div>
-      <h2 class="section-title reveal">非託管架構：AegisRD 永不經手你的資金</h2>
-      <div class="ai-layers" style="max-width:860px">
-        <div class="ai-layer reveal">
-          <div class="layer-badge l1">🔑</div>
-          <div class="layer-info">
-            <h4>非託管（Non-custodial）錢包</h4>
-            <p>你的資金放在你自己控制的 ERC-4337 智能合約錢包（鏈上 USDC）—— 簽名金鑰由你的 AegisID 身份衍生，AegisRD 沒有、也永遠不會有動用你資金的能力。</p>
-          </div>
-        </div>
-        <div class="ai-layer reveal">
-          <div class="layer-badge l2">🏦</div>
-          <div class="layer-info">
-            <h4>法幣進出：持牌合作方處理</h4>
-            <p>儲值與提領由受監管的法幣通道服務商（licensed on/off-ramp partners）直接對你執行 —— 包含其 KYC 流程。AegisRD 不提供匯兌、託管、發行服務。</p>
-          </div>
-        </div>
-        <div class="ai-layer reveal">
-          <div class="layer-badge l3">🛡️</div>
-          <div class="layer-info">
-            <h4>AegisRD 只做一件事：風險評估</h4>
-            <p>我們知道「這筆交易的風險」，但不知道「你是誰」—— 風控與身份分離，是隱私設計，也是合規邊界。</p>
-          </div>
-        </div>
+      <div class="hero-actions">
+        <a href="#how" class="btn-primary">風控怎麼運作 ↓</a>
+        <a href="#coin" class="btn-ghost">什麼是安心幣 ↓</a>
       </div>
     </div>
   </section>
 
-  <!-- 風控獨家點 -->
-  <section class="ecosystem">
+  <!-- 三大獨家技術（專利申請中方向） -->
+  <section class="ecosystem" id="how">
     <div class="container">
-      <div class="section-label">// RISK GATING</div>
-      <h2 class="section-title reveal">別人看交易，我們看得懂對話</h2>
-      <div class="eco-grid">
+      <div class="section-label">// CORE TECHNOLOGY</div>
+      <h2 class="section-title reveal">三項獨家技術</h2>
+      <div class="eco-grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
         <div class="eco-card talk reveal">
-          <div class="eco-step">獨家</div>
+          <div class="eco-step">技術一</div>
           <h3>對話語境閘控</h3>
-          <p>轉帳發生在聊天裡 —— AegisPay 直接用 AegisTalk 的三層 AI（L1/L2/L3）評估這段對話的詐騙風險：高風險交易自動進入冷靜期延遲執行，期間可一鍵取消。</p>
+          <p>轉帳發生在聊天裡 —— AegisPay 直接調用 AegisTalk 的三層 AI（L1/L2/L3）評估<b>這段對話</b>的詐騙風險。別人看交易金額，我們看得懂「保證獲利」「老師帶單」。風控 100% 在你的手機本地執行。</p>
         </div>
         <div class="eco-card pay reveal">
-          <div class="eco-step">防冒用</div>
-          <h3>簽章收款碼</h3>
-          <p>收款碼帶密碼學簽章 —— 假的收款碼直接驗不過，「換帳號詐騙」在技術層就被封死。</p>
+          <div class="eco-step">技術二</div>
+          <h3>風險動態時間鎖（後悔期）</h3>
+          <p>風險分數動態決定資金釋放時間：低風險即時到帳；中高風險自動進入 <b>30 分鐘</b>冷靜期；極高風險 <b>24 小時</b> —— 期間匯款人<b>一鍵取消全額退回</b>（鏈上撤銷授權），高風險同步通知守護人。</p>
         </div>
         <div class="eco-card vpn reveal">
-          <div class="eco-step">身份保證</div>
-          <h3>AegisID 收款人驗證</h3>
-          <p>收款人身份綁定 AegisID 臉部特徵向量 —— 你轉帳的對象，是通過生物特徵驗證的那個人。</p>
-        </div>
-        <div class="eco-card track reveal">
-          <div class="eco-step">費用</div>
-          <h3>固定風控服務費</h3>
-          <p>依交易級距收取固定風控服務費（0.05 / 0.10 / 0.30 / 1.00 USDC），僅向付款方收取 —— 不抽成、不浮動。</p>
+          <div class="eco-step">技術三</div>
+          <h3>簽章式收款碼</h3>
+          <p>收款碼帶密碼學簽章並綁定 AegisID 生物身份 —— 假收款碼直接驗不過，「換帳號詐騙」在技術層被封死。你轉帳的對象，是刷過臉的那個人。</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 狀態與合規聲明 -->
+  <!-- 安心幣 -->
+  <section class="cost" id="coin">
+    <div class="container">
+      <div class="section-label">// STABLE VALUE</div>
+      <h2 class="section-title reveal">安心幣 — 看得懂的餘額，鏈上透明的資產</h2>
+      <div class="ai-layers" style="max-width:880px">
+        <div class="ai-layer reveal">
+          <div class="layer-badge l1">💰</div>
+          <div class="layer-info">
+            <h4>1 安心幣 = 1 USDC（美元穩定幣）</h4>
+            <p>你在 AegisTalk 裡看到的是「安心幣」餘額與熟悉的幣別換算顯示（如 NT$）—— 底層是鏈上 USDC，全球流通、儲備透明。不用選幣、不用懂鏈，複雜度我們吸收。</p>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l2">🔑</div>
+          <div class="layer-info">
+            <h4>資產在你的智能合約錢包（ERC-4337）</h4>
+            <p>安心幣放在<b>你自己</b>的鏈上智能合約錢包 —— 不是 AegisRD 的帳本。時間鎖後悔期、授權撤銷都是合約層功能，鏈上可驗證。</p>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l3">🪪</div>
+          <div class="layer-info">
+            <h4>金鑰 = 你的 AegisID 身份衍生</h4>
+            <p>錢包簽名金鑰由你的 AegisID 身份金鑰衍生（每次登入即時重算，不儲存秘密）—— 換手機刷臉 + PIN 恢復身份，錢包跟著回來；忘記 PIN 走好友 Shamir 社交恢復。AegisRD 從頭到尾<b>零金鑰</b>。</p>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l1">🏦</div>
+          <div class="layer-info">
+            <h4>儲值與提領 — 持牌方直接服務你</h4>
+            <p>法幣買入/賣出安心幣由受監管的法幣通道服務商（licensed on/off-ramp partners）直接對你執行，包含其 KYC —— AegisRD 不提供匯兌、託管、發行服務。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 一筆轉帳的旅程 -->
+  <section class="problem">
+    <div class="container">
+      <div class="section-label">// PAYMENT JOURNEY</div>
+      <h2 class="section-title reveal">一筆轉帳的旅程</h2>
+      <div class="problem-chain" style="margin-top:2.5rem">
+        <div class="chain-step"><div class="icon">💬</div><div class="label">聊天內發起</div><div class="sub">轉帳卡片</div></div>
+        <div class="chain-arrow" style="color:var(--accent)">→</div>
+        <div class="chain-step"><div class="icon">🧠</div><div class="label">本地風控閘</div><div class="sub">L1/L2/L3 評估對話</div></div>
+        <div class="chain-arrow" style="color:var(--accent)">→</div>
+        <div class="chain-step"><div class="icon">⏱️</div><div class="label">動態時間鎖</div><div class="sub">即時 / 30 分 / 24 小時</div></div>
+        <div class="chain-arrow" style="color:var(--accent)">→</div>
+        <div class="chain-step"><div class="icon">⛓️</div><div class="label">鏈上執行</div><div class="sub">到期自動上鏈</div></div>
+      </div>
+      <div class="moat-compare" style="margin-top:3rem">
+        <div class="moat-col reveal">
+          <h4>⏱️ 冷靜期內</h4>
+          <ul>
+            <li><span class="check">✓</span> 匯款人隨時一鍵取消、全額退回</li>
+            <li><span class="check">✓</span> 高風險（≥50 分）同步通知守護人</li>
+            <li><span class="check">✓</span> 取消 = 鏈上撤銷授權，不是「客服申請」</li>
+          </ul>
+        </div>
+        <div class="moat-col reveal">
+          <h4>📥 對方還沒開通 AegisPay？</h4>
+          <ul>
+            <li><span class="check">✓</span> 顯示「等待開通」卡片，不會失敗消失</li>
+            <li><span class="check">✓</span> 對方開通後依原風控決策自動執行</li>
+            <li><span class="check">✓</span> 開通前可隨時取消</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 開通旅程（預設關閉） -->
+  <section class="ai-engine">
+    <div class="container">
+      <div class="section-label">// OPT-IN BY DESIGN</div>
+      <h2 class="section-title reveal">預設關閉 — 不開通，零錢包、零攻擊面</h2>
+      <p class="section-desc reveal">AegisPay 是選用模組：AegisTalk 用戶不開啟，就沒有錢包、沒有 KYC、沒有任何金流暴露。</p>
+      <div class="problem-chain" style="margin-top:2.5rem">
+        <div class="chain-step"><div class="icon">⚙️</div><div class="label">設定內開啟</div><div class="sub">明確揭露說明</div></div>
+        <div class="chain-arrow" style="color:var(--green)">→</div>
+        <div class="chain-step"><div class="icon">🪪</div><div class="label">AegisID 刷臉</div><div class="sub">本人確認</div></div>
+        <div class="chain-arrow" style="color:var(--green)">→</div>
+        <div class="chain-step"><div class="icon">🏦</div><div class="label">持牌方 KYC</div><div class="sub">法幣需要時</div></div>
+        <div class="chain-arrow" style="color:var(--green)">→</div>
+        <div class="chain-step"><div class="icon">👛</div><div class="label">錢包生成</div><div class="sub">付款功能出現</div></div>
+      </div>
+      <p class="section-desc reveal" style="margin-top:1.5rem">每筆轉出都需要裝置上的生物驗證簽名 —— 伺服器在結構上無法代簽；就算 AegisRD 被駭，最壞情況是服務中斷，不是你的損失。</p>
+    </div>
+  </section>
+
+  <!-- 費用 -->
   <section class="cost">
     <div class="container">
-      <div class="section-label">// STATUS & COMPLIANCE</div>
-      <h2 class="section-title reveal">目前狀態</h2>
+      <div class="section-label">// PRICING</div>
+      <h2 class="section-title reveal">費用 — 好友轉帳免費，風控收費透明</h2>
       <div class="moat-col reveal" style="max-width:860px">
         <ul>
-          <li><span class="check">✓</span> AegisPay 目前為<b>開發中</b>模組，預計 2027 上線 —— 目前不提供任何交易服務</li>
-          <li><span class="check">✓</span> 用戶法幣交易之 KYC 由受監管服務商直接執行</li>
-          <li><span class="check">✓</span> AegisRD 僅提供風險評估技術，不提供匯兌、託管、發行服務</li>
-          <li><span class="check">✓</span> 鏈上資產為 USDC，錢包為用戶自持之 ERC-4337 智能合約錢包</li>
+          <li><span class="check">✓</span> <b>P2P 好友轉帳：免費</b>（不向用戶收純轉帳費）</li>
+          <li><span class="check">✓</span> 風控服務費：依交易級距固定收取 <b>0.05 / 0.10 / 0.30 / 1.00 安心幣</b>，僅向付款方收取 —— 不抽成、不浮動</li>
+          <li><span class="check">✓</span> 鏈上網路費（gas）：透明顯示、實價轉嫁，AegisRD 不加價</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 狀態與合規（KYB 紅線維持） -->
+  <section class="moat">
+    <div class="container">
+      <div class="section-label">// STATUS & COMPLIANCE</div>
+      <h2 class="section-title reveal">目前狀態與合規邊界</h2>
+      <div class="moat-col highlight reveal" style="max-width:880px">
+        <ul>
+          <li><span class="check">✓</span> <b>開發狀態：核心功能已完成鏈上實測</b>（測試網：開通、儲值、即時轉帳、風險時間鎖、取消退回、守護人警報、提領流程全鏈驗證）；正式上線前不提供交易服務，將隨 AegisTalk 更新推出</li>
+          <li><span class="check">✓</span> <b>非託管鐵律</b>：資金與金鑰永不停留在 AegisRD —— 我們不代收、不保管、不經手</li>
+          <li><span class="check">✓</span> 法幣交易之 KYC 由受監管服務商直接對用戶執行；<b>兩層知識分離</b>：AegisRD 知風險、不知身分；持牌方知身分、不知對話</li>
+          <li><span class="check">✓</span> AegisRD 僅提供風險評估技術與介面，不提供匯兌、託管、發行服務</li>
         </ul>
       </div>
     </div>
   </section>
 
   <section class="cta-section">
-    <h2>想第一時間知道上線消息？</h2>
-    <p>AegisPay 將隨 AegisTalk 更新推出。</p>
+    <h2>AegisPay 將隨 AegisTalk 推出</h2>
+    <p>與 AegisAI 防詐引擎、AegisID 生物身份同一副骨架 —— 三件事，一個 App。</p>
     <a href="/aegistalk" class="btn-primary">回 AegisTalk 產品頁 →</a>
   </section>
 </Base>

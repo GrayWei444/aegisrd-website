@@ -62,8 +62,8 @@ import Base from '../../layouts/Base.astro';
   <section class="moat">
     <div class="container">
       <div class="section-label">// UNDER THE HOOD</div>
-      <h2 class="section-title reveal">引擎與身份 — 不只宣稱，附上實測報告</h2>
-      <div class="eco-grid" style="margin-top:3rem">
+      <h2 class="section-title reveal">三大內建模組 — 不只宣稱，附上實測</h2>
+      <div class="eco-grid" style="margin-top:3rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
         <div class="eco-card talk reveal">
           <div class="eco-step">AI 引擎</div>
           <h3>AegisAI</h3>
@@ -88,6 +88,19 @@ import Base from '../../layouts/Base.astro';
           </p>
           <p style="margin-top:1.25rem">
             <a href="/aegistalk/aegisid-report/" target="_blank" class="btn-primary" style="padding:.6rem 1.4rem;font-size:.9rem">🪪 查看 AegisID 人臉唯一性報告 →</a>
+          </p>
+        </div>
+        <div class="eco-card vpn reveal">
+          <div class="eco-step">支付風控模組</div>
+          <h3>AegisPay</h3>
+          <div class="tagline">付款前的最後一道閘門</div>
+          <p>
+            對話語境閘控 × 風險動態時間鎖（後悔期）× 簽章收款碼。安心幣（1:1 美元穩定幣）、
+            ERC-4337 智能合約錢包、金鑰由 AegisID 身份衍生 —— 非託管，AegisRD 零金鑰。
+            核心功能已完成鏈上實測（測試網）。
+          </p>
+          <p style="margin-top:1.25rem">
+            <a href="/aegistalk/pay" class="btn-primary" style="padding:.6rem 1.4rem;font-size:.9rem">💠 查看 AegisPay 技術介紹 →</a>
           </p>
         </div>
       </div>
@@ -136,20 +149,6 @@ import Base from '../../layouts/Base.astro';
         <div class="ss-item"><img src="/images/talk-add-friend.jpg" alt="安全加好友" loading="lazy" /><div class="ss-label">短碼／QR 安全加好友</div></div>
         <div class="ss-item"><img src="/images/guard-threat.jpg" alt="家庭守護警示" loading="lazy" /><div class="ss-label">Family Guard 威脅通知</div></div>
         <div class="ss-item"><img src="/images/guard-block.jpg" alt="惡意攔截" loading="lazy" /><div class="ss-label">惡意網址攔截</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- AegisPay 導流卡 -->
-  <section class="moat">
-    <div class="container">
-      <div class="eco-card pay reveal" style="max-width:640px;margin:0 auto">
-        <div class="eco-step">內建模組 · 開發中</div>
-        <h3>AegisPay 安心付</h3>
-        <div class="tagline">付款前的最後一道閘門</div>
-        <p>轉帳之前，AI 先看一眼對話 —— 高風險交易自動進入冷靜期。非託管架構，AegisRD 永不經手你的資金。</p>
-        <span class="eco-badge badge-plan">預計 2027 上線</span>
-        <p style="margin-top:1rem"><a href="/aegistalk/pay" class="btn-primary" style="padding:.6rem 1.4rem;font-size:.9rem">💠 AegisPay 完整介紹（含合規架構）→</a></p>
       </div>
     </div>
   </section>
