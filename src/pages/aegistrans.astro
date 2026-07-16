@@ -124,11 +124,12 @@ import Base from '../layouts/Base.astro';
   <!-- 螢幕投放與延伸（獨立卡片介紹 + 實機圖） -->
   <section class="moat">
     <div class="container">
-      <div class="section-label">// SCREEN CAST</div>
-      <h2 class="section-title reveal">螢幕投放與延伸 — 桌面版獨家</h2>
+      <div class="section-label">// SCREEN CAST · <span style="color:var(--warn)">進階功能（正式版採訂閱制）</span></div>
+      <h2 class="section-title reveal">螢幕投放與延伸</h2>
       <p class="section-desc reveal">
-        Windows 的畫面直接投到 Mac（鏡像），或把另一台電腦當<b>延伸螢幕</b>用 ——
-        走同一條端對端加密 P2P 通道，畫面內容不經伺服器。收端一鍵接受，隨時關閉。
+        <b>投放（鏡像）— 跨裝置</b>：手機或電腦的畫面即時投到另一台裝置（iOS 投放已實機驗證）。<br />
+        <b>延伸螢幕 — 桌面版獨家</b>：把另一台電腦變成你的第二螢幕（虛擬顯示器驅動）。<br />
+        兩者都走端對端加密 P2P 通道，畫面內容不經伺服器；收端一鍵接受、隨時關閉。
       </p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2.5rem" class="trans-shots">
         <div class="ss-item" style="width:auto"><img src="/images/trans-screenshare-request.png" alt="收到螢幕分享請求" loading="lazy" /><div class="ss-label">收到分享請求 — 拒絕 / 一鍵接受</div></div>
@@ -155,11 +156,15 @@ import Base from '../layouts/Base.astro';
   <!-- 下載（桌面版 Beta 直接下載） -->
   <section class="cta-section" id="download">
     <h2>下載 AegisTrans 桌面版（Beta）</h2>
-    <p>Mac 版已簽章公證；Windows / Linux 為 Beta 安裝檔（未簽章，安裝時系統可能提示）。iOS 實機測試中。</p>
+    <p>Mac 版已簽章公證；Windows / Linux 為 Beta 安裝檔（未簽章，安裝時系統可能提示）。iOS / Android 將於應用商店上架。<br />進階功能（螢幕投放／延伸）正式版採<b>訂閱制</b>：於手機 App 內訂閱（Apple Pay / Google Pay），帳號通用 —— 桌面版掃碼即可完成。</p>
     <div class="hero-actions" style="justify-content:center">
       <a href="/downloads/AegisTrans-mac.zip" class="btn-primary">🍎 下載 Mac 版（.zip）</a>
       <a href="/downloads/AegisTrans-win-setup.exe" class="btn-primary" style="background:linear-gradient(135deg,var(--blue),#60a5fa)">🪟 下載 Windows 版（.exe）</a>
       <a href="/downloads/AegisTrans-linux.AppImage" class="btn-primary" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">🐧 下載 Linux 版（AppImage）</a>
+    </div>
+    <div class="hero-actions" style="justify-content:center;margin-top:1rem">
+      <span class="btn-ghost" style="cursor:default">🍎 App Store · 即將上架</span>
+      <span class="btn-ghost" style="cursor:default">🤖 Google Play · 即將上架</span>
     </div>
     <p style="margin-top:1.5rem;color:var(--text2);font-size:.9rem">
       問題回報／搶先功能建議：<a href="mailto:contact@aegisrd.com?subject=AegisTrans%20Beta" style="color:var(--accent)">contact@aegisrd.com</a>
