@@ -1,0 +1,143 @@
+---
+// AegisID 人臉唯一性報告 — 官網風格重製（數據原封自 test face-uniqueness 2026-05-22）
+import Base from '../../layouts/Base.astro';
+---
+<Base
+  title="AegisID 人臉唯一性報告 — AuraFace 實測（可商用）"
+  description="AuraFace（ResNet100+ArcFace，Apache-2.0 可商用）人臉唯一性實測：FEI 受控正面 FRR 0%、LFW 4,108 人 843 萬組全配對撞臉率 0.00237%。僅存向量、不存照片。"
+  active="aegistalk"
+>
+  <section class="hero" style="min-height:44vh">
+    <div class="hero-content">
+      <div class="hero-badge">🪪 AegisID · 人臉唯一性報告 · <span style="color:var(--green)">Apache-2.0 可商用模型</span></div>
+      <h1 style="font-size:clamp(1.8rem,3.6vw,2.8rem)">人臉唯一性<span class="gradient">實測數據</span></h1>
+      <p>AuraFace FP16（ResNet100 · ArcFace）· YuNet 五點對齊 · cosine 比對 · 2026-05-22<br />資料：FEI 200 人受控正面 + LFW 4,108 位名人大規模撞臉</p>
+    </div>
+  </section>
+
+  <!-- 一句話結論 -->
+  <section class="cost" style="padding-top:3rem">
+    <div class="container">
+      <div class="moat-col highlight reveal" style="max-width:880px;margin:0 auto">
+        <p style="font-size:1.05rem;line-height:1.9">
+          <b>一句話：</b>用<b>可商用</b>的 AuraFace，同一人（受控正面）<b style="color:var(--green)">100% 認得回</b>（FRR 0% @ 門檻 0.40），
+          4,108 個不同人裡撞臉極少。embedding 只是一串數字（無照片）→ 能比「是否同一人」，無法反推「是誰」。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 做法 -->
+  <section class="problem">
+    <div class="container">
+      <div class="section-label">// METHOD</div>
+      <h2 class="section-title reveal">做法</h2>
+      <p class="section-desc reveal" style="max-width:860px">
+        對齊後的臉 112×112 → <b>AuraFace（ResNet100 + ArcFace 角 margin loss，可商用資料訓練）</b> → 512 維向量 → L2 正規化 → 兩臉比 cosine。
+        與 InsightFace 同演算法、同對齊，差別只在訓練資料（所以可商用、準度略低一階）。embedding 永遠用 cosine 比對，不是固定 hash。
+      </p>
+    </div>
+  </section>
+
+  <!-- PART A -->
+  <section class="cost">
+    <div class="container">
+      <div class="section-label">// PART A · FEI</div>
+      <h2 class="section-title reveal">FEI 200 人受控正面 — 我們的真實場景</h2>
+      <p class="section-desc reveal">FEI 正面 pose（中性／微笑），≈ 使用者乖乖對前鏡頭掃臉的品質。同人 1,128 組、不同人 19,900 組（全配對）。</p>
+      <div class="problem-stat" style="margin-top:2rem">
+        <div class="stat-card reveal"><div class="number" style="background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;background-clip:text">0%</div><div class="desc">同人被拒 FRR（門檻 0.40）</div></div>
+        <div class="stat-card reveal"><div class="number" style="background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;background-clip:text">0.83</div><div class="desc">同人平均 cosine（最低 0.44）</div></div>
+        <div class="stat-card reveal"><div class="number" style="background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;background-clip:text">19,900</div><div class="desc">不同人配對（全配對）</div></div>
+      </div>
+      <div class="rpt-tablewrap reveal">
+        <table class="rpt">
+          <tr><th>門檻</th><th>FRR 同人被拒</th><th>FAR 撞臉（扣資料集標錯）</th></tr>
+          <tr><td>0.35</td><td>0/1,128（0.00%）</td><td>113/19,900（0.5678%）</td></tr>
+          <tr class="hl"><td><b>0.40</b></td><td><b>0/1,128（0.00%）</b></td><td><b>29/19,900（0.1457%）</b></td></tr>
+          <tr><td>0.45</td><td>2/1,128（0.18%）</td><td>7/19,900（0.0352%）</td></tr>
+          <tr><td>0.50</td><td>4/1,128（0.35%）</td><td>1/19,900（0.0050%）</td></tr>
+        </table>
+      </div>
+      <p class="rpt-note reveal">門檻 0.40：同一人 <b style="color:var(--green)">100% 認得回</b>（0% 被拒）；不同人撞臉極少。這就是真實使用情境（受控正面）的表現。</p>
+
+      <h3 style="margin-top:3rem;color:var(--accent);font-size:1.15rem" class="reveal">模型反過來抓出 FEI 自己標錯的人</h3>
+      <p class="section-desc reveal">所有不同人對裡，相似度最高的一對是 <b>#2 ↔ #71</b>（cosine <span style="color:var(--warn)">0.880</span>）。看圖就知道是<b>同一個人</b> —— FEI 把同一人標成兩個編號。<b style="color:var(--green)">AuraFace 正確判定他們是同一人 —— 這正是唯一 ID 要的行為，也證明模型判別力健康。</b></p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;margin-top:1.5rem" class="reveal">
+        <div class="pc"><b style="color:var(--green)">同一人（正常）</b><br /><img src="/aegistalk/aegisid-report/chips/fei_g1.jpg" alt="" loading="lazy" /><img src="/aegistalk/aegisid-report/chips/fei_g2.jpg" alt="" loading="lazy" /><br />#1 · cosine <b style="color:var(--green)">0.874</b></div>
+        <div class="pc"><b style="color:var(--warn)">FEI 標成兩個人（其實同一人）</b><br /><img src="/aegistalk/aegisid-report/chips/fei_d1.jpg" alt="" loading="lazy" /><img src="/aegistalk/aegisid-report/chips/fei_d2.jpg" alt="" loading="lazy" /><br />#2 ↔ #71 · cosine <b style="color:var(--warn)">0.880</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PART B -->
+  <section class="problem">
+    <div class="container">
+      <div class="section-label">// PART B · LFW</div>
+      <h2 class="section-title reveal">LFW 4,108 位名人 — 大規模撞臉</h2>
+      <p class="section-desc reveal">真實名人照片，挑正面。同人 2,211 組、不同人 <b>8,435,778 組全配對（非抽樣）</b>。</p>
+      <div class="rpt-tablewrap reveal">
+        <table class="rpt">
+          <tr><th></th><th>配對數</th><th>平均 cosine</th><th>極端值</th></tr>
+          <tr><td class="l">同一人</td><td>2,211</td><td style="color:var(--green)"><b>0.595</b></td><td>最低 -0.011</td></tr>
+          <tr><td class="l">不同人</td><td>8,435,778</td><td>0.063</td><td style="color:var(--red)">最高 1.000（含資料集重複）</td></tr>
+        </table>
+      </div>
+      <div class="rpt-tablewrap reveal">
+        <table class="rpt">
+          <tr><th>門檻</th><th>FAR 撞臉（扣資料集標錯）</th><th>FRR 同人被拒</th></tr>
+          <tr><td>0.35</td><td>1,232（+2 標錯）/8,435,778（0.01460%）</td><td>91/2,211（4.12%）</td></tr>
+          <tr class="hl"><td><b>0.40</b></td><td><b>200（+2 標錯）/8,435,778（0.00237%）</b></td><td><b>156/2,211（7.06%）</b></td></tr>
+          <tr><td>0.45</td><td>50（+2 標錯）/8,435,778（0.00059%）</td><td>290/2,211（13.12%）</td></tr>
+          <tr><td>0.50</td><td>24（+2 標錯）/8,435,778（0.00028%）</td><td>463/2,211（20.94%）</td></tr>
+        </table>
+      </div>
+      <p class="rpt-note reveal">4,108 個不同人、8,435,778 組全配對，門檻 0.40 撞臉率僅 200/8,435,778。LFW 同人是不同年代野照（壓力測試），FRR 比受控正面（PART A）高屬正常。</p>
+      <div style="display:grid;grid-template-columns:minmax(260px,420px);justify-content:center;gap:1.25rem;margin-top:1.5rem" class="reveal">
+        <div class="pc"><b style="color:var(--red)">LFW 最像的兩個「不同人」</b><br /><img src="/aegistalk/aegisid-report/chips/lfw_d1.jpg" alt="" loading="lazy" /><img src="/aegistalk/aegisid-report/chips/lfw_d2.jpg" alt="" loading="lazy" /><br />Bart_Hendricks ↔ Ricky_Ray · cosine <b style="color:var(--red)">1.000</b><br /><span style="color:var(--text2);font-size:.85rem">（cosine≈1.0 多為 LFW 重複照片／標錯）</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 隱私 -->
+  <section class="cost">
+    <div class="container">
+      <div class="section-label">// PRIVACY</div>
+      <h2 class="section-title reveal">隱私：知道同一人，不知道是誰</h2>
+      <div class="moat-col highlight reveal" style="max-width:860px">
+        <p style="line-height:1.9">存的是 <b>512 個數字（無照片）</b>。✅ 能比「是不是同一人」（防多開、信用綁人）；❌ 無法反推「長相、是誰」。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 限制 -->
+  <section class="problem">
+    <div class="container">
+      <div class="section-label">// HONEST LIMITS</div>
+      <h2 class="section-title reveal">限制（誠實說）</h2>
+      <div class="moat-col reveal" style="max-width:860px;border-color:rgba(245,158,11,.4)">
+        <ul>
+          <li><span style="color:var(--warn)">①</span> embedding 非固定 hash，永遠 cosine 比對</li>
+          <li><span style="color:var(--warn)">②</span> AuraFace 比 InsightFace 弱一階（資料量小）—— 大規模撞臉略多，靠門檻 + PIN + 活體兜底</li>
+          <li><span style="color:var(--warn)">③</span> AuraFace 自承族裔偏差（訓練資料覆蓋不足）→ 上線前要拿目標族裔臉實測</li>
+          <li><span style="color:var(--warn)">④</span> 百萬級 1:N 無辜誤擋會上升 → 改旗標 + 二次驗證</li>
+        </ul>
+      </div>
+      <p class="section-desc reveal" style="margin-top:1.5rem;font-size:.9rem">模型 AuraFace FP16（Apache-2.0）；對齊 YuNet 5 點；FEI 200 + LFW 4,108 人。</p>
+      <p style="margin-top:2rem;text-align:center"><a href="/aegistalk" class="btn-ghost">← 回 AegisTalk 產品頁</a></p>
+    </div>
+  </section>
+
+<style>
+  .rpt-tablewrap { overflow-x: auto; margin-top: 1.5rem; }
+  table.rpt { width: 100%; border-collapse: collapse; background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; font-size: .9rem; }
+  table.rpt th, table.rpt td { padding: .65rem .9rem; text-align: center; border-bottom: 1px solid var(--border); }
+  table.rpt th { background: rgba(255,255,255,.04); color: var(--text2); font-weight: 600; }
+  table.rpt tr:last-child td { border-bottom: none; }
+  table.rpt tr.hl { background: rgba(38,198,218,.08); }
+  table.rpt td.l { text-align: left; font-weight: 700; }
+  .rpt-note { background: rgba(245,158,11,.08); border: 1px solid rgba(245,158,11,.3); border-radius: 10px; padding: .9rem 1.1rem; font-size: .9rem; color: var(--text2); margin-top: 1rem; }
+  .pc { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; text-align: center; font-size: .95rem; }
+  .pc img { width: 104px; height: 128px; object-fit: cover; border-radius: 8px; margin: .5rem .25rem; }
+</style>
+</Base>
