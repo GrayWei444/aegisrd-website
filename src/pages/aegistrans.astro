@@ -1,0 +1,130 @@
+---
+// AegisTrans 產品頁 — 規格 v1.2 §3.4。語源：AegisTrans/README.md（程式碼實況 2026-07-16）。
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="AegisTrans 安心傳 — 跨裝置檔案與訊息同步，端對端加密 100% P2P"
+  description="AegisTrans：自己傳給自己的跨裝置工作區。任意大小檔案、端對端加密、純 P2P 不過伺服器。Mac / Windows 桌面版已開發，iOS 測試中。"
+  active="aegistrans"
+>
+  <!-- Hero -->
+  <section class="hero" style="min-height:80vh">
+    <div class="hero-content">
+      <div class="hero-badge">📡 AegisTrans 安心傳 · Beta</div>
+      <h1>你的檔案，<span class="gradient">只走你的裝置</span></h1>
+      <p>
+        跨裝置「自己傳給自己」的工作區 —— 不是聊天軟體，是手機、平板、電腦之間的加密直通道。
+        任意大小檔案、端對端加密、100% P2P：連我們的伺服器都看不到內容。
+      </p>
+      <div class="hero-actions">
+        <a href="#scenarios" class="btn-primary">它能做什麼 ↓</a>
+        <a href="/technology" class="btn-ghost">共用技術底座</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 使用場景 -->
+  <section class="problem" id="scenarios">
+    <div class="container">
+      <div class="section-label">// SCENARIOS</div>
+      <h2 class="section-title reveal">你以前用 LINE 傳給自己 —— 現在不必了</h2>
+      <p class="section-desc reveal">LINE 多裝置有限制、檔案會過期、雲端看得到你的內容。AegisTrans 三個都解。</p>
+      <div class="problem-stat">
+        <div class="stat-card reveal">
+          <div class="number" style="font-size:2rem">📦 大檔傳輸</div>
+          <div class="desc">手機拍的影片直接進電腦 —— 任意大小、不壓縮、不過期（200MB 實測全鏈路加密通過）</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="number" style="font-size:2rem">💻 跨裝置接力</div>
+          <div class="desc">手機、平板、桌機、筆電同帳號多裝置同時登入，開啟即同步，不需要 QR 配對</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="number" style="font-size:2rem">🔒 敏感文件</div>
+          <div class="desc">合約、證件、密碼備份 —— 端對端加密後才離開裝置，伺服器零內容留存</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 技術特點 -->
+  <section class="ai-engine">
+    <div class="container">
+      <div class="section-label">// TECHNOLOGY</div>
+      <h2 class="section-title reveal">與 AegisTalk 同一副骨架</h2>
+      <p class="section-desc reveal">AegisTrans 與 AegisTalk 共用底層技術 —— 差別只在場景：一個對別人，一個對自己。</p>
+      <div class="ai-layers">
+        <div class="ai-layer reveal">
+          <div class="layer-badge l1">P2P</div>
+          <div class="layer-info">
+            <h4>WebRTC DataChannel 直達</h4>
+            <p>檔案內容 100% 不經伺服器 —— 兩台裝置之間點對點直傳，chunking + backpressure 撐任意大小檔案。</p>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l2">E2E</div>
+          <div class="layer-info">
+            <h4>Signal Protocol 級加密</h4>
+            <p>X3DH + Double Ratchet 建立裝置間信任，內容以 AES-256-GCM 加密 —— 全鏈路 ciphertext over wire。</p>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l3">0️⃣</div>
+          <div class="layer-info">
+            <h4>伺服器零內容</h4>
+            <p>伺服器只做信令與帳號 —— 沒有你的檔案、沒有你的訊息、沒有可以外洩的東西。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 與 AegisTalk 的關係 -->
+  <section class="moat">
+    <div class="container">
+      <div class="section-label">// ECOSYSTEM</div>
+      <h2 class="section-title reveal">同一個生態系的兩張面孔</h2>
+      <div class="moat-compare">
+        <div class="moat-col reveal">
+          <h4>💬 AegisTalk 安心說</h4>
+          <ul>
+            <li>對「別人」的加密通訊</li>
+            <li>AI 防詐引擎全程護航</li>
+            <li>家庭守護、風險警示</li>
+          </ul>
+        </div>
+        <div class="moat-col highlight reveal">
+          <h4>📡 AegisTrans 安心傳</h4>
+          <ul>
+            <li>對「自己」的跨裝置同步</li>
+            <li>任意大小檔案直傳</li>
+            <li>螢幕投放 / 延伸（桌面）</li>
+          </ul>
+        </div>
+      </div>
+      <p class="section-desc reveal" style="margin-top:2rem">
+        兩者共用 AegisRD 同一套 E2EE + P2P 底座 —— 學會一個，就等於學會另一個。
+      </p>
+    </div>
+  </section>
+
+  <!-- 平台與狀態（照程式碼實況，規格 §3.4「照實標示」） -->
+  <section class="cost">
+    <div class="container">
+      <div class="section-label">// AVAILABILITY</div>
+      <h2 class="section-title reveal">平台進度</h2>
+      <div class="problem-stat">
+        <div class="stat-card reveal"><div class="number" style="font-size:2rem">🖥️ Mac</div><div class="desc">桌面版已開發 — 含螢幕投放/延伸</div></div>
+        <div class="stat-card reveal"><div class="number" style="font-size:2rem">🪟 Windows</div><div class="desc">桌面版已開發</div></div>
+        <div class="stat-card reveal"><div class="number" style="font-size:2rem">📱 iOS</div><div class="desc">實機測試中</div></div>
+        <div class="stat-card reveal"><div class="number" style="font-size:2rem">🤖 Android</div><div class="desc">規劃中</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>想搶先體驗？</h2>
+    <p>AegisTrans 目前為 Beta 測試 —— 正式版將透過官方應用商店與官網發佈。</p>
+    <a href="mailto:contact@aegisrd.com?subject=AegisTrans%20Beta" class="btn-primary">聯絡我們加入測試 →</a>
+  </section>
+</Base>

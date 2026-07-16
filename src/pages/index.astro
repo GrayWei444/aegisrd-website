@@ -1,0 +1,173 @@
+---
+// 首頁 — 規格 v1.2 §3.1：講生態系，不講單一產品。七區塊。
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="AegisRD 安心研創 — 讓詐騙在你身邊無所遁形"
+  description="AegisRD 打造 AI 防詐生態系：AegisTalk 防詐通訊、AegisTrans 跨裝置傳輸、AegisID 身份、AegisGuard 家庭守護。端對端加密、100% P2P、本地 AI。"
+  altPath="/en"
+  active="home"
+>
+  <!-- 1. Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">🛡️ AegisRD 安心研創</div>
+      <h1>讓詐騙在你身邊<br /><span class="gradient">無所遁形</span></h1>
+      <p>
+        Making scams visible before they strike.<br />
+        我們把 AI 防詐守衛放進每一段對話、每一筆轉帳、每一次傳輸 —— 而你的資料，永遠只屬於你。
+      </p>
+      <div class="hero-actions">
+        <a href="/aegistalk" class="btn-primary">下載 AegisTalk</a>
+        <a href="/technology" class="btn-ghost">看看技術底座</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 威脅數據帶（僅規格 §七 白名單統計） -->
+  <section class="problem">
+    <div class="container">
+      <div class="section-label">// THE THREAT</div>
+      <h2 class="section-title reveal">詐騙不是新聞裡的別人，是每 3.2 分鐘一件的現在進行式</h2>
+      <div class="problem-stat">
+        <div class="stat-card reveal"><div class="number">NT$893.26 億</div><div class="desc">2025 年台灣詐騙財損</div></div>
+        <div class="stat-card reveal"><div class="number">16.2 萬件</div><div class="desc">一年通報案件數</div></div>
+        <div class="stat-card reveal"><div class="number">3.2 分鐘</div><div class="desc">平均每 3.2 分鐘發生一件</div></div>
+        <div class="stat-card reveal"><div class="number">73%</div><div class="desc">簡訊詐騙導流至通訊軟體（Trend Micro 2026）</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 產品矩陣（5 卡） -->
+  <section class="ecosystem" id="products">
+    <div class="container">
+      <div class="section-label">// ECOSYSTEM</div>
+      <h2 class="section-title reveal">一個生態系，守住詐騙鏈的每一環</h2>
+      <p class="section-desc reveal">單點工具只看得到詐騙的一小段。AegisRD 的產品彼此共用同一個 AI 大腦與同一套隱私架構。</p>
+      <div class="eco-grid">
+        <div class="eco-card talk reveal">
+          <div class="eco-step">主打產品</div>
+          <h3>AegisTalk 安心說</h3>
+          <div class="tagline">AI 防詐通訊 App</div>
+          <p>端對端加密的訊息與通話，內建三層 AI 防詐引擎 —— 在詐騙話術得逞之前，紅盾警示已經彈出。</p>
+          <span class="eco-badge badge-dev">App 上架準備中</span>
+          <p style="margin-top:1rem"><a href="/aegistalk" style="color:var(--accent)">了解 AegisTalk →</a></p>
+        </div>
+        <div class="eco-card vpn reveal">
+          <div class="eco-step">新成員</div>
+          <h3>AegisTrans 安心傳</h3>
+          <div class="tagline">跨裝置檔案與訊息同步</div>
+          <p>自己傳給自己的跨裝置工作區：任意大小檔案、端對端加密、100% P2P —— 連我們的伺服器都看不到內容。</p>
+          <span class="eco-badge badge-dev">Beta 測試中</span>
+          <p style="margin-top:1rem"><a href="/aegistrans" style="color:var(--accent)">了解 AegisTrans →</a></p>
+        </div>
+        <div class="eco-card pay reveal">
+          <div class="eco-step">身份底座</div>
+          <h3>AegisID 安心身分</h3>
+          <div class="tagline">臉部特徵向量 × 裝置無關身份</div>
+          <p>用 512 維臉部特徵向量建立唯一身份 —— 不存照片、換手機不掉帳號、被冒用時有密碼學證據。</p>
+          <p style="margin-top:1rem"><a href="/technology/aegisid" style="color:var(--accent)">技術細節 →</a></p>
+        </div>
+        <div class="eco-card track reveal">
+          <div class="eco-step">全面免費</div>
+          <h3>AegisGuard 家庭守護</h3>
+          <div class="tagline">為爸媽裝上的隱形護盾</div>
+          <p>報平安、詐騙風險即時通知守護人、惡意網址攔截 —— 內建於 AegisTalk，永久免費。</p>
+        </div>
+        <div class="eco-card pay reveal">
+          <div class="eco-step">開發中</div>
+          <h3>AegisPay 安心付</h3>
+          <div class="tagline">付款前的最後一道閘門</div>
+          <p>對話語境風控 × 非託管架構：在你按下轉帳之前，AI 先問一句「這筆錢，真的該轉嗎？」</p>
+          <span class="eco-badge badge-plan">開發中 · 預計 2027</span>
+          <p style="margin-top:1rem"><a href="/aegistalk/pay" style="color:var(--accent)">了解 AegisPay →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 技術底座三柱 -->
+  <section class="ai-engine">
+    <div class="container">
+      <div class="section-label">// FOUNDATION</div>
+      <h2 class="section-title reveal">隱私是架構保證，不是政策承諾</h2>
+      <div class="ai-layers">
+        <div class="ai-layer reveal">
+          <div class="layer-badge l1">E2E</div>
+          <div class="layer-info">
+            <h4>端對端加密（Signal Protocol）</h4>
+            <p>X3DH + Double Ratchet。訊息離開你的裝置前就已加密，只有對方能解開 —— 我們想看也看不到。</p>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l2">P2P</div>
+          <div class="layer-info">
+            <h4>100% 點對點傳輸</h4>
+            <p>訊息與檔案走 WebRTC DataChannel 直達對方裝置，伺服器只做信令 —— 內容零中繼、零留存。</p>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l3">AI</div>
+          <div class="layer-info">
+            <h4>本地 Edge AI</h4>
+            <p>Rust + WASM 邊緣推論，防詐模型直接跑在你的手機上。分析對話的是你的裝置，不是我們的雲。</p>
+          </div>
+        </div>
+      </div>
+      <p style="margin-top:2rem"><a href="/technology" class="btn-ghost">深入技術架構 →</a></p>
+    </div>
+  </section>
+
+  <!-- 5. 守衛敘事 -->
+  <section class="moat">
+    <div class="container">
+      <div class="section-label">// WHY US</div>
+      <h2 class="section-title reveal">守衛一直都在，只是站錯了位置</h2>
+      <p class="section-desc reveal">詐騙發生在對話裡 —— 但現有的守衛都站在對話之外。</p>
+      <div class="moat-compare">
+        <div class="moat-col reveal">
+          <h4>🚪 門口的守衛</h4>
+          <ul>
+            <li><span class="check">✓</span> 來電辨識擋得住陌生號碼</li>
+            <li><span class="cross">✗</span> 詐騙加了 LINE 之後就看不到了</li>
+          </ul>
+        </div>
+        <div class="moat-col reveal">
+          <h4>🏦 出口的守衛</h4>
+          <ul>
+            <li><span class="check">✓</span> 銀行風控攔得住異常轉帳</li>
+            <li><span class="cross">✗</span> 等錢要出去才攔，往往已經太遲</li>
+          </ul>
+        </div>
+        <div class="moat-col highlight reveal">
+          <h4>💬 對話現場的守衛</h4>
+          <ul>
+            <li><span class="check">✓</span> AegisRD 把 AI 守衛放進加密對話裡</li>
+            <li><span class="check">✓</span> 話術一出現，紅盾即時警示</li>
+            <li><span class="check">✓</span> 而且因為在本地分析 —— 隱私毫髮無傷</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 信任與實證 -->
+  <section class="cost">
+    <div class="container">
+      <div class="section-label">// PROOF</div>
+      <h2 class="section-title reveal">數字會說話</h2>
+      <div class="problem-stat">
+        <div class="stat-card reveal"><div class="number" style="background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;background-clip:text">98.5%</div><div class="desc">詐騙訊息偵測率（26,137 則實測訊息，域內測試）</div></div>
+        <div class="stat-card reveal"><div class="number" style="background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;background-clip:text">F1 0.981</div><div class="desc">偵測模型 F1 分數（域內測試）</div></div>
+        <div class="stat-card reveal"><div class="number" style="background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;background-clip:text">逾 26 萬行</div><div class="desc">防詐引擎程式碼 + 53,640 條規則</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>把守衛帶回家</h2>
+    <p>AegisTalk 即將於 App Store 與 Google Play 上架 —— 僅透過官方應用商店發佈。</p>
+    <a href="/aegistalk" class="btn-primary">了解 AegisTalk →</a>
+  </section>
+</Base>

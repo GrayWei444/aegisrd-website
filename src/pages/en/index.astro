@@ -1,0 +1,90 @@
+---
+// English home — spec v1.2 §四 minimum EN coverage
+import Base from '../../layouts/Base.astro';
+---
+<Base
+  title="AegisRD — Making scams visible before they strike"
+  description="AegisRD builds an anti-scam ecosystem: AegisTalk secure messaging with on-device AI scam detection, AegisTrans cross-device transfer, AegisID biometric identity. E2EE, 100% P2P, edge AI."
+  lang="en"
+  altPath="/"
+  active="home"
+>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">🛡️ AegisRD</div>
+      <h1>Making scams visible<br /><span class="gradient">before they strike</span></h1>
+      <p>
+        We put an AI guard inside every conversation, every transfer, every file sync —
+        while your data never leaves your hands.
+      </p>
+      <div class="hero-actions">
+        <a href="/en/aegistalk" class="btn-primary">Get AegisTalk</a>
+        <a href="/en/aegistalk/pay" class="btn-ghost">AegisPay module</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="ecosystem">
+    <div class="container">
+      <div class="section-label">// ECOSYSTEM</div>
+      <h2 class="section-title reveal">One ecosystem, every link of the scam chain covered</h2>
+      <div class="eco-grid">
+        <div class="eco-card talk reveal">
+          <div class="eco-step">Flagship</div>
+          <h3>AegisTalk</h3>
+          <div class="tagline">Anti-scam secure messenger</div>
+          <p>End-to-end encrypted messaging & calls with a three-layer on-device AI scam engine. Real-time red-shield alerts before the script works.</p>
+          <span class="eco-badge badge-dev">App stores — coming soon</span>
+        </div>
+        <div class="eco-card vpn reveal">
+          <div class="eco-step">New</div>
+          <h3>AegisTrans</h3>
+          <div class="tagline">Cross-device file & message sync</div>
+          <p>Your personal encrypted workspace across phone, tablet and desktop. Files of any size, 100% peer-to-peer — our servers never see your content.</p>
+          <span class="eco-badge badge-dev">Beta</span>
+        </div>
+        <div class="eco-card pay reveal">
+          <div class="eco-step">Identity</div>
+          <h3>AegisID</h3>
+          <div class="tagline">Device-independent biometric identity</div>
+          <p>A 512-dimensional facial feature vector — no photos stored, accounts survive device changes, impersonation gets cryptographic proof.</p>
+        </div>
+        <div class="eco-card track reveal">
+          <div class="eco-step">In development</div>
+          <h3>AegisPay</h3>
+          <div class="tagline">The last gate before payment</div>
+          <p>Conversation-aware risk gating on a non-custodial architecture. AegisRD never holds customer funds.</p>
+          <span class="eco-badge badge-plan">Planned · 2027</span>
+          <p style="margin-top:1rem"><a href="/en/aegistalk/pay" style="color:var(--accent)">Learn more →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-engine">
+    <div class="container">
+      <div class="section-label">// FOUNDATION</div>
+      <h2 class="section-title reveal">Privacy by architecture, not by policy</h2>
+      <div class="ai-layers">
+        <div class="ai-layer reveal">
+          <div class="layer-badge l1">E2E</div>
+          <div class="layer-info"><h4>End-to-end encryption (Signal Protocol)</h4><p>X3DH + Double Ratchet. Encrypted before it leaves your device — we couldn't read it if we wanted to.</p></div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l2">P2P</div>
+          <div class="layer-info"><h4>100% peer-to-peer</h4><p>Content travels over WebRTC DataChannels directly between devices. Servers do signalling only — zero content relay, zero retention.</p></div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l3">AI</div>
+          <div class="layer-info"><h4>On-device edge AI</h4><p>Rust + WASM inference running on your phone. The thing analysing your conversations is your device, not our cloud.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>Bring the guard home</h2>
+    <p>AegisTalk ships exclusively through the official App Store and Google Play.</p>
+    <a href="/en/aegistalk" class="btn-primary">About AegisTalk →</a>
+  </section>
+</Base>

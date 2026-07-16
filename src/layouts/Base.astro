@@ -1,0 +1,98 @@
+---
+// AegisRD 官網共用骨架 — nav / footer / SEO / hreflang（規格 v1.2 §3.7）
+import '../styles/theme.css';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: 'zh-TW' | 'en';
+  /** 對應語言版路徑（hreflang 用）；無對應版本則省略 */
+  altPath?: string;
+  active?: string;
+}
+const { title, description, lang = 'zh-TW', altPath, active = '' } = Astro.props;
+const isEn = lang === 'en';
+const t = (zh: string, en: string) => (isEn ? en : zh);
+const p = (path: string) => (isEn ? `/en${path === '/' ? '' : path}` : path) || '/';
+// en 版目前僅覆蓋 KYB 最低頁面（規格 §四 Phase 2）— nav 只列存在的頁，避免 404
+const nav = isEn
+  ? [
+      { href: '/en', key: 'home', label: 'Home', abs: true },
+      { href: '/en/aegistalk', key: 'aegistalk', label: 'AegisTalk', abs: true },
+      { href: '/en/aegistalk/pay', key: 'pay', label: 'AegisPay', abs: true },
+    ]
+  : [
+      { href: '/', key: 'home', label: '首頁' },
+      { href: '/aegistalk', key: 'aegistalk', label: 'AegisTalk' },
+      { href: '/aegistrans', key: 'aegistrans', label: 'AegisTrans' },
+      { href: '/technology', key: 'technology', label: '技術' },
+      { href: '/about', key: 'about', label: '關於' },
+    ];
+const canonical = new URL(Astro.url.pathname, 'https://aegisrd.com').href;
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {altPath && <link rel="alternate" hreflang={isEn ? 'zh-TW' : 'en'} href={new URL(altPath, 'https://aegisrd.com').href} />}
+    <link rel="alternate" hreflang={lang} href={canonical} />
+    <link rel="icon" href="/images/logo.png" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://aegisrd.com/images/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <nav>
+      <a href={p('/')} class="logo">
+        <img src="/images/logo.png" alt="AegisRD" />
+        <span>AegisRD</span>
+      </a>
+      <ul class="nav-links">
+        {nav.map((n) => (
+          <li><a href={'abs' in n && n.abs ? n.href : p(n.href)} style={active === n.key ? 'color:var(--accent)' : ''}>{n.label}</a></li>
+        ))}
+        <li><a href={isEn ? (altPath ?? '/') : (altPath ?? '/en')} title={t('English', '中文')}>{t('EN', '中文')}</a></li>
+      </ul>
+      <a href={isEn ? '/en/aegistalk' : '/aegistalk'} class="nav-cta">{t('下載 AegisTalk →', 'Get AegisTalk →')}</a>
+    </nav>
+
+    <slot />
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="/images/logo.png" alt="AegisRD" />
+          <span>AegisRD</span>
+        </div>
+        <div class="footer-links">
+          {!isEn && <a href="/aegistalk">AegisTalk</a>}
+          {!isEn && <a href="/aegistrans">AegisTrans</a>}
+          {!isEn && <a href="/technology">技術</a>}
+          {isEn && <a href="/en/aegistalk">AegisTalk</a>}
+          <a href={isEn ? '/en/legal/terms' : '/legal/terms'}>{t('服務條款', 'Terms')}</a>
+          <a href={isEn ? '/en/legal/privacy' : '/legal/privacy'}>{t('隱私政策', 'Privacy')}</a>
+          <a href="mailto:contact@aegisrd.com">contact@aegisrd.com</a>
+        </div>
+        <div class="footer-copy">
+          {/* 規格 §3.7 佔位規則：公司登記完成前顯示 AegisRD Team，不虛構公司主體 */}
+          © 2026 AegisRD Team · {t('讓詐騙在你身邊無所遁形', 'Making scams visible before they strike')}
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // 捲動顯示動畫（沿用現行官網 .reveal 慣例）
+      const io = new IntersectionObserver(
+        (es) => es.forEach((e) => e.isIntersecting && e.target.classList.add('visible')),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

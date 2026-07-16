@@ -1,0 +1,51 @@
+---
+// 服務條款（中文）— 規格 v1.2 §五；fintech 律師審閱前之工作版本
+import Base from '../../layouts/Base.astro';
+const updated = '2026-07-16';
+---
+<Base
+  title="服務條款 — AegisRD"
+  description="AegisRD 服務條款：AegisTalk / AegisTrans 通訊服務條款與 AegisPay 模組專章。"
+  altPath="/en/legal/terms"
+>
+  <section class="hero" style="min-height:36vh">
+    <div class="hero-content">
+      <h1 style="font-size:clamp(2rem,4vw,3rem)">服務條款</h1>
+      <p>最後更新：{updated}</p>
+    </div>
+  </section>
+
+  <section class="problem">
+    <div class="container" style="max-width:860px;line-height:2">
+      <h2 class="section-title" style="font-size:1.4rem">1. 服務提供者</h2>
+      <p class="section-desc">本服務由 AegisRD 團隊（下稱「本團隊」）提供。公司法人（安心研創有限公司 / AegisRD Co., Ltd.）設立登記完成後，本條款之服務提供者將更新為該公司，並於本頁公告。</p>
+
+      <h2 class="section-title" style="font-size:1.4rem;margin-top:2.5rem">2. 服務內容</h2>
+      <p class="section-desc">AegisTalk 提供端對端加密之個人通訊與 AI 詐騙風險提示；AegisTrans 提供使用者自有裝置間之加密同步。AI 風險提示為輔助性質，不構成任何形式之保證 —— 最終判斷與行為責任仍在使用者。</p>
+
+      <h2 class="section-title" style="font-size:1.4rem;margin-top:2.5rem">3. 帳號與安全</h2>
+      <p class="section-desc">帳號以 AegisID（臉部特徵向量 + PIN）建立。PIN 與恢復手段由使用者自行保管；因 PIN 遺失且無可用恢復方式導致之資料無法存取，本團隊在端對端加密架構下無法代為復原。</p>
+
+      <h2 class="section-title" style="font-size:1.4rem;margin-top:2.5rem">4. 使用限制</h2>
+      <p class="section-desc">禁止將本服務用於任何違法用途，包括但不限於詐欺、洗錢、散布惡意程式、侵害他人權利。違反者本團隊得終止其服務使用。</p>
+
+      <h2 class="section-title" style="font-size:1.4rem;margin-top:2.5rem">5. AegisPay 模組專章</h2>
+      <p class="section-desc">
+        (a) AegisPay 為<b>開發中</b>之支付風控模組，於正式公告上線前不提供任何交易服務。<br />
+        (b) AegisPay 之性質為<b>風險評估技術服務</b>：本團隊不經手、不保管、不移轉使用者資金（non-custodial），不提供匯兌、託管、發行或支付款項移轉服務。<br />
+        (c) 使用者之法幣儲值與提領（on/off-ramp）由受監管之第三方服務商直接對使用者提供，包含其身分驗證（KYC）流程；該等交易之契約關係存在於使用者與該服務商之間。<br />
+        (d) 鏈上資產為使用者自持之智能合約錢包（ERC-4337）內之 USDC；金鑰控制權屬於使用者。<br />
+        (e) 風控服務費依交易級距為固定費率，僅向付款方收取，費率於產品內明示。
+      </p>
+
+      <h2 class="section-title" style="font-size:1.4rem;margin-top:2.5rem">6. 免責與責任限制</h2>
+      <p class="section-desc">本服務按「現狀」提供。在法律允許之最大範圍內，本團隊不對間接性、衍生性損害負責；AI 風險提示之有無不改變使用者對自身交易與通訊之最終責任。</p>
+
+      <h2 class="section-title" style="font-size:1.4rem;margin-top:2.5rem">7. 條款變更</h2>
+      <p class="section-desc">本條款如有重大變更，將於本頁更新並標示日期。繼續使用即視為同意更新後條款。</p>
+
+      <h2 class="section-title" style="font-size:1.4rem;margin-top:2.5rem">8. 聯絡方式</h2>
+      <p class="section-desc">contact@aegisrd.com</p>
+    </div>
+  </section>
+</Base>

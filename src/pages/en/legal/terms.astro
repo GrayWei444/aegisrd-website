@@ -1,0 +1,51 @@
+---
+// Terms of Service (English) — spec v1.2 §五; working version pending fintech counsel review
+import Base from '../../../layouts/Base.astro';
+const updated = '2026-07-16';
+---
+<Base
+  title="Terms of Service — AegisRD"
+  description="AegisRD Terms of Service, including the AegisPay module chapter (risk-gating service, non-custodial, fiat handled by regulated ramp providers)."
+  lang="en"
+  altPath="/legal/terms"
+>
+  <section class="hero" style="min-height:32vh">
+    <div class="hero-content">
+      <h1 style="font-size:clamp(2rem,4vw,3rem)">Terms of Service</h1>
+      <p>Last updated: {updated}</p>
+    </div>
+  </section>
+  <section class="problem">
+    <div class="container" style="max-width:860px;line-height:2">
+      <h2 class="section-title" style="font-size:1.3rem">1. Service provider</h2>
+      <p class="section-desc">The services are provided by the AegisRD team ("we"). Upon completion of corporate registration (AegisRD Co., Ltd.), the service provider under these terms will be updated to that entity and announced on this page.</p>
+
+      <h2 class="section-title" style="font-size:1.3rem;margin-top:2rem">2. Services</h2>
+      <p class="section-desc">AegisTalk provides end-to-end encrypted personal communication with AI scam-risk alerts; AegisTrans provides encrypted synchronization between a user's own devices. AI risk alerts are advisory only and do not constitute any guarantee — final judgment and responsibility remain with the user.</p>
+
+      <h2 class="section-title" style="font-size:1.3rem;margin-top:2rem">3. Accounts & security</h2>
+      <p class="section-desc">Accounts are established via AegisID (facial feature vector + PIN). Users are responsible for safeguarding their PIN and recovery means; under the end-to-end encrypted architecture we cannot restore data access lost due to PIN loss without an available recovery path.</p>
+
+      <h2 class="section-title" style="font-size:1.3rem;margin-top:2rem">4. Acceptable use</h2>
+      <p class="section-desc">The services may not be used for unlawful purposes, including but not limited to fraud, money laundering, distribution of malware, or infringement of others' rights. We may terminate service for violations.</p>
+
+      <h2 class="section-title" style="font-size:1.3rem;margin-top:2rem">5. AegisPay module chapter</h2>
+      <p class="section-desc">
+        (a) AegisPay is a module <b>in development</b>; no transaction service is offered before its official launch.<br />
+        (b) AegisPay is a <b>risk-assessment technology service</b>: we do not receive, hold, or transfer user funds (non-custodial), and do not provide exchange, custody, issuance, or money-transmission services.<br />
+        (c) Fiat on/off-ramp services are provided to users directly by regulated third-party providers, including their KYC processes; the contractual relationship for such transactions exists between the user and that provider.<br />
+        (d) On-chain assets are USDC held in the user's own ERC-4337 smart-contract wallet; key control belongs to the user.<br />
+        (e) The risk-service fee is a tiered flat fee charged to the payer only, disclosed in-product.
+      </p>
+
+      <h2 class="section-title" style="font-size:1.3rem;margin-top:2rem">6. Disclaimers & limitation of liability</h2>
+      <p class="section-desc">The services are provided "as is". To the maximum extent permitted by law, we are not liable for indirect or consequential damages; the presence or absence of an AI risk alert does not shift the user's final responsibility for their own transactions and communications.</p>
+
+      <h2 class="section-title" style="font-size:1.3rem;margin-top:2rem">7. Changes</h2>
+      <p class="section-desc">Material changes will be posted on this page with an updated date. Continued use constitutes acceptance.</p>
+
+      <h2 class="section-title" style="font-size:1.3rem;margin-top:2rem">8. Contact</h2>
+      <p class="section-desc">contact@aegisrd.com</p>
+    </div>
+  </section>
+</Base>

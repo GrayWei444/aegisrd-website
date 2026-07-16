@@ -1,0 +1,48 @@
+---
+// Privacy Policy (English) — spec v1.2 §五: architecture-level privacy statement
+import Base from '../../../layouts/Base.astro';
+const updated = '2026-07-16';
+---
+<Base
+  title="Privacy Policy — AegisRD"
+  description="AegisRD Privacy Policy: conversations never touch the cloud, zero server content, AegisID stores feature vectors only, AegisPay separates risk from identity."
+  lang="en"
+  altPath="/legal/privacy"
+>
+  <section class="hero" style="min-height:32vh">
+    <div class="hero-content">
+      <h1 style="font-size:clamp(2rem,4vw,3rem)">Privacy Policy</h1>
+      <p>Last updated: {updated} · Privacy by architecture, not by policy — but here is the policy anyway.</p>
+    </div>
+  </section>
+  <section class="problem">
+    <div class="container" style="max-width:860px;line-height:2">
+      <h2 class="section-title" style="font-size:1.3rem">1. What we cannot see (architectural guarantees)</h2>
+      <p class="section-desc">
+        · Message, call and file contents: end-to-end encrypted and transmitted peer-to-peer; servers do not relay content — we are technically unable to read it.<br />
+        · Your face: AegisID processes and stores only a 512-dimensional feature vector; photos and frames are discarded immediately and never uploaded; the vector cannot be reversed into a face image.<br />
+        · Your behavioral baseline: on-device AI (L3) trains and runs locally; behavioral data never leaves your device.
+      </p>
+
+      <h2 class="section-title" style="font-size:1.3rem;margin-top:2rem">2. What we process</h2>
+      <p class="section-desc">
+        · Account anchor: AegisID feature vector and an identity blob encrypted with your PIN (we cannot decrypt it).<br />
+        · Signalling metadata: the minimum required to establish peer-to-peer connections (presence, connection negotiation).<br />
+        · Rule sync: devices download anti-scam rules and blocklists — a download, not an upload.<br />
+        · Anonymous scam intelligence: when a user actively reports, only the reported party's public-key hash is uploaded — never conversation content.
+      </p>
+
+      <h2 class="section-title" style="font-size:1.3rem;margin-top:2rem">3. AegisPay data separation</h2>
+      <p class="section-desc">Once AegisPay launches: we receive only the signals needed for transaction risk assessment, never the identity data of fiat customers — KYC for fiat is performed and retained by regulated ramp providers. Design principle: <b>we know the risk, not the identity</b>.</p>
+
+      <h2 class="section-title" style="font-size:1.3rem;margin-top:2rem">4. Cookies & analytics</h2>
+      <p class="section-desc">This website uses no third-party tracking cookies and no Google Analytics. If traffic analytics are introduced, they will be a self-hosted, privacy-preserving solution, and this page will be updated.</p>
+
+      <h2 class="section-title" style="font-size:1.3rem;margin-top:2rem">5. Retention & deletion</h2>
+      <p class="section-desc">Your encrypted identity blob is deleted when you delete your account. Because we cannot decrypt content, data-portability and content-review requests are technically inapplicable to message contents.</p>
+
+      <h2 class="section-title" style="font-size:1.3rem;margin-top:2rem">6. Contact</h2>
+      <p class="section-desc">contact@aegisrd.com</p>
+    </div>
+  </section>
+</Base>

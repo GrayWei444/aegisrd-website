@@ -1,0 +1,50 @@
+---
+// 關於 — 規格 v1.2 §3.6（公司登記資訊 Q4 後補；footer 佔位規則 §3.7）
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="關於 AegisRD — 團隊與沿革"
+  description="AegisRD 安心研創：讓詐騙在你身邊無所遁形。團隊、沿革與聯絡方式。"
+  active="about"
+>
+  <section class="hero" style="min-height:50vh">
+    <div class="hero-content">
+      <div class="hero-badge">🤝 About</div>
+      <h1>我們為什麼<span class="gradient">做這件事</span></h1>
+      <p>詐騙毀掉的不只是錢，是長輩的自尊、家人的信任、與「再也不敢相信任何訊息」的日常。我們決定把守衛放回對話現場。</p>
+    </div>
+  </section>
+
+  <section class="problem">
+    <div class="container">
+      <div class="section-label">// TEAM</div>
+      <h2 class="section-title reveal">團隊</h2>
+      <div class="problem-stat">
+        <div class="stat-card reveal"><div class="number" style="font-size:1.6rem">魏志豪</div><div class="desc">創辦人 · 系統架構與 AI 引擎</div></div>
+        <div class="stat-card reveal"><div class="number" style="font-size:1.6rem">魏祥哲</div><div class="desc">共同創辦人 · 產品與工程</div></div>
+        <div class="stat-card reveal"><div class="number" style="font-size:1.6rem">魏嘉誼</div><div class="desc">共同創辦人 · 營運與設計</div></div>
+      </div>
+      <p class="section-desc reveal" style="margin-top:1.5rem">＋ 學界指導教授顧問群</p>
+    </div>
+  </section>
+
+  <section class="cost">
+    <div class="container">
+      <div class="section-label">// MILESTONES</div>
+      <h2 class="section-title reveal">沿革</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">2025</div><div class="tl-title">AegisAI 防詐引擎立項</div><div class="tl-desc">三層防護架構定型，規則引擎與語意模型雙軌並行。</div></div>
+        <div class="tl-item"><div class="tl-date">2026</div><div class="tl-title">AegisTalk 全功能開發完成</div><div class="tl-desc">E2EE 通訊 + 三層 AI + AegisID 身份 + 家庭守護，進入上架準備。</div></div>
+        <div class="tl-item"><div class="tl-date">2026</div><div class="tl-title">AegisTrans 進入 Beta</div><div class="tl-desc">跨裝置同步產品線成形，Mac / Windows 桌面版已開發。</div></div>
+        <div class="tl-item"><div class="tl-date">2026 Q4</div><div class="tl-title">公司設立（進行中）</div><div class="tl-desc">安心研創有限公司 / AegisRD Co., Ltd. 籌備中 —— 登記完成後本頁將更新公司資訊。</div></div>
+        <div class="tl-item"><div class="tl-date">2027</div><div class="tl-title">AegisPay 上線（規劃）</div><div class="tl-desc">支付前風控閘門 —— 把防線推進到轉帳之前。</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>聯絡我們</h2>
+    <p>合作、媒體、測試邀請 —— 一封信就到。</p>
+    <a href="mailto:contact@aegisrd.com" class="btn-primary">contact@aegisrd.com</a>
+  </section>
+</Base>

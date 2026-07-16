@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aegisrd.com/sitemap.xml

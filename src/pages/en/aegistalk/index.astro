@@ -1,0 +1,56 @@
+---
+// English AegisTalk page (condensed) — full EN coverage lands in Phase 3
+import Base from '../../../layouts/Base.astro';
+---
+<Base
+  title="AegisTalk — AI scam interception inside encrypted calls & chats"
+  description="AegisTalk: end-to-end encrypted messenger with a three-layer on-device AI scam engine and free Family Guard. Distributed exclusively via official app stores."
+  lang="en"
+  altPath="/aegistalk"
+  active="aegistalk"
+>
+  <section class="hero" style="min-height:75vh">
+    <div class="hero-content">
+      <div class="hero-badge">💬 AegisTalk</div>
+      <h1>The first messenger that intercepts scams<br /><span class="gradient">inside encrypted calls</span></h1>
+      <p>
+        Messages, calls and files — end-to-end encrypted. And an AI guard standing inside the
+        conversation: the moment a scam script appears, a red-shield alert fires. All analysis
+        runs on your device; your privacy stays intact.
+      </p>
+    </div>
+  </section>
+
+  <section class="ai-engine">
+    <div class="container">
+      <div class="section-label">// PROTECTION</div>
+      <h2 class="section-title reveal">Three layers, one engine</h2>
+      <div class="ai-layers">
+        <div class="ai-layer reveal">
+          <div class="layer-badge l1">L1</div>
+          <div class="layer-info"><h4>Blocklists — instant interception</h4><p>Malicious domains, typosquatting, scam keywords — known threats blocked in under a millisecond.</p></div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l2">L2</div>
+          <div class="layer-info"><h4>Expert rules × semantic ML fusion</h4><p>53,640 explainable rules fused with a &lt;6MB fastText model. 98.5% detection, F1 0.981 on 26,137 real-world messages (in-domain evaluation).</p></div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l3">L3</div>
+          <div class="layer-info"><h4>Behavioral baseline — anomaly detection</h4><p>26 conversational features train a personal baseline locally. "Three weeks of chatting, then suddenly asking for money" — the behavior layer sees it.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="download">
+    <h2>Get AegisTalk</h2>
+    <p>Coming to the App Store and Google Play.</p>
+    <div class="hero-actions" style="justify-content:center">
+      <span class="btn-ghost" style="cursor:default">🍎 App Store · coming soon</span>
+      <span class="btn-ghost" style="cursor:default">🤖 Google Play · coming soon</span>
+    </div>
+    <p style="margin-top:2rem;color:var(--warn);font-weight:700">
+      ⚠️ AegisTalk is distributed exclusively through official app stores — any "web version" is a scam.
+    </p>
+  </section>
+</Base>

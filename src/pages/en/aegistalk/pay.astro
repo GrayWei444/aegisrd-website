@@ -1,0 +1,98 @@
+---
+// AegisPay module page (English) — spec v1.2 §3.3. KYB-critical page:
+// this URL is submitted directly in MoonPay/Transak KYB applications; wording must
+// stay aligned with the KYB questionnaire business-model description.
+import Base from '../../../layouts/Base.astro';
+---
+<Base
+  title="AegisPay — A conversation-aware risk-gating layer for payments (in development)"
+  description="AegisPay is AegisTalk's built-in payment risk-gating module. Non-custodial architecture — AegisRD never holds customer funds. Fiat on/off-ramp handled by licensed ramp partners. In development, planned for 2027."
+  lang="en"
+  altPath="/aegistalk/pay"
+  active="pay"
+>
+  <section class="hero" style="min-height:65vh">
+    <div class="hero-content">
+      <div class="hero-badge">💠 AegisPay · <span style="color:var(--warn)">In development · planned 2027</span></div>
+      <h1>The last gate<br /><span class="gradient">before payment</span></h1>
+      <p>
+        Scams end in a transfer. AegisPay is a <b>risk-gating layer</b> that evaluates the
+        conversation context before the user confirms a payment — built into AegisTalk.
+      </p>
+    </div>
+  </section>
+
+  <section class="problem">
+    <div class="container">
+      <div class="section-label">// ARCHITECTURE</div>
+      <h2 class="section-title reveal">Non-custodial by design — AegisRD never holds customer funds</h2>
+      <div class="ai-layers" style="max-width:880px">
+        <div class="ai-layer reveal">
+          <div class="layer-badge l1">🔑</div>
+          <div class="layer-info">
+            <h4>Non-custodial smart-contract wallets</h4>
+            <p>User funds live in the user's own ERC-4337 smart-contract wallet holding on-chain USDC. Signing keys are derived from the user's AegisID identity — AegisRD has no ability, at any time, to move customer funds.</p>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l2">🏦</div>
+          <div class="layer-info">
+            <h4>Fiat on/off-ramp via licensed ramp partners</h4>
+            <p>Fiat deposits and withdrawals are executed by regulated on/off-ramp service providers directly with the end user — including their KYC process. AegisRD does not provide exchange, custody, or issuance services.</p>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l3">🛡️</div>
+          <div class="layer-info">
+            <h4>AegisRD provides one thing: risk assessment</h4>
+            <p>We see the <i>risk of a transaction</i>, never the <i>identity of the fiat customer</i>. Risk and identity are separated by design — a privacy guarantee and a compliance boundary.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ecosystem">
+    <div class="container">
+      <div class="section-label">// RISK GATING</div>
+      <h2 class="section-title reveal">Others see transactions. We understand the conversation.</h2>
+      <div class="eco-grid">
+        <div class="eco-card talk reveal">
+          <div class="eco-step">Unique</div>
+          <h3>Conversation-context gating</h3>
+          <p>Transfers happen inside chats. AegisPay reuses AegisTalk's three-layer AI (L1/L2/L3) to score the scam risk of the surrounding conversation — high-risk payments enter a cooling-off delay and can be cancelled with one tap.</p>
+        </div>
+        <div class="eco-card pay reveal">
+          <div class="eco-step">Anti-impersonation</div>
+          <h3>Signed payment codes</h3>
+          <p>Payment request codes carry cryptographic signatures — forged codes simply fail verification.</p>
+        </div>
+        <div class="eco-card vpn reveal">
+          <div class="eco-step">Identity</div>
+          <h3>AegisID payee verification</h3>
+          <p>Payees are bound to AegisID biometric feature vectors — you pay the verified person, not a lookalike account.</p>
+        </div>
+        <div class="eco-card track reveal">
+          <div class="eco-step">Fees</div>
+          <h3>Flat risk-service fee</h3>
+          <p>A tiered flat fee (0.05 / 0.10 / 0.30 / 1.00 USDC per transaction) charged to the payer only. No percentage cut.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cost">
+    <div class="container">
+      <div class="section-label">// STATUS & COMPLIANCE</div>
+      <h2 class="section-title reveal">Current status</h2>
+      <div class="moat-col reveal" style="max-width:880px">
+        <ul>
+          <li><span class="check">✓</span> AegisPay is <b>in development</b> (planned for 2027). No transaction service is currently offered.</li>
+          <li><span class="check">✓</span> KYC for fiat transactions is performed directly with users by regulated ramp providers.</li>
+          <li><span class="check">✓</span> AegisRD provides risk-assessment technology only — no exchange, custody, or issuance services.</li>
+          <li><span class="check">✓</span> On-chain asset: USDC, held in user-controlled ERC-4337 smart-contract wallets.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Base>

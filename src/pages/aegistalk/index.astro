@@ -1,0 +1,133 @@
+---
+// AegisTalk 產品頁 — 規格 v1.2 §3.2（現站內容遷移+改寫；老陳故事線待 MAIC 語源到位後補）
+import Base from '../../layouts/Base.astro';
+---
+<Base
+  title="AegisTalk 安心說 — 在加密通話內即時用 AI 攔截詐騙的家庭守護通訊 App"
+  description="AegisTalk：端對端加密通訊 + 三層 AI 防詐（黑白名單/語意規則/行為基線）+ 免費家庭守護。僅透過官方應用商店發佈。"
+  active="aegistalk"
+>
+  <!-- Hero -->
+  <section class="hero" style="min-height:85vh">
+    <div class="hero-content">
+      <div class="hero-badge">💬 AegisTalk 安心說</div>
+      <h1>全球第一支在加密通話內<br /><span class="gradient">即時用 AI 攔截詐騙</span>的通訊 App</h1>
+      <p>
+        訊息、通話、檔案全程端對端加密 —— 而 AI 守衛就站在對話現場：
+        話術一出現，紅盾警示立刻彈出。分析全部在你的手機上完成，隱私毫髮無傷。
+      </p>
+      <div class="hero-actions">
+        <a href="#download" class="btn-primary">取得 App</a>
+        <a href="#protection" class="btn-ghost">三層防護怎麼運作 ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 三層 AI 防護 -->
+  <section class="ai-engine" id="protection">
+    <div class="container">
+      <div class="section-label">// AI PROTECTION</div>
+      <h2 class="section-title reveal">三層防護，環環相扣</h2>
+      <p class="section-desc reveal">由 AegisAI Core 驅動 —— 逾 26 萬行防詐引擎程式碼、53,640 條規則，全部跑在你的裝置上。</p>
+      <div class="ai-layers">
+        <div class="ai-layer reveal">
+          <div class="layer-badge l1">L1</div>
+          <div class="layer-info">
+            <h4>黑白名單 · 毫秒級攔截</h4>
+            <p>惡意網址、假冒域名（typosquatting）、詐騙關鍵詞 —— 已知威脅在 1 毫秒內攔下。</p>
+            <div class="speed">&lt; 1ms</div>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l2">L2</div>
+          <div class="layer-info">
+            <h4>語意規則 × 機器學習融合</h4>
+            <p>可解釋的專家規則 ⊕ fastText 語意模型（&lt;6MB）雙引擎融合 —— 抓得住規則沒見過的新話術。</p>
+            <div class="speed">98.5% 偵測率 · F1 0.981（26,137 則實測，域內測試）</div>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l3">L3</div>
+          <div class="layer-info">
+            <h4>行為基線 · 異常偵測</h4>
+            <p>26 維對話行為特徵 + Isolation Forest 在本地訓練你的互動基線 —— 「這個人突然變了」也逃不過。</p>
+            <div class="speed">100% 本地訓練，資料不出裝置</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 功能區塊 -->
+  <section class="ecosystem">
+    <div class="container">
+      <div class="section-label">// FEATURES</div>
+      <h2 class="section-title reveal">把守衛搬進對話現場</h2>
+      <div class="eco-grid">
+        <div class="eco-card talk reveal">
+          <div class="eco-step">訊息防詐</div>
+          <h3>紅盾警示</h3>
+          <p>詐騙話術、惡意連結、可疑檔案 —— 訊息一到就在本地掃描，高風險即時彈出全螢幕紅盾，一鍵檢舉封鎖。</p>
+        </div>
+        <div class="eco-card vpn reveal">
+          <div class="eco-step">通話防詐</div>
+          <h3>語音即時分析</h3>
+          <p>加密通話中，語音在你的裝置上即時轉文字並比對詐騙話術 —— 「猜猜我是誰」還沒講完，警示已經出現。</p>
+        </div>
+        <div class="eco-card pay reveal">
+          <div class="eco-step">永久免費</div>
+          <h3>Family Guard 家庭守護</h3>
+          <p>爸媽的手機遇到高風險詐騙，你的手機立刻收到通知；定期報平安、惡意網址攔截 —— 全部免費。</p>
+        </div>
+        <div class="eco-card track reveal">
+          <div class="eco-step">身份保證</div>
+          <h3>AegisID 整合</h3>
+          <p>臉部特徵向量 + PIN 的裝置無關身份 —— 換手機不掉帳號、好友不會被「假的你」冒充。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 實機截圖（沿用現站資產） -->
+  <section class="screenshots">
+    <div class="container">
+      <div class="section-label">// SCREENSHOTS</div>
+      <h2 class="section-title reveal">產品實機展示</h2>
+      <div class="ss-scroll">
+        <div class="ss-item"><img src="/images/talk-risk-alert.jpg" alt="紅盾風險警示" loading="lazy" /><div class="ss-label">詐騙話術即時紅盾</div></div>
+        <div class="ss-item"><img src="/images/talk-ai-detect.jpg" alt="AI 偵測" loading="lazy" /><div class="ss-label">三層 AI 引擎偵測</div></div>
+        <div class="ss-item"><img src="/images/talk-biometric.jpg" alt="AegisID 生物辨識" loading="lazy" /><div class="ss-label">AegisID 刷臉身份</div></div>
+        <div class="ss-item"><img src="/images/talk-add-friend.jpg" alt="安全加好友" loading="lazy" /><div class="ss-label">短碼／QR 安全加好友</div></div>
+        <div class="ss-item"><img src="/images/guard-threat.jpg" alt="家庭守護警示" loading="lazy" /><div class="ss-label">Family Guard 威脅通知</div></div>
+        <div class="ss-item"><img src="/images/guard-block.jpg" alt="惡意攔截" loading="lazy" /><div class="ss-label">惡意網址攔截</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AegisPay 導流卡 -->
+  <section class="moat">
+    <div class="container">
+      <div class="eco-card pay reveal" style="max-width:640px;margin:0 auto">
+        <div class="eco-step">內建模組 · 開發中</div>
+        <h3>AegisPay 安心付</h3>
+        <div class="tagline">付款前的最後一道閘門</div>
+        <p>轉帳之前，AI 先看一眼對話 —— 高風險交易自動進入冷靜期。非託管架構，AegisRD 永不經手你的資金。</p>
+        <span class="eco-badge badge-plan">預計 2027 上線</span>
+        <p style="margin-top:1rem"><a href="/aegistalk/pay" style="color:var(--accent)">了解 AegisPay →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 下載區（規格 §3.2：商店徽章 + 反假冒聲明；不放 PWA 連結） -->
+  <section class="cta-section" id="download">
+    <h2>取得 AegisTalk</h2>
+    <p>App Store 與 Google Play 上架準備中 —— 上架後此處將提供官方下載。</p>
+    <div class="hero-actions" style="justify-content:center">
+      <span class="btn-ghost" style="cursor:default">🍎 App Store · 準備中</span>
+      <span class="btn-ghost" style="cursor:default">🤖 Google Play · 準備中</span>
+    </div>
+    <p style="margin-top:2rem;color:var(--warn);font-weight:700">
+      ⚠️ AegisTalk 僅透過官方應用商店發佈 —— 任何「網頁版」皆為假冒詐騙。
+    </p>
+  </section>
+</Base>

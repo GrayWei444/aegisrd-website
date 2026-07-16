@@ -1,0 +1,50 @@
+---
+// 隱私政策（中文）— 規格 v1.2 §五：架構級隱私聲明
+import Base from '../../layouts/Base.astro';
+const updated = '2026-07-16';
+---
+<Base
+  title="隱私政策 — AegisRD"
+  description="AegisRD 隱私政策：對話不上雲、伺服器零內容、AegisID 僅存特徵向量、AegisPay 風險與身份分離。"
+  altPath="/en/legal/privacy"
+>
+  <section class="hero" style="min-height:36vh">
+    <div class="hero-content">
+      <h1 style="font-size:clamp(2rem,4vw,3rem)">隱私政策</h1>
+      <p>最後更新：{updated} · 隱私是架構保證，不是政策承諾 —— 但我們還是把政策寫清楚。</p>
+    </div>
+  </section>
+
+  <section class="problem">
+    <div class="container" style="max-width:860px;line-height:2">
+      <h2 class="section-title" style="font-size:1.4rem">1. 我們「看不到」什麼（架構保證）</h2>
+      <p class="section-desc">
+        · 訊息、通話、檔案內容：端對端加密 + 點對點傳輸，伺服器不中繼內容 —— 我們沒有能力讀取。<br />
+        · 你的臉：AegisID 僅處理並儲存 512 維特徵向量，照片與影像幀用完即棄、永不上傳，向量無法還原為人臉影像。<br />
+        · 你的行為基線：AI 行為分析（L3）之訓練與推論全部在你的裝置上，行為資料不離開裝置。
+      </p>
+
+      <h2 class="section-title" style="font-size:1.4rem;margin-top:2.5rem">2. 我們會處理什麼</h2>
+      <p class="section-desc">
+        · 帳號錨點：AegisID 特徵向量、以你的 PIN 加密後之身份資料包（我們無法解密）。<br />
+        · 信令與連線中繼資料：為建立點對點連線所需之最小資訊（在線狀態、連線協商）。<br />
+        · 規則同步：裝置向伺服器下載防詐規則與黑名單 —— 這是下載，不是上傳。<br />
+        · 匿名詐騙情資：使用者主動檢舉時，僅上傳被檢舉方之公鑰雜湊，不含對話內容。
+      </p>
+
+      <h2 class="section-title" style="font-size:1.4rem;margin-top:2.5rem">3. AegisPay 資料分離</h2>
+      <p class="section-desc">
+        AegisPay 上線後：本團隊僅取得交易之<b>風險評估所需訊號</b>，不取得法幣交易者之身分資料 —— 法幣進出之 KYC 由受監管服務商直接執行並由其保管。設計原則：<b>我們知風險，不知身分</b>。
+      </p>
+
+      <h2 class="section-title" style="font-size:1.4rem;margin-top:2.5rem">4. Cookie 與分析</h2>
+      <p class="section-desc">本網站不使用第三方追蹤 Cookie，不使用 Google Analytics。如導入流量分析，將採用不追蹤個人之自架隱私友善方案，並更新本頁。</p>
+
+      <h2 class="section-title" style="font-size:1.4rem;margin-top:2.5rem">5. 資料保存與刪除</h2>
+      <p class="section-desc">端對端加密之身份資料包在你刪除帳號時一併刪除。因架構限制（我們無法解密），資料可攜與內容審閱請求在技術上不適用於訊息內容。</p>
+
+      <h2 class="section-title" style="font-size:1.4rem;margin-top:2.5rem">6. 聯絡方式</h2>
+      <p class="section-desc">隱私相關問題：contact@aegisrd.com</p>
+    </div>
+  </section>
+</Base>

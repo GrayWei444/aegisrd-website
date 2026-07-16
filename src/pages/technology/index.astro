@@ -1,0 +1,84 @@
+---
+// 技術總覽 — 規格 v1.2 §3.5：生態系共同底座一頁講完
+import Base from '../../layouts/Base.astro';
+---
+<Base
+  title="技術架構 — AegisRD 生態系共同底座"
+  description="AegisRD 技術底座：Signal Protocol 端對端加密、零伺服器內容中繼的純 P2P、Rust+WASM 邊緣 AI 推論、fastText <6MB 模型、持續學習閉環。"
+  active="technology"
+>
+  <section class="hero" style="min-height:60vh">
+    <div class="hero-content">
+      <div class="hero-badge">⚙️ Technology</div>
+      <h1>所有產品，<span class="gradient">同一副骨架</span></h1>
+      <p>AegisTalk、AegisTrans、AegisPay 共用同一套安全與 AI 底座 —— 審一次架構，等於審完整個生態系。</p>
+    </div>
+  </section>
+
+  <section class="ai-engine">
+    <div class="container">
+      <div class="section-label">// FOUNDATION</div>
+      <h2 class="section-title reveal">五根支柱</h2>
+      <div class="ai-layers" style="max-width:860px">
+        <div class="ai-layer reveal">
+          <div class="layer-badge l1">🔐</div>
+          <div class="layer-info">
+            <h4>端對端加密 — Signal Protocol</h4>
+            <p>X3DH 金鑰協商 + Double Ratchet 前向保密。每一則訊息用不同金鑰加密，就算某把金鑰洩漏，過去與未來的訊息依然安全。</p>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l2">🕸️</div>
+          <div class="layer-info">
+            <h4>100% P2P — 零伺服器內容中繼</h4>
+            <p>內容走 WebRTC DataChannel 點對點直達，伺服器只做信令（誰在線、如何建連）。無 TURN relay 中繼內容 —— 伺服器上沒有任何可被調閱、外洩、濫用的訊息。</p>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l3">🦀</div>
+          <div class="layer-info">
+            <h4>Rust + WASM 邊緣推論</h4>
+            <p>防詐引擎以 Rust 撰寫、編譯為 WebAssembly 跑在使用者裝置上 —— 同一份核心跨 iOS / Android / 桌面，記憶體安全、毫秒級推論。</p>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l2">🧠</div>
+          <div class="layer-info">
+            <h4>輕量語意模型 — fastText &lt; 6MB</h4>
+            <p>語意詐騙偵測模型小於 6MB，直接內建在 App 裡 —— 不需要把你的對話送上雲端，就能抓住規則沒見過的新話術。</p>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l1">🔁</div>
+          <div class="layer-info">
+            <h4>持續學習閉環</h4>
+            <p>情報爬取 → 分析 → 產出規則 → 部署到裝置 —— 詐騙話術天天變，防禦規則也跟著天天更新。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ecosystem">
+    <div class="container">
+      <div class="section-label">// DEEP DIVE</div>
+      <h2 class="section-title reveal">兩個核心引擎</h2>
+      <div class="eco-grid">
+        <div class="eco-card talk reveal">
+          <div class="eco-step">AI 引擎</div>
+          <h3>AegisAI</h3>
+          <div class="tagline">三層防詐引擎</div>
+          <p>L1 黑白名單毫秒攔截、L2 專家規則 × fastText 融合、L3 行為基線異常偵測 —— 53,640 條規則、逾 26 萬行程式碼。</p>
+          <p style="margin-top:1rem"><a href="/technology/aegisai" style="color:var(--accent)">深入 AegisAI →</a></p>
+        </div>
+        <div class="eco-card pay reveal">
+          <div class="eco-step">身份引擎</div>
+          <h3>AegisID</h3>
+          <div class="tagline">裝置無關的生物身份</div>
+          <p>512 維臉部特徵向量 + 行為 PIN —— 不存照片、換機不掉帳號、受控測試 FRR 0%。</p>
+          <p style="margin-top:1rem"><a href="/technology/aegisid" style="color:var(--accent)">深入 AegisID →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

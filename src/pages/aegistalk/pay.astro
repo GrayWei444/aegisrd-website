@@ -1,0 +1,105 @@
+---
+// AegisPay 模組頁（中文）— 規格 v1.2 §3.3（KYB 關鍵頁；英文版 /en/aegistalk/pay 與 KYB 問卷對齊）
+// 語源：AEGISPAY_MASTER_SUMMARY_2026-07-04 + AEGISPAY_STRATEGY_2026-07-03
+import Base from '../../layouts/Base.astro';
+---
+<Base
+  title="AegisPay 安心付 — 付款前的最後一道閘門（開發中）"
+  description="AegisPay：AegisTalk 內建支付風控模組。對話語境 AI 閘控、非託管架構、AegisRD 永不經手資金。法幣進出由持牌合作方處理。開發中，預計 2027 上線。"
+  altPath="/en/aegistalk/pay"
+  active="aegistalk"
+>
+  <section class="hero" style="min-height:70vh">
+    <div class="hero-content">
+      <div class="hero-badge">💠 AegisPay 安心付 · <span style="color:var(--warn)">開發中 · 預計 2027 上線</span></div>
+      <h1>付款前的<span class="gradient">最後一道閘門</span></h1>
+      <p>
+        詐騙的終點是「轉帳」。AegisPay 把 AI 風控放在你按下付款鍵之前 ——
+        看得懂對話語境的支付防線，內建於 AegisTalk。
+      </p>
+    </div>
+  </section>
+
+  <!-- 合規架構 -->
+  <section class="problem">
+    <div class="container">
+      <div class="section-label">// ARCHITECTURE</div>
+      <h2 class="section-title reveal">非託管架構：AegisRD 永不經手你的資金</h2>
+      <div class="ai-layers" style="max-width:860px">
+        <div class="ai-layer reveal">
+          <div class="layer-badge l1">🔑</div>
+          <div class="layer-info">
+            <h4>非託管（Non-custodial）錢包</h4>
+            <p>你的資金放在你自己控制的 ERC-4337 智能合約錢包（鏈上 USDC）—— 簽名金鑰由你的 AegisID 身份衍生，AegisRD 沒有、也永遠不會有動用你資金的能力。</p>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l2">🏦</div>
+          <div class="layer-info">
+            <h4>法幣進出：持牌合作方處理</h4>
+            <p>儲值與提領由受監管的法幣通道服務商（licensed on/off-ramp partners）直接對你執行 —— 包含其 KYC 流程。AegisRD 不提供匯兌、託管、發行服務。</p>
+          </div>
+        </div>
+        <div class="ai-layer reveal">
+          <div class="layer-badge l3">🛡️</div>
+          <div class="layer-info">
+            <h4>AegisRD 只做一件事：風險評估</h4>
+            <p>我們知道「這筆交易的風險」，但不知道「你是誰」—— 風控與身份分離，是隱私設計，也是合規邊界。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 風控獨家點 -->
+  <section class="ecosystem">
+    <div class="container">
+      <div class="section-label">// RISK GATING</div>
+      <h2 class="section-title reveal">別人看交易，我們看得懂對話</h2>
+      <div class="eco-grid">
+        <div class="eco-card talk reveal">
+          <div class="eco-step">獨家</div>
+          <h3>對話語境閘控</h3>
+          <p>轉帳發生在聊天裡 —— AegisPay 直接用 AegisTalk 的三層 AI（L1/L2/L3）評估這段對話的詐騙風險：高風險交易自動進入冷靜期延遲執行，期間可一鍵取消。</p>
+        </div>
+        <div class="eco-card pay reveal">
+          <div class="eco-step">防冒用</div>
+          <h3>簽章收款碼</h3>
+          <p>收款碼帶密碼學簽章 —— 假的收款碼直接驗不過，「換帳號詐騙」在技術層就被封死。</p>
+        </div>
+        <div class="eco-card vpn reveal">
+          <div class="eco-step">身份保證</div>
+          <h3>AegisID 收款人驗證</h3>
+          <p>收款人身份綁定 AegisID 臉部特徵向量 —— 你轉帳的對象，是通過生物特徵驗證的那個人。</p>
+        </div>
+        <div class="eco-card track reveal">
+          <div class="eco-step">費用</div>
+          <h3>固定風控服務費</h3>
+          <p>依交易級距收取固定風控服務費（0.05 / 0.10 / 0.30 / 1.00 USDC），僅向付款方收取 —— 不抽成、不浮動。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 狀態與合規聲明 -->
+  <section class="cost">
+    <div class="container">
+      <div class="section-label">// STATUS & COMPLIANCE</div>
+      <h2 class="section-title reveal">目前狀態</h2>
+      <div class="moat-col reveal" style="max-width:860px">
+        <ul>
+          <li><span class="check">✓</span> AegisPay 目前為<b>開發中</b>模組，預計 2027 上線 —— 目前不提供任何交易服務</li>
+          <li><span class="check">✓</span> 用戶法幣交易之 KYC 由受監管服務商直接執行</li>
+          <li><span class="check">✓</span> AegisRD 僅提供風險評估技術，不提供匯兌、託管、發行服務</li>
+          <li><span class="check">✓</span> 鏈上資產為 USDC，錢包為用戶自持之 ERC-4337 智能合約錢包</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>想第一時間知道上線消息？</h2>
+    <p>AegisPay 將隨 AegisTalk 更新推出。</p>
+    <a href="/aegistalk" class="btn-primary">回 AegisTalk 產品頁 →</a>
+  </section>
+</Base>
