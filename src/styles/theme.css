@@ -297,3 +297,4 @@
 @media(max-width:768px){.identity-grid{grid-template-columns:1fr !important}}
 
 .ico-logo{height:1.05em;width:auto;vertical-align:-.18em;margin-right:.3em;display:inline-block}
+@media(max-width:768px){.footer-links{flex-wrap:wrap;gap:1rem}}

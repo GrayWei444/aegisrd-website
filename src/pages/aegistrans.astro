@@ -3,47 +3,97 @@
 import Base from '../layouts/Base.astro';
 ---
 <Base
-  title="AegisTrans 安心傳 — 跨裝置檔案與訊息同步，端對端加密 100% P2P"
-  description="AegisTrans：自己傳給自己的跨裝置工作區。任意大小檔案、端對端加密、純 P2P 不過伺服器。Mac / Windows 桌面版已開發，iOS 測試中。"
+  title="AegisTrans 安心傳 — 你的裝置，一起工作"
+  description="AegisTrans 是跨裝置傳給自己的加密工作區。各種檔案不壓縮，訊息與檔案內容以端對端加密 P2P 直傳，支援 iOS、Android、macOS、Windows 與 Linux。"
   active="aegistrans"
 >
   <!-- Hero -->
   <section class="hero" style="min-height:80vh">
     <div class="hero-content">
       <div class="hero-badge">📡 AegisTrans 安心傳 · Beta</div>
-      <h1>你的檔案，<span class="gradient">只走你的裝置</span></h1>
+      <h1>你的裝置，<span class="gradient">一起工作</span></h1>
       <p>
-        跨裝置「自己傳給自己」的工作區 —— 不是聊天軟體，是手機、平板、電腦之間的加密直通道。
-        任意大小檔案、端對端加密、100% P2P：連我們的伺服器都看不到內容。
+        iPhone、Android、Mac、Windows、Linux，跨裝置傳給自己。
+        訊息與檔案內容端對端加密、裝置間 P2P 直傳，不上傳到 AegisRD 伺服器。
       </p>
       <div class="hero-actions">
         <a href="#download" class="btn-primary">直接下載桌面版 ↓</a>
-        <a href="#scenarios" class="btn-ghost">它能做什麼 ↓</a>
-        <a href="/#technology" class="btn-ghost">共用技術底座</a>
+        <a href="https://trans.aegisrd.com" class="btn-ghost">免安裝試用 Web 版 ↗</a>
+        <a href="#promises" class="btn-ghost">五個核心訴求 ↓</a>
       </div>
     </div>
   </section>
 
-  <!-- 使用場景 -->
-  <section class="problem" id="scenarios">
+  <!-- 核心產品訴求 -->
+  <section class="problem" id="promises">
     <div class="container">
-      <div class="section-label">// SCENARIOS</div>
-      <h2 class="section-title reveal">你以前用 LINE 傳給自己 —— 現在不必了</h2>
-      <p class="section-desc reveal">LINE 多裝置有限制、檔案會過期、雲端看得到你的內容。AegisTrans 三個都解。</p>
-      <div class="problem-stat">
+      <div class="section-label">// FIVE PROMISES</div>
+      <h2 class="section-title reveal">跨裝置工作，不必先把內容交給雲端</h2>
+      <p class="section-desc reveal">從傳一張照片，到把另一台電腦變成第二螢幕，AegisTrans 圍繞五件事打造。</p>
+      <div class="problem-stat promise-grid">
         <div class="stat-card reveal">
-          <div class="number" style="font-size:2rem">📦 大檔傳輸</div>
-          <div class="desc">手機拍的影片直接進電腦 —— 任意大小、不壓縮、不過期（200MB 實測全鏈路加密通過）</div>
+          <div class="number" style="font-size:2rem">📄 各種檔案</div>
+          <div class="desc">照片、影片、文件、壓縮檔或程式碼都能傳；AegisTrans 不改格式、不壓縮內容。</div>
         </div>
         <div class="stat-card reveal">
-          <div class="number" style="font-size:2rem">💻 跨裝置接力</div>
-          <div class="desc">手機、平板、桌機、筆電同帳號多裝置同時登入，開啟即同步，不需要 QR 配對</div>
+          <div class="number" style="font-size:2rem">📱 五個平台</div>
+          <div class="desc">iOS、Android、macOS、Windows、Linux，同一個帳號登入即可找到自己的裝置。</div>
         </div>
         <div class="stat-card reveal">
-          <div class="number" style="font-size:2rem">🔒 敏感文件</div>
-          <div class="desc">合約、證件、密碼備份 —— 端對端加密後才離開裝置，伺服器零內容留存</div>
+          <div class="number" style="font-size:2rem">🔒 內容不過站</div>
+          <div class="desc">訊息與檔案先加密，再透過 WebRTC 在裝置間直傳；AegisRD 伺服器不接收內容。</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="number" style="font-size:2rem">💾 留在裝置</div>
+          <div class="desc">原生 App 儲存的檔案不設到期日。Pro 原生版即將支援無限單檔大小，只受裝置可用空間限制。</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="number" style="font-size:2rem">🖥️ 畫面接力</div>
+          <div class="desc">在裝置間投放螢幕；桌面版可把另一台電腦作為延伸畫面。各平台能力依 Beta 進度開放。</div>
         </div>
       </div>
+      <p class="scope-note reveal">
+        目前 Beta 全平台單檔上限為 2GB。「無限單檔」正在完成中，推出時僅適用於 Pro 原生 App；Web 版仍受瀏覽器限制。
+      </p>
+    </div>
+  </section>
+
+  <!-- Free / Pro 方案 -->
+  <section class="cost" id="plans">
+    <div class="container">
+      <div class="section-label">// FREE OR PRO</div>
+      <h2 class="section-title reveal">先免費使用，需要更多再升級</h2>
+      <p class="section-desc reveal">核心加密與 P2P 不分方案。Pro 解鎖的是更多裝置、更大的本機工作空間，以及主動螢幕投放與延伸。</p>
+      <div class="moat-compare plan-grid">
+        <div class="moat-col reveal">
+          <div class="plan-name">Free</div>
+          <div class="plan-price">NT$0</div>
+          <ul>
+            <li><span class="check">✓</span> 2 台裝置</li>
+            <li><span class="check">✓</span> 各種檔案類型、原始內容不壓縮</li>
+            <li><span class="check">✓</span> 端對端加密 P2P 傳輸</li>
+            <li><span class="check">✓</span> 正式版單檔最高 1GB、總儲存 2GB</li>
+            <li><span class="check">✓</span> 免費接收螢幕投放</li>
+            <li><span class="check">✓</span> Web 版免安裝入口</li>
+          </ul>
+        </div>
+        <div class="moat-col highlight reveal">
+          <div class="plan-name">Pro</div>
+          <div class="plan-price">NT$30 <small>/ 月</small></div>
+          <div class="plan-alt">NT$300 / 年 · NT$900 終身</div>
+          <ul>
+            <li><span class="check">✓</span> 最多 10 台裝置</li>
+            <li><span class="check">✓</span> 包含 Free 的全部核心功能</li>
+            <li><span class="check">✓</span> 原生 App 無限單檔大小 <b>即將推出</b></li>
+            <li><span class="check">✓</span> 總儲存量只受裝置可用空間限制</li>
+            <li><span class="check">✓</span> 主動投放螢幕與桌面延伸</li>
+            <li><span class="check">✓</span> 同一帳號跨平台套用 Pro 權益</li>
+          </ul>
+        </div>
+      </div>
+      <p class="scope-note reveal">
+        「無限」指原生 App 不設定單檔大小上限，實際仍受裝置剩餘空間、作業系統與檔案系統限制。PWA 即使帳號已有 Pro，也不解除瀏覽器的檔案大小與儲存限制。正式價格以 App Store／Google Play 顯示為準。
+      </p>
     </div>
   </section>
 
@@ -58,21 +108,21 @@ import Base from '../layouts/Base.astro';
           <div class="layer-badge l1">P2P</div>
           <div class="layer-info">
             <h4>WebRTC DataChannel 直達</h4>
-            <p>檔案內容 100% 不經伺服器 —— 兩台裝置之間點對點直傳，chunking + backpressure 撐任意大小檔案。</p>
+            <p>兩台裝置透過點對點連線傳遞內容；分塊傳輸與流量控制讓大檔傳輸維持穩定，不經 AegisRD 中繼內容。</p>
           </div>
         </div>
         <div class="ai-layer reveal">
           <div class="layer-badge l2">E2E</div>
           <div class="layer-info">
-            <h4>Signal Protocol 級加密</h4>
-            <p>X3DH + Double Ratchet 建立裝置間信任，內容以 AES-256-GCM 加密 —— 全鏈路 ciphertext over wire。</p>
+            <h4>公開、成熟的密碼學設計</h4>
+            <p>以 X3DH、Double Ratchet 與 AES-256-GCM 建立裝置間信任並加密內容；傳輸線上只看得到密文。</p>
           </div>
         </div>
         <div class="ai-layer reveal">
           <div class="layer-badge l3">0️⃣</div>
           <div class="layer-info">
-            <h4>伺服器零內容</h4>
-            <p>伺服器只做信令與帳號 —— 沒有你的檔案、沒有你的訊息、沒有可以外洩的東西。</p>
+            <h4>伺服器不接收內容</h4>
+            <p>服務端只處理帳號、裝置狀態與建立 P2P 連線所需的信令；訊息與檔案內容不經服務端。</p>
           </div>
         </div>
       </div>
@@ -97,8 +147,8 @@ import Base from '../layouts/Base.astro';
           <h4>📡 AegisTrans 安心傳</h4>
           <ul>
             <li>對「自己」的跨裝置同步</li>
-            <li>任意大小檔案直傳</li>
-            <li>螢幕投放 / 延伸（桌面）</li>
+            <li>各種檔案原始內容直傳</li>
+            <li>螢幕投放 / 桌面延伸</li>
           </ul>
         </div>
       </div>
@@ -144,19 +194,26 @@ import Base from '../layouts/Base.astro';
       <div class="section-label">// AVAILABILITY</div>
       <h2 class="section-title reveal">平台進度</h2>
       <div class="problem-stat">
+        <div class="stat-card reveal"><div class="number" style="font-size:2rem">🌐 Web</div><div class="desc">免安裝試用入口 — 立即開啟，適合先體驗核心傳輸</div></div>
         <div class="stat-card reveal"><div class="number" style="font-size:2rem">🖥️ Mac</div><div class="desc">Beta 可下載 — 含螢幕投放/延伸（已簽章公證）</div></div>
         <div class="stat-card reveal"><div class="number" style="font-size:2rem">🪟 Windows</div><div class="desc">Beta 可下載</div></div>
         <div class="stat-card reveal"><div class="number" style="font-size:2rem">📱 iOS</div><div class="desc">實機測試中</div></div>
         <div class="stat-card reveal"><div class="number" style="font-size:2rem">🐧 Linux</div><div class="desc">Beta 可下載（AppImage）</div></div>
-        <div class="stat-card reveal"><div class="number" style="font-size:2rem">🤖 Android</div><div class="desc">規劃中</div></div>
+        <div class="stat-card reveal"><div class="number" style="font-size:2rem">🤖 Android</div><div class="desc">App 已完成建置，實機測試中</div></div>
       </div>
     </div>
   </section>
 
   <!-- 下載（桌面版 Beta 直接下載） -->
   <section class="cta-section" id="download">
-    <h2>下載 AegisTrans 桌面版（Beta）</h2>
-    <p>Mac 版已簽章公證；Windows / Linux 為 Beta 安裝檔（未簽章，安裝時系統可能提示）。iOS / Android 將於應用商店上架。<br />進階功能（螢幕投放／延伸）正式版採<b>訂閱制</b>：於手機 App 內訂閱（Apple Pay / Google Pay），帳號通用 —— 桌面版掃碼即可完成。</p>
+    <h2>先試用，再帶到每一台裝置</h2>
+    <p>
+      Web 版免安裝；Mac 版已簽章公證，Windows / Linux 為 Beta 安裝檔（未簽章，安裝時系統可能提示）。iOS / Android 將於應用商店上架。<br />
+      進階功能（螢幕投放／延伸）正式版採<b>訂閱制</b>；於手機 App 內訂閱後，權益隨同一帳號套用到其他裝置。
+    </p>
+    <div class="hero-actions" style="justify-content:center;margin-bottom:1rem">
+      <a href="https://trans.aegisrd.com" class="btn-primary">🌐 免安裝試用 Web 版</a>
+    </div>
     <div class="hero-actions" style="justify-content:center">
       <a href="/downloads/AegisTrans-mac.zip" class="btn-primary">🍎 下載 Mac 版（.zip）</a>
       <a href="/downloads/AegisTrans-win-setup.exe" class="btn-primary" style="background:linear-gradient(135deg,var(--blue),#60a5fa)">🪟 下載 Windows 版（.exe）</a>
@@ -171,6 +228,22 @@ import Base from '../layouts/Base.astro';
     </p>
   </section>
 <style>
+  .promise-grid { grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); }
+  .scope-note {
+    max-width:900px;
+    margin-top:1.5rem;
+    padding:1rem 1.25rem;
+    border:1px solid rgba(38,198,218,.2);
+    border-radius:12px;
+    background:rgba(38,198,218,.06);
+    color:var(--text2);
+    font-size:.9rem;
+  }
+  .plan-grid { max-width:900px; }
+  .plan-name { color:var(--accent);font-weight:800;letter-spacing:.08em;text-transform:uppercase; }
+  .plan-price { font-size:2.4rem;font-weight:900;line-height:1.2;margin:.5rem 0 1rem; }
+  .plan-price small { color:var(--text2);font-size:1rem;font-weight:600; }
+  .plan-alt { color:var(--text2);font-size:.9rem;margin:-.6rem 0 1rem; }
   @media (max-width: 900px) {
     .trans-shots { grid-template-columns: 1fr !important; }
   }
