@@ -1,0 +1,18 @@
+---
+import Base from '../../../layouts/Base.astro';
+const subject = encodeURIComponent('AegisTrans account deletion request');
+const body = encodeURIComponent('AegisTrans account email:\n\nI request permanent deletion of my AegisTrans account and associated server data.');
+const mailto = `mailto:privacy@aegisrd.com?subject=${subject}&body=${body}`;
+---
+<Base title="Delete your AegisTrans account — AegisRD" description="Request deletion of an AegisTrans account and associated data outside the app." lang="en" altPath="/aegistrans/delete-account">
+  <section class="hero" style="min-height:34vh"><div class="hero-content"><div class="hero-badge">ACCOUNT DELETION</div><h1 style="font-size:clamp(2rem,4vw,3rem)">Delete your AegisTrans account</h1><p>You can request deletion here even after uninstalling the app.</p></div></section>
+  <section class="problem"><div class="container legal-copy">
+    <h2>Delete immediately in the app</h2><p>Sign in and open Settings → Danger zone → Permanently delete account. Account, device, session and purchase-linking data is deleted from the server after confirmation.</p>
+    <h2>If you cannot sign in</h2><p>Send the request from the email registered to AegisTrans so we can verify ownership:</p><p><a class="btn-primary inline-btn" href={mailto}>Send deletion request</a></p><p>You may also email <a href="mailto:privacy@aegisrd.com">privacy@aegisrd.com</a> with subject “AegisTrans account deletion request” and your account email. We may send a verification message. Verified requests are normally completed within seven days.</p>
+    <h2>Data deleted</h2><ul><li>Account email, password hash and sessions</li><li>Registered devices, device public keys and device metadata</li><li>Magic-link tokens and subscription or purchase-linking records</li></ul>
+    <h2>Content on your devices</h2><p>Messages and files were never stored on AegisRD servers. Content already downloaded to another device is not removed remotely; delete it on each device or clear the app data.</p>
+    <h2>Cancel renewal first</h2><p><strong>Deleting an account does not cancel an Apple or Google store subscription.</strong> First use <a href="https://apps.apple.com/account/subscriptions">Apple Subscriptions</a> or <a href="https://play.google.com/store/account/subscriptions?package=com.aegisrd.aegistrans">Google Play Subscriptions</a>. Refunds are handled by the original store.</p>
+    <p>See the <a href="/en/aegistrans/terms">AegisTrans Terms</a> and <a href="https://trans.aegisrd.com/privacy.html">Privacy Policy</a>.</p>
+  </div></section>
+</Base>
+<style>.legal-copy{max-width:820px;line-height:1.9}.legal-copy h2{color:var(--text-primary);font-size:1.3rem;margin:2.2rem 0 .6rem}.legal-copy p,.legal-copy li{color:var(--text-secondary)}.legal-copy a:not(.btn-primary){color:var(--accent);text-decoration:underline}.inline-btn{display:inline-block;margin:.5rem 0}</style>
