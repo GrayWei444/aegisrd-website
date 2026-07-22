@@ -1,0 +1,215 @@
+---
+// 安心追 — 詐騙手法圖鑑（AegisTrack 情報引擎的公開圖鑑面）。資料：165 反詐騙公開通報，AI 彙整。
+import Base from '../layouts/Base.astro';
+import cards from '../data/scamcards.json';
+---
+<Base
+  title="安心追 — 詐騙手法圖鑑 · AegisRD"
+  description="把可疑訊息或關鍵字貼進來，比對 165 官方通報整理出的詐騙手法：怎麼騙、出沒在哪、如何自保。AegisTrack 反詐騙情報引擎的公開圖鑑。"
+  active="anxin"
+>
+  <main class="anxin">
+    <div class="ax-hero">
+      <div class="container">
+        <img src="/img/shield.png" alt="AegisRD 盾牌" class="ax-icon" />
+        <div class="ax-eyebrow">安心追 · AegisTrack 反詐騙圖鑑</div>
+        <h1>詐騙手法<span class="g">圖鑑</span></h1>
+        <p class="ax-lead">把可疑訊息或關鍵字貼進來，查查是不是詐騙、怎麼騙、如何自保。</p>
+        <div class="hsearch">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <input id="q" type="search" placeholder="貼上可疑訊息，或輸入關鍵字（例：解除分期、假檢警、投資群組）" aria-label="搜尋詐騙手法" />
+        </div>
+        <div class="suggest" id="suggest"></div>
+      </div>
+    </div>
+
+    <div class="container ax-statsband">
+      <div class="stats" id="stats"></div>
+      <p class="summary" id="summary"></p>
+    </div>
+
+    <div class="container">
+      <div class="disc">彙整 165 反詐騙 2017–2026 年公開通報 348 則，AI 保守歸類成 68 種手法（同手法多篇合併、剔除純宣導文），仍會經人工複核。資料持續擴充中。</div>
+      <div class="controls">
+        <div class="chips" id="chips"></div>
+        <div class="ax-row">
+          <label class="sortsel">排序
+            <select id="sort"><option value="date">最近活躍</option><option value="cases">通報則數</option><option value="cat">依類別</option></select>
+          </label>
+        </div>
+      </div>
+      <div class="count" id="count"></div>
+      <div class="grid" id="grid"></div>
+    </div>
+
+    <div class="ov" id="ov" role="dialog" aria-modal="true" aria-labelledby="mtitle"><div class="modal" id="modal"></div></div>
+  </main>
+
+  <script type="application/json" id="data" is:inline set:html={JSON.stringify(cards)}></script>
+
+  <style is:global>
+    :root{--mono:'SF Mono',Monaco,Inconsolata,'Fira Code',monospace}
+    .anxin{padding-bottom:2rem}
+    .anxin .container{max-width:1140px;margin:0 auto;padding:0 1.5rem}
+    .ax-hero{padding:7rem 0 2.75rem;position:relative;text-align:center;min-height:auto}
+    .ax-hero::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:760px;height:640px;max-width:100%;background:radial-gradient(circle,var(--glow),transparent 68%);pointer-events:none;z-index:-1}
+    .ax-icon{width:88px;height:88px;margin:0 auto 1.25rem;display:block;object-fit:contain;filter:drop-shadow(0 10px 26px rgba(38,198,218,.28))}
+    .ax-eyebrow{font-family:var(--mono);font-size:.8rem;letter-spacing:2.5px;color:var(--accent);text-transform:uppercase;margin-bottom:.9rem}
+    .ax-hero h1{font-size:clamp(2.6rem,6.5vw,4rem);font-weight:900;letter-spacing:-2px;line-height:1.1;margin-bottom:1.1rem}
+    .ax-hero h1 .g{background:linear-gradient(135deg,var(--accent),var(--accent2),var(--purple));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .ax-lead{color:var(--text2);font-size:1.12rem;max-width:52ch;margin:0 auto 2rem;line-height:1.75}
+    .hsearch{max-width:660px;margin:0 auto 1rem;display:flex;align-items:center;gap:.85rem;
+      background:color-mix(in srgb,var(--accent) 8%,var(--bg2));border:2px solid color-mix(in srgb,var(--accent) 55%,var(--border));
+      border-radius:18px;padding:1.15rem 1.4rem;box-shadow:0 8px 44px rgba(38,198,218,.22);transition:border-color .2s,box-shadow .2s}
+    .hsearch:focus-within{border-color:var(--accent);box-shadow:0 8px 50px rgba(38,198,218,.38)}
+    .hsearch svg{flex:none;width:24px;height:24px;color:var(--accent)}
+    .hsearch input{border:0;background:transparent;color:var(--text);font:inherit;font-size:1.08rem;width:100%;outline:none}
+    .hsearch input::placeholder{color:color-mix(in srgb,var(--accent) 45%,var(--text2))}
+    .ax-statsband{margin-bottom:.5rem}
+    .suggest{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;align-items:center;margin-bottom:1.6rem}
+    .suggest .lbl{font-family:var(--mono);font-size:.72rem;letter-spacing:.5px;color:var(--text2)}
+    .suggest .sg{font-size:.82rem;color:var(--text2);background:var(--bg2);border:1px solid var(--border);border-radius:999px;padding:.28rem .8rem;cursor:pointer;transition:.15s}
+    .suggest .sg:hover{border-color:var(--accent);color:var(--accent)}
+    .anxin .stats{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+    .anxin .stat{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1rem 1.5rem;min-width:140px}
+    .anxin .stat .n{font-family:var(--mono);font-size:1.8rem;font-weight:900;line-height:1;background:linear-gradient(135deg,var(--accent),var(--blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-variant-numeric:tabular-nums}
+    .anxin .stat .l{color:var(--text2);font-size:.8rem;margin-top:.4rem}
+    .summary{max-width:70ch;margin:.4rem auto 0;color:var(--text2);font-size:.92rem;line-height:1.7}
+    .summary b{color:var(--text);font-weight:700}
+    .summary .cat{display:inline-block;font-size:.8rem;color:var(--c,var(--accent));border:1px solid color-mix(in srgb,var(--c,var(--accent)) 35%,transparent);background:color-mix(in srgb,var(--c,var(--accent)) 10%,transparent);border-radius:999px;padding:.1rem .6rem;margin:.15rem .2rem;font-variant-numeric:tabular-nums}
+    .disc{background:rgba(38,198,218,.05);border:1px solid rgba(38,198,218,.18);border-radius:12px;padding:.85rem 1.1rem;font-size:.85rem;color:var(--text);margin:1.5rem 0 1.25rem}
+    .controls{display:flex;flex-direction:column;gap:.9rem;padding:.5rem 0}
+    .ax-row{display:flex;align-items:center;flex-wrap:wrap}
+    .sortsel{margin-left:auto;font-size:.82rem;color:var(--text2);display:flex;align-items:center;gap:.5rem}
+    .sortsel select{font:inherit;font-size:.82rem;color:var(--text);background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:.45rem .7rem;cursor:pointer}
+    .chips{display:flex;gap:.5rem;flex-wrap:wrap}
+    .chip{border:1px solid var(--border);background:var(--bg2);color:var(--text2);border-radius:999px;padding:.4rem .9rem;font-size:.83rem;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:.15s}
+    .chip .dot{width:8px;height:8px;border-radius:50%;background:var(--c,var(--text2))}
+    .chip[aria-pressed="true"]{color:var(--text);border-color:var(--c,var(--accent));background:color-mix(in srgb,var(--c,var(--accent)) 16%,var(--bg2))}
+    .chip:hover{border-color:var(--c,var(--accent));color:var(--text)}
+    .count{color:var(--text2);font-size:.82rem;font-family:var(--mono);letter-spacing:.5px;padding:.2rem 0 1rem}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:1.25rem;padding-bottom:3rem}
+    .card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;position:relative;transition:transform .25s,border-color .25s}
+    .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c,var(--accent));opacity:.9}
+    .card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--c,var(--accent)) 45%,var(--border))}
+    .card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .card .body{padding:1.15rem;display:flex;flex-direction:column;gap:.7rem;flex:1}
+    .card .badge{align-self:flex-start;font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:.25rem .6rem;border-radius:6px;color:var(--c,var(--accent));background:color-mix(in srgb,var(--c,var(--accent)) 14%,transparent)}
+    .card h3{font-size:1.02rem;font-weight:800;line-height:1.4;letter-spacing:-.2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .plat{display:flex;gap:.4rem;flex-wrap:wrap}
+    .plat span{font-size:.72rem;color:var(--text2);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:.1rem .5rem}
+    .foot{display:flex;align-items:center;gap:1rem;border-top:1px solid var(--border);padding-top:.75rem;margin-top:auto;font-size:.78rem;color:var(--text2)}
+    .foot .cc{font-family:var(--mono);color:var(--text);font-weight:700}
+    .foot .when{margin-left:auto;font-family:var(--mono)}
+    .recent{position:absolute;top:.85rem;right:.85rem;z-index:2;font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:.5px;color:var(--bg);background:var(--accent);border-radius:999px;padding:.15rem .55rem}
+    .ov{position:fixed;inset:0;background:rgba(5,12,20,.72);display:none;z-index:200;padding:1.5rem;overflow:auto;backdrop-filter:blur(4px)}
+    .ov.on{display:flex;align-items:flex-start;justify-content:center}
+    .modal{background:var(--bg2);border:1px solid var(--border);border-radius:20px;max-width:640px;width:100%;margin:auto;overflow:hidden;position:relative}
+    .modal::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c,var(--accent))}
+    .m-top{padding:1.5rem 1.5rem 1.25rem;border-bottom:1px solid var(--border);position:relative}
+    .m-top h2{font-size:1.4rem;font-weight:900;letter-spacing:-.5px;line-height:1.3;padding-right:2rem;margin-top:.6rem}
+    .close{position:absolute;top:1rem;right:1rem;width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:1.1rem;cursor:pointer}
+    .close:hover{border-color:var(--accent);color:var(--accent)}
+    .m-body{padding:1.4rem 1.5rem 1.6rem;display:flex;flex-direction:column;gap:1.4rem}
+    .m-meta{display:flex;gap:1.6rem;flex-wrap:wrap}
+    .m-meta .k{font-family:var(--mono);font-size:.68rem;letter-spacing:1px;color:var(--text2);text-transform:uppercase;margin-bottom:.25rem}
+    .m-meta .v{font-size:.95rem}
+    .sec h4{font-family:var(--mono);font-size:.72rem;letter-spacing:1.5px;color:var(--accent);text-transform:uppercase;margin-bottom:.8rem}
+    ol.steps{list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:.6rem;padding:0}
+    ol.steps li{counter-increment:s;position:relative;padding-left:2.1rem;font-size:.92rem}
+    ol.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;background:color-mix(in srgb,var(--c,var(--accent)) 22%,transparent);color:var(--c,var(--accent));font-family:var(--mono);font-size:.72rem;font-weight:700;display:grid;place-items:center}
+    .quotes{display:flex;flex-direction:column;gap:.55rem}
+    .quotes p{font-size:.9rem;padding:.65rem .85rem;background:var(--bg);border-left:3px solid var(--c,var(--accent));border-radius:0 8px 8px 0;color:var(--text)}
+    .tags{display:flex;gap:.45rem;flex-wrap:wrap}
+    .tags span{font-size:.8rem;font-weight:600;color:var(--warn);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.28);border-radius:6px;padding:.2rem .6rem}
+    ul.prot{list-style:none;display:flex;flex-direction:column;gap:.5rem;padding:0}
+    ul.prot li{font-size:.92rem;padding-left:1.5rem;position:relative}
+    ul.prot li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800}
+    .srcs{border-top:1px solid var(--border);padding-top:1rem;display:flex;flex-direction:column;gap:.35rem}
+    .srcs .sh{font-family:var(--mono);font-size:.68rem;letter-spacing:1px;color:var(--text2);text-transform:uppercase;margin-bottom:.35rem}
+    .srcs a{font-size:.82rem;display:flex;gap:.6rem;color:var(--accent)}
+    .srcs a .d{font-family:var(--mono);color:var(--text2);flex:none}
+    @media(max-width:600px){.anxin .stat{min-width:120px;padding:.85rem 1.1rem}.sortsel{margin-left:0}}
+  </style>
+
+  <script is:inline>
+    const CC={"假投資/博弈":"#f59e0b","愛情交友(殺豬盤)":"#ec4899","假冒公務(檢警稅)":"#3b82f6","假冒親友":"#22c55e","假網拍代購":"#7c3aed","假客服解除分期":"#f97316","釣魚簡訊":"#26c6da","其他":"#8b95a8"};
+    const cards=JSON.parse(document.getElementById("data").textContent);
+    let active="全部",query="",sortKey="date";
+    const pd=s=>{const m=(s||"").match(/(\d{4})-(\d{2})-(\d{2})/);return m?Date.UTC(+m[1],+m[2]-1,+m[3]):0};
+    cards.forEach(c=>c._last=pd(c.last_seen));
+    const MAX=Math.max(...cards.map(c=>c._last)),REC=150*864e5;
+    const esc=s=>String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+    const totCases=cards.reduce((s,c)=>s+(c.case_count||0),0);
+    const yrs=cards.flatMap(c=>[c.first_seen,c.last_seen]).filter(Boolean).sort();
+    const y0=(yrs[0]||"").slice(0,4),y1=(yrs.at(-1)||"").slice(0,4);
+    const catCount={};cards.forEach(c=>catCount[c.category]=(catCount[c.category]||0)+1);
+    const nCat=Object.keys(catCount).length;
+    document.getElementById("stats").innerHTML=
+      `<div class="stat"><div class="n">${y0}–${y1}</div><div class="l">資料時間範圍</div></div>
+       <div class="stat"><div class="n">${totCases}</div><div class="l">則官方通報彙整</div></div>
+       <div class="stat"><div class="n">${cards.length}</div><div class="l">種詐騙手法</div></div>
+       <div class="stat"><div class="n">${nCat}</div><div class="l">大類別</div></div>`;
+    document.getElementById("summary").innerHTML=
+      `彙整 165 反詐騙 <b>${y0}–${y1}</b> 年公開通報，共 <b>${totCases}</b> 則，整理成 <b>${cards.length}</b> 種手法、分為 <b>${nCat}</b> 大類：<br>`
+      +Object.entries(catCount).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<span class="cat" style="--c:${CC[k]||'#8b95a8'}">${esc(k)} ${v}</span>`).join("");
+
+    const chips=document.getElementById("chips");
+    const cats=[...new Set(cards.map(c=>c.category))];
+    function mkchip(label,cat){const b=document.createElement("button");b.className="chip";b.setAttribute("aria-pressed",String(active===label));
+      if(cat)b.style.setProperty("--c",CC[cat]);b.innerHTML=(cat?'<span class="dot"></span>':'')+esc(label)+(cat?` <b style="opacity:.55;font-weight:600">${catCount[cat]||0}</b>`:'');
+      b.onclick=()=>{active=label;[...chips.children].forEach(x=>x.setAttribute("aria-pressed",String(x===b)));render()};return b}
+    chips.appendChild(mkchip("全部",null));cats.forEach(c=>chips.appendChild(mkchip(c,c)));
+
+    const grid=document.getElementById("grid"),count=document.getElementById("count");
+    function match(c){if(active!=="全部"&&c.category!==active)return false;if(!query)return true;
+      return (c.tactic+c.category+(c.platforms||[]).join()+(c.risk_signals||[]).join()+(c.script_samples||[]).join()).toLowerCase().includes(query)}
+    function sortF(l){if(sortKey==="cases")return l.sort((a,b)=>(b.case_count||0)-(a.case_count||0)||b._last-a._last);
+      if(sortKey==="cat")return l.sort((a,b)=>a.category.localeCompare(b.category)||b._last-a._last);
+      return l.sort((a,b)=>b._last-a._last)}
+    function render(){
+      const l=sortF(cards.filter(match));
+      count.textContent=(query?`找到 ${l.length} 個相關手法`:`共 ${l.length} 種手法`)+(active!=="全部"?` · ${active}`:"");
+      grid.innerHTML="";
+      l.forEach(c=>{const col=CC[c.category]||"#8b95a8";const el=document.createElement("article");
+        el.className="card";el.tabIndex=0;el.style.setProperty("--c",col);
+        const rec=(MAX-c._last)<REC&&c._last>0;
+        el.innerHTML=`${rec?'<span class="recent">🔥 近期</span>':''}<div class="body">
+          <span class="badge">${esc(c.category)}</span><h3>${esc(c.tactic)}</h3>
+          <div class="plat">${(c.platforms||[]).slice(0,4).map(p=>`<span>${esc(p)}</span>`).join("")||'<span>不限平台</span>'}</div>
+          <div class="foot"><span class="cc">${c.case_count||0}</span>&nbsp;則通報<span class="when">${(c.first_seen||"").slice(0,7)}${c.first_seen!==c.last_seen?" ~ "+(c.last_seen||"").slice(0,7):""}</span></div></div>`;
+        const o=()=>openM(c);el.onclick=o;el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();o()}};
+        grid.appendChild(el)})}
+    document.getElementById("q").addEventListener("input",e=>{query=e.target.value.trim().toLowerCase();render()});
+    document.getElementById("sort").addEventListener("change",e=>{sortKey=e.target.value;render()});
+    const SUG=["假檢警","解除分期","投資群組","一頁式","貨到付款","猜猜我是誰","裸聊","高薪兼職"];
+    const sgEl=document.getElementById("suggest");
+    sgEl.innerHTML='<span class="lbl">熱門查詢</span>'+SUG.map(k=>`<span class="sg">${esc(k)}</span>`).join("");
+    sgEl.querySelectorAll(".sg").forEach(el=>el.onclick=()=>{const q=document.getElementById("q");q.value=el.textContent;query=el.textContent.toLowerCase();render();document.getElementById("grid").scrollIntoView({behavior:"smooth",block:"start"})});
+
+    const ov=document.getElementById("ov"),modal=document.getElementById("modal");
+    const sec=(t,h)=>h?`<div class="sec"><h4>${t}</h4>${h}</div>`:"";
+    function openM(c){const col=CC[c.category]||"#8b95a8";modal.style.setProperty("--c",col);
+      const steps=(c.stages||[]).length?`<ol class="steps">${c.stages.map(s=>`<li>${esc(s)}</li>`).join("")}</ol>`:"";
+      const q=(c.script_samples||[]).length?`<div class="quotes">${c.script_samples.map(s=>`<p>${esc(s)}</p>`).join("")}</div>`:"";
+      const t=(c.risk_signals||[]).length?`<div class="tags">${c.risk_signals.map(s=>`<span>${esc(s)}</span>`).join("")}</div>`:"";
+      const p=(c.self_protect||[]).length?`<ul class="prot">${c.self_protect.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>`:"";
+      const srcs=(c.sources||[]).length?`<div class="srcs"><div class="sh">彙整來源 · ${c.case_count} 則（${c.first_seen}~${c.last_seen}）</div>${c.sources.map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener"><span class="d">${esc(s.date||"—")}</span><span>165 反詐騙官方公告 ↗</span></a>`).join("")}</div>`:"";
+      modal.innerHTML=`<div class="m-top"><button class="close" aria-label="關閉">×</button>
+          <span class="badge" style="font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:.25rem .6rem;border-radius:6px;color:${col};background:color-mix(in srgb,${col} 14%,transparent)">${esc(c.category)}</span>
+          <h2 id="mtitle">${esc(c.tactic)}</h2></div>
+        <div class="m-body">
+          <div class="m-meta">
+            <div><div class="k">出沒平台</div><div class="v">${(c.platforms||[]).join("、")||"不限平台"}</div></div>
+            <div><div class="k">通報則數</div><div class="v">${c.case_count||0} 則</div></div>
+            <div><div class="k">時間範圍</div><div class="v">${c.first_seen||"—"} ~ ${c.last_seen||"—"}</div></div>
+          </div>
+          ${sec("詐騙劇本",steps)}${sec("常見話術（擬真重寫）",q)}${sec("風險訊號",t)}${sec("如何自保",p)}${srcs}
+        </div>`;
+      modal.querySelector(".close").onclick=closeM;ov.classList.add("on");document.body.style.overflow="hidden";modal.querySelector(".close").focus()}
+    function closeM(){ov.classList.remove("on");document.body.style.overflow=""}
+    ov.addEventListener("click",e=>{if(e.target===ov)closeM()});
+    document.addEventListener("keydown",e=>{if(e.key==="Escape"&&ov.classList.contains("on"))closeM()});
+    render();
+  </script>
+</Base>
