@@ -174,7 +174,7 @@ import cards from '../data/scamcards.json';
       l.forEach(c=>{const col=CC[c.category]||"#8b95a8";const el=document.createElement("article");
         el.className="card";el.tabIndex=0;el.style.setProperty("--c",col);
         const rec=(MAX-c._last)<REC&&c._last>0;
-        el.innerHTML=`${rec?'<span class="recent">🔥 近期</span>':''}<div class="body">
+        el.innerHTML=`${rec?'<span class="recent"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-.1em;margin-right:.15em"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>近期</span>':''}<div class="body">
           <span class="badge">${esc(c.category)}</span><h3>${esc(c.tactic)}</h3>
           <div class="plat">${(c.platforms||[]).slice(0,4).map(p=>`<span>${esc(p)}</span>`).join("")||'<span>不限平台</span>'}</div>
           <div class="foot"><span class="cc">${c.case_count||0}</span>&nbsp;則通報<span class="when">${(c.first_seen||"").slice(0,7)}${c.first_seen!==c.last_seen?" ~ "+(c.last_seen||"").slice(0,7):""}</span></div></div>`;
