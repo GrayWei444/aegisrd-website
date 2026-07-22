@@ -2,6 +2,8 @@
 // 安心追 — 詐騙手法圖鑑（AegisTrack 情報引擎的公開圖鑑面）。資料：165 反詐騙公開通報，AI 彙整。
 import Base from '../layouts/Base.astro';
 import cards from '../data/scamcards.json';
+const totalCases = cards.reduce((s, c) => s + (c.case_count || 0), 0);
+const judgmentCases = cards.reduce((s, c) => s + (c.sources || []).filter(x => (x.url || '').includes('judgment.judicial')).length, 0);
 ---
 <Base
   title="安心追 — 詐騙手法圖鑑 · AegisRD"
@@ -11,8 +13,7 @@ import cards from '../data/scamcards.json';
   <main class="anxin">
     <div class="ax-hero">
       <div class="container">
-        <img src="/img/shield.png" alt="AegisRD 盾牌" class="ax-icon" />
-        <div class="ax-eyebrow">安心追 · AegisTrack 反詐騙圖鑑</div>
+        <div class="hero-badge" style="margin-bottom:1.25rem"><img src="/img/shield.png" alt="" style="height:1.3em;vertical-align:-.28em;margin-right:.15em" /> 安心追 · AegisTrack 反詐騙圖鑑</div>
         <h1>詐騙手法<span class="g">圖鑑</span></h1>
         <p class="ax-lead">把可疑訊息或關鍵字貼進來，查查是不是詐騙、怎麼騙、如何自保。</p>
         <div class="hsearch">
@@ -29,7 +30,7 @@ import cards from '../data/scamcards.json';
     </div>
 
     <div class="container">
-      <div class="disc">彙整 165 反詐騙 2017–2026 年公開通報 348 則，AI 保守歸類成 68 種手法（同手法多篇合併、剔除純宣導文），仍會經人工複核。資料持續擴充中。</div>
+      <div class="disc">彙整 165 反詐騙 2017–2026 年公開通報與司法院詐欺刑事判決{judgmentCases ? `（${judgmentCases} 則）` : ''}共 {totalCases} 則，AI 保守歸類成 {cards.length} 種手法（同手法多篇合併、剔除純宣導文與無罪判決），仍會經人工複核。資料持續擴充中。</div>
       <div class="controls">
         <div class="chips" id="chips"></div>
         <div class="ax-row">
@@ -194,7 +195,7 @@ import cards from '../data/scamcards.json';
       const q=(c.script_samples||[]).length?`<div class="quotes">${c.script_samples.map(s=>`<p>${esc(s)}</p>`).join("")}</div>`:"";
       const t=(c.risk_signals||[]).length?`<div class="tags">${c.risk_signals.map(s=>`<span>${esc(s)}</span>`).join("")}</div>`:"";
       const p=(c.self_protect||[]).length?`<ul class="prot">${c.self_protect.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>`:"";
-      const srcs=(c.sources||[]).length?`<div class="srcs"><div class="sh">彙整來源 · ${c.case_count} 則（${c.first_seen}~${c.last_seen}）</div>${c.sources.map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener"><span class="d">${esc(s.date||"—")}</span><span>165 反詐騙官方公告 ↗</span></a>`).join("")}</div>`:"";
+      const srcs=(c.sources||[]).length?`<div class="srcs"><div class="sh">彙整來源 · ${c.case_count} 則（${c.first_seen}~${c.last_seen}）</div>${c.sources.map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener"><span class="d">${esc(s.date||"—")}</span><span>${esc(s.name||"165 反詐騙官方公告")} ↗</span></a>`).join("")}</div>`:"";
       modal.innerHTML=`<div class="m-top"><button class="close" aria-label="關閉">×</button>
           <span class="badge" style="font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:.25rem .6rem;border-radius:6px;color:${col};background:color-mix(in srgb,${col} 14%,transparent)">${esc(c.category)}</span>
           <h2 id="mtitle">${esc(c.tactic)}</h2></div>
