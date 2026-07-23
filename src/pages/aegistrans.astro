@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 ---
 <Base
   title="AegisTrans 安心傳 — 你的裝置，一起工作"
-  description="AegisTrans 是跨裝置傳給自己的加密工作區。各種檔案不壓縮，訊息與檔案內容以端對端加密 P2P 直傳，支援 iOS、Android、macOS、Windows 與 Linux。"
+  description="一個帳號連起你所有裝置。任何檔案、任何格式，不必同一個 Wi-Fi 也能互傳；還能把另一台電腦變成第二螢幕。支援 iOS、Android、macOS、Windows、Linux，內容端對端加密、裝置間直傳。"
   active="aegistrans"
 >
   <!-- Hero -->
@@ -13,13 +13,14 @@ import Base from '../layouts/Base.astro';
       <div class="hero-badge"><img src="/img/aegistrans-logo.png" alt="" style="height:1.3em;vertical-align:-.3em;margin-right:.2em" />AegisTrans 安心傳 · Beta</div>
       <h1>你的裝置，<span class="gradient">一起工作</span></h1>
       <p>
-        iPhone、Android、Mac、Windows、Linux，跨裝置傳給自己。
-        訊息與檔案內容端對端加密、裝置間 P2P 直傳，不上傳到 AegisRD 伺服器。
+        一個帳號，連起你的 iPhone、Android、Mac、Windows 和 Linux。
+        任何檔案都能傳，不必在同一個 Wi-Fi；還能把另一台電腦變成第二螢幕。
+        內容端對端加密、裝置之間直接傳，不經過我們的伺服器。
       </p>
       <div class="hero-actions">
         <a href="#download" class="btn-primary">直接下載桌面版 ↓</a>
         <a href="https://trans.aegisrd.com" class="btn-ghost">免安裝試用 Web 版 ↗</a>
-        <a href="#promises" class="btn-ghost">五個核心訴求 ↓</a>
+        <a href="#promises" class="btn-ghost">能做什麼 ↓</a>
       </div>
     </div>
   </section>
@@ -45,7 +46,7 @@ import Base from '../layouts/Base.astro';
         </div>
         <div class="stat-card reveal">
           <div class="number" style="font-size:2rem"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-.15em;margin-right:.25em"><path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path><path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"></path><path d="M7 3v4a1 1 0 0 0 1 1h7"></path></svg>留在裝置</div>
-          <div class="desc">原生 App 儲存的檔案不設到期日。Pro 原生版即將支援無限單檔大小，只受裝置可用空間限制。</div>
+          <div class="desc">傳過去的檔案就存在你的裝置上，不設到期日、不會因為沒續費而消失。單檔已驗證至 2GB。</div>
         </div>
         <div class="stat-card reveal">
           <div class="number" style="font-size:2rem"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-.15em;margin-right:.25em"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>畫面接力</div>
@@ -53,7 +54,7 @@ import Base from '../layouts/Base.astro';
         </div>
       </div>
       <p class="scope-note reveal">
-        目前 Beta 全平台單檔上限為 2GB。「無限單檔」正在完成中，推出時僅適用於 Pro 原生 App；Web 版仍受瀏覽器限制。
+        單檔 2GB 為目前實測驗證過的上限，全平台適用。Web 版另受瀏覽器本身的記憶體與儲存限制。
       </p>
     </div>
   </section>
@@ -63,18 +64,18 @@ import Base from '../layouts/Base.astro';
     <div class="container">
       <div class="section-label">// FREE OR PRO</div>
       <h2 class="section-title reveal">先免費使用，需要更多再升級</h2>
-      <p class="section-desc reveal">核心加密與 P2P 不分方案。Pro 解鎖的是更多裝置、更大的本機工作空間，以及主動螢幕投放與延伸。</p>
+      <p class="section-desc reveal">傳檔完全免費 —— 不限裝置數、不限檔案類型、不收儲存費。付費解鎖的只有螢幕投放與桌面延伸。</p>
       <div class="moat-compare plan-grid">
         <div class="moat-col reveal">
           <div class="plan-name">Free</div>
           <div class="plan-price">NT$0</div>
           <ul>
-            <li><span class="check">✓</span> 2 台裝置</li>
+            <li><span class="check">✓</span> 裝置數不限（技術上限 16 台）</li>
             <li><span class="check">✓</span> 各種檔案類型、原始內容不壓縮</li>
-            <li><span class="check">✓</span> 端對端加密 P2P 傳輸</li>
-            <li><span class="check">✓</span> 原生 App 單檔最高 2GB、總儲存 2GB</li>
+            <li><span class="check">✓</span> 單檔已驗證 2GB，不收儲存費</li>
+            <li><span class="check">✓</span> 端對端加密、裝置間直傳</li>
             <li><span class="check">✓</span> 免費接收螢幕投放</li>
-            <li><span class="check">✓</span> Web 版免安裝入口</li>
+            <li><span class="check">✓</span> 五個平台原生 App + Web 版免安裝入口</li>
           </ul>
         </div>
         <div class="moat-col highlight reveal">
@@ -82,78 +83,78 @@ import Base from '../layouts/Base.astro';
           <div class="plan-price">NT$30 <small>/ 月</small></div>
           <div class="plan-alt">NT$300 / 年 · NT$900 終身</div>
           <ul>
-            <li><span class="check">✓</span> 最多 10 台裝置</li>
-            <li><span class="check">✓</span> 包含 Free 的全部核心功能</li>
-            <li><span class="check">✓</span> 原生 App 無限單檔大小 <b>即將推出</b></li>
-            <li><span class="check">✓</span> 總儲存量只受裝置可用空間限制</li>
-            <li><span class="check">✓</span> 主動投放螢幕與桌面延伸</li>
+            <li><span class="check">✓</span> 包含 Free 的全部功能</li>
+            <li><span class="check">✓</span> 主動把畫面投放到其他裝置</li>
+            <li><span class="check">✓</span> 把另一台電腦變成延伸螢幕</li>
+            <li><span class="check">✓</span> 圖片剪貼簿跨裝置同步</li>
             <li><span class="check">✓</span> 同一帳號跨平台套用 Pro 權益</li>
           </ul>
         </div>
       </div>
       <p class="scope-note reveal">
-        「無限」指原生 App 不設定單檔大小上限，實際仍受裝置剩餘空間、作業系統與檔案系統限制。PWA 即使帳號已有 Pro，也不解除瀏覽器的檔案大小與儲存限制。正式價格以 App Store／Google Play 顯示為準。
+        16 台是金鑰管理的技術上限，不是付費門檻 —— 裝置越多，配對與金鑰更新的成本呈平方成長。螢幕投放與延伸各平台依 Beta 進度開放。正式價格以 App Store／Google Play 顯示為準。
       </p>
     </div>
   </section>
 
-  <!-- 技術特點 -->
+  <!-- 內容不過站 -->
   <section class="ai-engine">
     <div class="container">
-      <div class="section-label">// TECHNOLOGY</div>
-      <h2 class="section-title reveal">與 AegisTalk 同一副骨架</h2>
-      <p class="section-desc reveal">AegisTrans 與 AegisTalk 共用底層技術 —— 差別只在場景：一個對別人，一個對自己。</p>
+      <div class="section-label">// SECURITY</div>
+      <h2 class="section-title reveal">你的內容，只在你的裝置之間</h2>
+      <p class="section-desc reveal">不是「我們承諾不看」，而是內容根本不會經過我們這裡。</p>
       <div class="ai-layers">
         <div class="ai-layer reveal">
-          <div class="layer-badge l1">P2P</div>
+          <div class="layer-badge l1">1</div>
           <div class="layer-info">
-            <h4>WebRTC DataChannel 直達</h4>
-            <p>兩台裝置透過點對點連線傳遞內容；分塊傳輸與流量控制讓大檔傳輸維持穩定，不經 AegisRD 中繼內容。</p>
+            <h4>裝置直接傳給裝置</h4>
+            <p>檔案從你的手機直接送到你的電腦，中間不落地、不進雲端硬碟、不排隊等上傳。傳完就結束，我們沒有一份副本。</p>
           </div>
         </div>
         <div class="ai-layer reveal">
-          <div class="layer-badge l2">E2E</div>
+          <div class="layer-badge l2">2</div>
           <div class="layer-info">
-            <h4>公開、成熟的密碼學設計</h4>
-            <p>以 X3DH、Double Ratchet 與 AES-256-GCM 建立裝置間信任並加密內容；傳輸線上只看得到密文。</p>
+            <h4>離開裝置前就已加密</h4>
+            <p>內容在你的裝置上完成加密，只有你自己的其他裝置解得開。就算有人在網路上攔截，看到的也只是亂碼。</p>
           </div>
         </div>
         <div class="ai-layer reveal">
-          <div class="layer-badge l3">0️⃣</div>
+          <div class="layer-badge l3">3</div>
           <div class="layer-info">
-            <h4>伺服器不接收內容</h4>
-            <p>服務端只處理帳號、裝置狀態與建立 P2P 連線所需的信令；訊息與檔案內容不經服務端。</p>
+            <h4>我們只負責幫兩台裝置認識彼此</h4>
+            <p>伺服器處理的只有帳號、哪些裝置在線，以及牽線的過程。訊息與檔案內容不經過伺服器，所以我們無從讀取。</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 與 AegisTalk 的關係 -->
+  <!-- 差異 -->
   <section class="moat">
     <div class="container">
-      <div class="section-label">// ECOSYSTEM</div>
-      <h2 class="section-title reveal">同一個生態系的兩張面孔</h2>
+      <div class="section-label">// WHY AEGISTRANS</div>
+      <h2 class="section-title reveal">和一般傳檔工具的差別</h2>
       <div class="moat-compare">
         <div class="moat-col reveal">
-          <h4><img src="/img/aegistalk-logo.png" alt="" style="height:1.3em;vertical-align:-.3em;margin-right:.2em" />AegisTalk 安心說</h4>
+          <h4>一般傳檔工具</h4>
           <ul>
-            <li>對「別人」的加密通訊</li>
-            <li>AI 防詐引擎全程護航</li>
-            <li>家庭守護、風險警示</li>
+            <li>兩台裝置要在同一個 Wi-Fi</li>
+            <li>每次都要重新配對、掃碼或輸入代碼</li>
+            <li>關掉分頁就中斷，功能只有傳檔</li>
           </ul>
         </div>
         <div class="moat-col highlight reveal">
           <h4><img src="/img/aegistrans-logo.png" alt="" style="height:1.3em;vertical-align:-.3em;margin-right:.2em" />AegisTrans 安心傳</h4>
           <ul>
-            <li>對「自己」的跨裝置同步</li>
-            <li>各種檔案原始內容直傳</li>
-            <li>螢幕投放 / 桌面延伸</li>
+            <li>一個帳號，自動認得你所有裝置</li>
+            <li>不必同網路，在外面也傳得回家裡</li>
+            <li>登入一次就記住，不用每次重新配對</li>
+            <li>不只傳檔 —— 還能把另一台電腦變成第二螢幕</li>
           </ul>
         </div>
       </div>
       <p class="section-desc reveal" style="margin-top:2rem">
-        兩者共用 AegisRD 同一套 E2EE + P2P 底座 —— 學會一個，就等於學會另一個。
+        傳檔只是起點。真正省時間的是：你的每一台裝置，從此像同一台在用。
       </p>
     </div>
   </section>
