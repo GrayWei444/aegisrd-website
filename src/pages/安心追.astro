@@ -13,7 +13,7 @@ const judgmentCases = cards.reduce((s, c) => s + (c.sources || []).filter(x => (
   <main class="anxin">
     <div class="ax-hero">
       <div class="container">
-        <div class="hero-badge" style="margin-bottom:1.25rem"><img src="/img/shield.png" alt="" style="height:1.3em;vertical-align:-.28em;margin-right:.15em" /> 安心追 · AegisTrack 反詐騙圖鑑</div>
+        <div class="hero-badge" style="margin-bottom:1.25rem"><img src="/images/logo.png" alt="" style="height:1.45em;vertical-align:-.3em;margin-right:.15em" /> 安心追 · AegisTrack 反詐騙圖鑑</div>
         <h1>詐騙手法<span class="g">圖鑑</span></h1>
         <p class="ax-lead">把可疑訊息或關鍵字貼進來，查查是不是詐騙、怎麼騙、如何自保。</p>
         <div class="hsearch">
@@ -26,7 +26,6 @@ const judgmentCases = cards.reduce((s, c) => s + (c.sources || []).filter(x => (
 
     <div class="container ax-statsband">
       <div class="stats" id="stats"></div>
-      <p class="summary" id="summary"></p>
     </div>
 
     <div class="container">
@@ -52,33 +51,32 @@ const judgmentCases = cards.reduce((s, c) => s + (c.sources || []).filter(x => (
     :root{--mono:'SF Mono',Monaco,Inconsolata,'Fira Code',monospace}
     .anxin{padding-bottom:2rem}
     .anxin .container{max-width:1140px;margin:0 auto;padding:0 1.5rem}
-    .ax-hero{padding:7rem 0 2.75rem;position:relative;text-align:center;min-height:auto}
+    .ax-hero{padding:8.5rem 0 3rem;position:relative;text-align:center;min-height:88vh;display:flex;align-items:center;justify-content:center}
+    .ax-hero > .container{width:100%}
     .ax-hero::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:760px;height:640px;max-width:100%;background:radial-gradient(circle,var(--glow),transparent 68%);pointer-events:none;z-index:-1}
     .ax-icon{width:88px;height:88px;margin:0 auto 1.25rem;display:block;object-fit:contain;filter:drop-shadow(0 10px 26px rgba(38,198,218,.28))}
     .ax-eyebrow{font-family:var(--mono);font-size:.8rem;letter-spacing:2.5px;color:var(--accent);text-transform:uppercase;margin-bottom:.9rem}
-    .ax-hero h1{font-size:clamp(2.6rem,6.5vw,4rem);font-weight:900;letter-spacing:-2px;line-height:1.1;margin-bottom:1.1rem}
+    .ax-hero h1{font-size:clamp(2.9rem,7vw,4.6rem);font-weight:900;letter-spacing:-2px;line-height:1.12;margin-bottom:1.3rem}
     .ax-hero h1 .g{background:linear-gradient(135deg,var(--accent),var(--accent2),var(--purple));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-    .ax-lead{color:var(--text2);font-size:1.12rem;max-width:52ch;margin:0 auto 2rem;line-height:1.75}
-    .hsearch{max-width:660px;margin:0 auto 1rem;display:flex;align-items:center;gap:.85rem;
+    .ax-lead{color:var(--text2);font-size:1.22rem;max-width:56ch;margin:0 auto 2.4rem;line-height:1.8}
+    .hsearch{max-width:840px;margin:0 auto 1.15rem;display:flex;align-items:center;gap:1rem;
       background:color-mix(in srgb,var(--accent) 8%,var(--bg2));border:2px solid color-mix(in srgb,var(--accent) 55%,var(--border));
-      border-radius:18px;padding:1.15rem 1.4rem;box-shadow:0 8px 44px rgba(38,198,218,.22);transition:border-color .2s,box-shadow .2s}
+      border-radius:20px;padding:1.35rem 1.7rem;box-shadow:0 8px 44px rgba(38,198,218,.22);transition:border-color .2s,box-shadow .2s}
     .hsearch:focus-within{border-color:var(--accent);box-shadow:0 8px 50px rgba(38,198,218,.38)}
-    .hsearch svg{flex:none;width:24px;height:24px;color:var(--accent)}
-    .hsearch input{border:0;background:transparent;color:var(--text);font:inherit;font-size:1.08rem;width:100%;outline:none}
+    .hsearch svg{flex:none;width:27px;height:27px;color:var(--accent)}
+    .hsearch input{border:0;background:transparent;color:var(--text);font:inherit;font-size:1.16rem;width:100%;outline:none}
     .hsearch input::placeholder{color:color-mix(in srgb,var(--accent) 45%,var(--text2))}
     .ax-statsband{margin-bottom:.5rem}
     .suggest{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;align-items:center;margin-bottom:1.6rem}
-    .suggest .lbl{font-family:var(--mono);font-size:.72rem;letter-spacing:.5px;color:var(--text2)}
-    .suggest .sg{font-size:.82rem;color:var(--text2);background:var(--bg2);border:1px solid var(--border);border-radius:999px;padding:.28rem .8rem;cursor:pointer;transition:.15s}
+    .suggest .lbl{font-family:var(--mono);font-size:.78rem;letter-spacing:.5px;color:var(--text2)}
+    .suggest .sg{font-size:.9rem;color:var(--text2);background:var(--bg2);border:1px solid var(--border);border-radius:999px;padding:.38rem .95rem;cursor:pointer;transition:.15s}
     .suggest .sg:hover{border-color:var(--accent);color:var(--accent)}
-    .anxin .stats{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
-    .anxin .stat{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1rem 1.5rem;min-width:140px}
-    .anxin .stat .n{font-family:var(--mono);font-size:1.8rem;font-weight:900;line-height:1;background:linear-gradient(135deg,var(--accent),var(--blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-variant-numeric:tabular-nums}
-    .anxin .stat .l{color:var(--text2);font-size:.8rem;margin-top:.4rem}
-    .summary{max-width:70ch;margin:.4rem auto 0;color:var(--text2);font-size:.92rem;line-height:1.7}
-    .summary b{color:var(--text);font-weight:700}
-    .summary .cat{display:inline-block;font-size:.8rem;color:var(--c,var(--accent));border:1px solid color-mix(in srgb,var(--c,var(--accent)) 35%,transparent);background:color-mix(in srgb,var(--c,var(--accent)) 10%,transparent);border-radius:999px;padding:.1rem .6rem;margin:.15rem .2rem;font-variant-numeric:tabular-nums}
-    .disc{background:rgba(38,198,218,.05);border:1px solid rgba(38,198,218,.18);border-radius:12px;padding:.85rem 1.1rem;font-size:.85rem;color:var(--text);margin:1.5rem 0 1.25rem}
+    .anxin .stats{display:flex;justify-content:center;gap:1.25rem;flex-wrap:wrap;margin-bottom:1rem}
+    .anxin .stat{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:1.7rem 2.3rem;min-width:210px;transition:border-color .25s,transform .25s}
+    .anxin .stat:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--border));transform:translateY(-2px)}
+    .anxin .stat .n{font-family:var(--mono);font-size:2.6rem;font-weight:900;line-height:1;background:linear-gradient(135deg,var(--accent),var(--blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-variant-numeric:tabular-nums}
+    .anxin .stat .l{color:var(--text2);font-size:.95rem;margin-top:.55rem}
+    .disc{background:rgba(38,198,218,.05);border:1px solid rgba(38,198,218,.18);border-radius:14px;padding:1.05rem 1.35rem;font-size:.94rem;line-height:1.75;color:var(--text);margin:2rem 0 1.25rem}
     .controls{display:flex;flex-direction:column;gap:.9rem;padding:.5rem 0}
     .ax-row{display:flex;align-items:center;flex-wrap:wrap}
     .sortsel{margin-left:auto;font-size:.82rem;color:var(--text2);display:flex;align-items:center;gap:.5rem}
@@ -130,7 +128,8 @@ const judgmentCases = cards.reduce((s, c) => s + (c.sources || []).filter(x => (
     .srcs .sh{font-family:var(--mono);font-size:.68rem;letter-spacing:1px;color:var(--text2);text-transform:uppercase;margin-bottom:.35rem}
     .srcs a{font-size:.82rem;display:flex;gap:.6rem;color:var(--accent)}
     .srcs a .d{font-family:var(--mono);color:var(--text2);flex:none}
-    @media(max-width:600px){.anxin .stat{min-width:120px;padding:.85rem 1.1rem}.sortsel{margin-left:0}}
+    @media(max-width:900px){.ax-hero{min-height:auto;padding:7.5rem 0 2.5rem}}
+    @media(max-width:600px){.anxin .stat{min-width:calc(50% - .65rem);padding:1.1rem 1rem}.anxin .stat .n{font-size:2rem}.anxin .stat .l{font-size:.85rem}.sortsel{margin-left:0}}
   </style>
 
   <script is:inline>
@@ -151,10 +150,6 @@ const judgmentCases = cards.reduce((s, c) => s + (c.sources || []).filter(x => (
        <div class="stat"><div class="n">${totCases}</div><div class="l">則官方通報彙整</div></div>
        <div class="stat"><div class="n">${cards.length}</div><div class="l">種詐騙手法</div></div>
        <div class="stat"><div class="n">${nCat}</div><div class="l">大類別</div></div>`;
-    document.getElementById("summary").innerHTML=
-      `彙整 165 反詐騙 <b>${y0}–${y1}</b> 年公開通報，共 <b>${totCases}</b> 則，整理成 <b>${cards.length}</b> 種手法、分為 <b>${nCat}</b> 大類：<br>`
-      +Object.entries(catCount).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<span class="cat" style="--c:${CC[k]||'#8b95a8'}">${esc(k)} ${v}</span>`).join("");
-
     const chips=document.getElementById("chips");
     const cats=[...new Set(cards.map(c=>c.category))];
     function mkchip(label,cat){const b=document.createElement("button");b.className="chip";b.setAttribute("aria-pressed",String(active===label));
