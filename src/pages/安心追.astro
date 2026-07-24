@@ -51,7 +51,7 @@ const judgmentCases = cards.reduce((s, c) => s + (c.sources || []).filter(x => (
     :root{--mono:'SF Mono',Monaco,Inconsolata,'Fira Code',monospace}
     .anxin{padding-bottom:2rem}
     .anxin .container{max-width:1140px;margin:0 auto;padding:0 1.5rem}
-    .ax-hero{padding:8.5rem 0 3rem;position:relative;text-align:center;min-height:88vh;display:flex;align-items:center;justify-content:center}
+    .ax-hero{padding:8.5rem 0 1.75rem;position:relative;text-align:center;min-height:auto}
     .ax-hero > .container{width:100%}
     .ax-hero::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:760px;height:640px;max-width:100%;background:radial-gradient(circle,var(--glow),transparent 68%);pointer-events:none;z-index:-1}
     .ax-icon{width:88px;height:88px;margin:0 auto 1.25rem;display:block;object-fit:contain;filter:drop-shadow(0 10px 26px rgba(38,198,218,.28))}
@@ -66,8 +66,8 @@ const judgmentCases = cards.reduce((s, c) => s + (c.sources || []).filter(x => (
     .hsearch svg{flex:none;width:27px;height:27px;color:var(--accent)}
     .hsearch input{border:0;background:transparent;color:var(--text);font:inherit;font-size:1.16rem;width:100%;outline:none}
     .hsearch input::placeholder{color:color-mix(in srgb,var(--accent) 45%,var(--text2))}
-    .ax-statsband{margin-bottom:.5rem}
-    .suggest{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;align-items:center;margin-bottom:1.6rem}
+    .ax-statsband{margin-top:.25rem;margin-bottom:.5rem}
+    .suggest{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;align-items:center;margin-bottom:0}
     .suggest .lbl{font-family:var(--mono);font-size:.78rem;letter-spacing:.5px;color:var(--text2)}
     .suggest .sg{font-size:.9rem;color:var(--text2);background:var(--bg2);border:1px solid var(--border);border-radius:999px;padding:.38rem .95rem;cursor:pointer;transition:.15s}
     .suggest .sg:hover{border-color:var(--accent);color:var(--accent)}
@@ -128,7 +128,7 @@ const judgmentCases = cards.reduce((s, c) => s + (c.sources || []).filter(x => (
     .srcs .sh{font-family:var(--mono);font-size:.68rem;letter-spacing:1px;color:var(--text2);text-transform:uppercase;margin-bottom:.35rem}
     .srcs a{font-size:.82rem;display:flex;gap:.6rem;color:var(--accent)}
     .srcs a .d{font-family:var(--mono);color:var(--text2);flex:none}
-    @media(max-width:900px){.ax-hero{min-height:auto;padding:7.5rem 0 2.5rem}}
+    @media(max-width:900px){.ax-hero{padding:7.5rem 0 1.5rem}}
     @media(max-width:600px){.anxin .stat{min-width:calc(50% - .65rem);padding:1.1rem 1rem}.anxin .stat .n{font-size:2rem}.anxin .stat .l{font-size:.85rem}.sortsel{margin-left:0}}
   </style>
 
