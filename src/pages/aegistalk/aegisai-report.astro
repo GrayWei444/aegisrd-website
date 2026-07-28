@@ -1,17 +1,18 @@
 ---
-// AegisAI L2 實測報告 — 官網風格重製（數據原封自 test l2-report 2026-05-22，generate_current_report.py 產出）
+// AegisAI L2 實測報告 — 2026-07 改版：改用「真實台灣詐騙訊息」量測，取代先前的 in-domain 數據。
+// 數據來源：AegisTrack pipeline/reports/、pipeline/incoming/real_scams.jsonl（每晚自動重算）
 import Base from '../../layouts/Base.astro';
 ---
 <Base
-  title="AegisAI L2 實測報告 — 詐騙偵測 26,137 則測試"
-  description="AegisAI L2 詐騙偵測實測：fastText F1 0.981、辨識率 98.5%、誤報 2.4%。逐來源辨識率、雙模型架構、誠實限制與資料來源全公開。"
+  title="AegisAI L2 實測報告 — 用真實詐騙訊息量測"
+  description="AegisAI L2 詐騙偵測實測：102 則真實台灣詐騙訊息（PTT／165 截圖逐字轉錄）辨識率 99%，真人正常對話誤報 0.87%。含我們自己推翻的舊數據與誠實限制。"
   active="aegistalk"
 >
   <section class="hero" style="min-height:44vh">
     <div class="hero-content">
       <div class="hero-badge"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-.15em;margin-right:.25em"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg>AegisAI L2 · 實測報告</div>
-      <h1 style="font-size:clamp(1.8rem,3.6vw,2.8rem)">詐騙偵測<span class="gradient">實測數據</span></h1>
-      <p>聊天訊息級 · 繁體 · 社交工程詐騙 ｜ 測試集 26,137 則（詐騙 10,389）· 2026-05-22 · 數字由模型現場重算</p>
+      <h1 style="font-size:clamp(1.8rem,3.6vw,2.8rem)">用<span class="gradient">真實詐騙訊息</span>量測</h1>
+      <p>測試集＝詐騙者本人打的字（PTT 使用者截圖 ＋ 165 官方圖卡，逐字轉錄）｜ 2026-07-28 · 每晚自動重算</p>
     </div>
   </section>
 
@@ -19,108 +20,150 @@ import Base from '../../layouts/Base.astro';
   <section class="cost" style="padding-top:3rem">
     <div class="container">
       <div class="problem-stat">
-        <div class="stat-card reveal"><div class="number" style="background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;background-clip:text">0.981</div><div class="desc">fastText 整體 F1</div></div>
-        <div class="stat-card reveal"><div class="number" style="background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;background-clip:text">98.5%</div><div class="desc">整體辨識率</div></div>
-        <div class="stat-card reveal"><div class="number" style="background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;background-clip:text">2.4%</div><div class="desc">整體誤報率</div></div>
-        <div class="stat-card reveal"><div class="number" style="background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;background-clip:text">0.892</div><div class="desc">YAML 規則 F1</div></div>
+        <div class="stat-card reveal"><div class="number" style="background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;background-clip:text">99%</div><div class="desc">真實詐騙訊息辨識率<br /><span style="font-size:.8em;opacity:.7">102 則</span></div></div>
+        <div class="stat-card reveal"><div class="number" style="background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;background-clip:text">0.87%</div><div class="desc">真人正常對話誤報率<br /><span style="font-size:.8em;opacity:.7">3,060 句</span></div></div>
+        <div class="stat-card reveal"><div class="number" style="background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;background-clip:text">3.3%</div><div class="desc">難負樣本誤報率<br /><span style="font-size:.8em;opacity:.7">刻意夾帶詐騙詞的正常訊息</span></div></div>
+        <div class="stat-card reveal"><div class="number" style="background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;background-clip:text">6.9MB</div><div class="desc">端上模型大小<br /><span style="font-size:.8em;opacity:.7">離線可跑，訊息不出裝置</span></div></div>
       </div>
     </div>
   </section>
 
-  <!-- 1. 最重要的發現 -->
+  <!-- 1. 我們推翻了自己的舊數據 -->
   <section class="problem">
     <div class="container">
       <div class="section-label">// 01 · KEY FINDING</div>
-      <h2 class="section-title reveal">最重要的發現：資料對不對 &gt; 模型多強</h2>
+      <h2 class="section-title reveal">我們推翻了自己上一版的數據</h2>
+      <p class="section-desc reveal" style="max-width:820px">
+        這一頁先前掛的是 <b>98.5% 辨識率、2.4% 誤報</b>。那是 in-domain 數字 —— 測試題和考古題出自同一批公開資料集
+        （對岸垃圾簡訊、LLM 生成的社交工程對話）。我們拿真實的台灣詐騙訊息去考，才發現那個分數不成立。
+      </p>
       <div class="moat-compare" style="margin-top:2.5rem">
         <div class="moat-col reveal" style="border-color:rgba(239,68,68,.4)">
-          <h4 style="color:var(--red)">✗ 用錯資料（ChiFraud 網頁廣告）</h4>
-          <p style="font-size:2.2rem;font-weight:900;color:var(--red);margin:.5rem 0">漏 100%</p>
-          <p style="color:var(--text2);font-size:.92rem">ChiFraud 訓練的模型，測真實對話詐騙（Fraud-R1）→ 辨識率僅 0.1%。模型學的是「微信号／賣貨」廣告詞，看不懂禮貌的社交工程。</p>
+          <h4 style="color:var(--red)">✗ 舊模型（2026-05，公開資料集訓練）</h4>
+          <p style="font-size:2.2rem;font-weight:900;color:var(--red);margin:.5rem 0">辨識 0%</p>
+          <p style="color:var(--text2);font-size:.92rem">帳面 98.5%，但拿台灣詐騙訊息實測，連「你的帳戶涉及洗錢案件，請配合監管」都判成正常、機率 1.00。它學到的是對岸簡訊與英文詐騙信的樣子。</p>
         </div>
         <div class="moat-col highlight reveal">
-          <h4 style="color:var(--green)">✓ 用對資料（對話型詐騙）</h4>
-          <p style="font-size:2.2rem;font-weight:900;color:var(--green);margin:.5rem 0">抓 100%</p>
-          <p style="color:var(--text2);font-size:.92rem">同一套 pipeline，改用對話詐騙資料重訓 → Fraud-R1 社交工程辨識率 99.6%、誤報 &lt;3%。證明方法可行。</p>
+          <h4 style="color:var(--green)">✓ 現行模型（台灣語料重訓）</h4>
+          <p style="font-size:2.2rem;font-weight:900;color:var(--green);margin:.5rem 0">辨識 99%</p>
+          <p style="color:var(--text2);font-size:.92rem">加入 1,187 句台灣判決書還原話術、102 則真實詐騙訊息，以及 5 萬句真人繁中對話當對照組重訓。102 則真實訊息漏 1 則。</p>
         </div>
       </div>
+      <p class="rpt-note reveal" style="max-width:820px;margin-left:auto;margin-right:auto">
+        <b>為什麼會差這麼多：</b>分數是被「對照組」決定的。舊評測拿對岸垃圾簡訊當「正常訊息」，
+        模型只要學會「這是不是台灣人講話」就能拿高分。換成真實台灣正常對話一測，立刻現形。
+      </p>
     </div>
   </section>
 
-  <!-- 2. 逐來源 -->
+  <!-- 2. 測試集怎麼來的 -->
   <section class="cost">
     <div class="container">
-      <div class="section-label">// 02 · BY SOURCE</div>
-      <h2 class="section-title reveal">逐來源辨識率（兩個模型）</h2>
+      <div class="section-label">// 02 · TEST SET</div>
+      <h2 class="section-title reveal">測試集：詐騙者本人打的字</h2>
       <div class="rpt-tablewrap reveal">
         <table class="rpt">
-          <tr><th>資料來源</th><th>類型</th><th>樣本</th><th>fastText</th><th>YAML 規則</th><th></th></tr>
-          <tr><td class="l">Fraud-R1 社交工程</td><td><span class="tag tag-s">詐騙</span></td><td class="dim">2,559</td><td><div class="bar"><div class="fill g" style="width:100%"></div><span>99.6%</span></div></td><td><div class="bar"><div class="fill g" style="width:84%"></div><span>84.3%</span></div></td><td class="dim">辨識率</td></tr>
-          <tr><td class="l">SMS 廣告詐騙</td><td><span class="tag tag-s">詐騙</span></td><td class="dim">3,993</td><td><div class="bar"><div class="fill g" style="width:98%"></div><span>98.2%</span></div></td><td><div class="bar"><div class="fill g" style="width:79%"></div><span>78.6%</span></div></td><td class="dim">辨識率</td></tr>
-          <tr><td class="l">ChiFraud 廣告</td><td><span class="tag tag-s">詐騙</span></td><td class="dim">3,834</td><td><div class="bar"><div class="fill g" style="width:98%"></div><span>98.1%</span></div></td><td><div class="bar"><div class="fill g" style="width:89%"></div><span>88.8%</span></div></td><td class="dim">辨識率</td></tr>
-          <tr><td class="l">SMS 正常</td><td><span class="tag tag-n">正常</span></td><td class="dim">9,968</td><td><div class="bar"><div class="fill r" style="width:2%"></div><span>0.8%</span></div></td><td><div class="bar"><div class="fill r" style="width:2%"></div><span>2.0%</span></div></td><td class="dim">誤報率</td></tr>
-          <tr><td class="l">ChiFraud 正常</td><td><span class="tag tag-n">正常</span></td><td class="dim">5,783</td><td><div class="bar"><div class="fill r" style="width:3%"></div><span>3.0%</span></div></td><td><div class="bar"><div class="fill r" style="width:4%"></div><span>3.9%</span></div></td><td class="dim">誤報率</td></tr>
+          <tr><th>測試集</th><th>內容</th><th>數量</th><th>來源</th></tr>
+          <tr><td class="l">真實詐騙訊息</td><td class="dim">簡訊／LINE／私訊／電郵原文，一字未改</td><td>102 則</td><td class="dim">PTT 使用者貼的截圖 ＋ 165 官方宣導圖卡，逐字轉錄</td></tr>
+          <tr><td class="l">真人正常對話</td><td class="dim">繁體中文日常對話</td><td>3,060 句</td><td class="dim">公開繁中字幕語料，未參與訓練</td></tr>
+          <tr><td class="l">難負樣本</td><td class="dim">刻意夾帶帳戶／包裹／驗證碼／匯款等詐騙共用詞的<b>正常</b>訊息</td><td>60 句</td><td class="dim">人工撰寫，未參與訓練也未參與規則挖掘</td></tr>
         </table>
       </div>
-      <p class="rpt-note reveal"><b>讀法：</b>詐騙來源看「辨識率」（越高越好）、正常來源看「誤報率」（越低越好）。fastText 在最難的 Fraud-R1 社交工程上辨識率最高；規則略低但<b>可解釋、可維護</b>。</p>
+      <p class="rpt-note reveal">
+        <b>難負樣本為什麼重要：</b>「媽，我今天晚一點回去」「銀行帳戶的自動扣繳我設定好了」這種話，
+        早期版本會直接判成詐騙。誤報比漏抓更容易讓人關掉防護，所以我們刻意寫最容易誤判的正常訊息來考自己。
+      </p>
     </div>
   </section>
 
-  <!-- 3. 雙模型 -->
-  <section class="ai-engine">
+  <!-- 3. 逐項成績 -->
+  <section class="problem">
     <div class="container">
-      <div class="section-label">// 03 · TWO MODELS</div>
-      <h2 class="section-title reveal">兩個模型，相輔相成</h2>
-      <div class="ai-layers" style="max-width:860px">
+      <div class="section-label">// 03 · RESULTS</div>
+      <h2 class="section-title reveal">兩個模型，逐項成績</h2>
+      <div class="rpt-tablewrap reveal">
+        <table class="rpt">
+          <tr><th>判定方式</th><th>真實詐騙訊息<br />辨識率</th><th>真人正常對話<br />誤報率</th><th>難負樣本<br />誤報率</th></tr>
+          <tr><td class="l">語意模型（fastText）</td><td><div class="bar"><div class="fill g" style="width:99%"></div><span>99%</span></div></td><td><div class="bar"><div class="fill r" style="width:1%"></div><span>0.03%</span></div></td><td><div class="bar"><div class="fill r" style="width:2%"></div><span>1.7%</span></div></td></tr>
+          <tr><td class="l">專家規則（YAML）</td><td><div class="bar"><div class="fill g" style="width:92%"></div><span>92%</span></div></td><td><div class="bar"><div class="fill r" style="width:1%"></div><span>0.83%</span></div></td><td><div class="bar"><div class="fill r" style="width:2%"></div><span>1.7%</span></div></td></tr>
+          <tr><td class="l"><b>兩者融合（實際行為）</b></td><td><div class="bar"><div class="fill g" style="width:99%"></div><span>99%</span></div></td><td><div class="bar"><div class="fill r" style="width:1%"></div><span>0.87%</span></div></td><td><div class="bar"><div class="fill r" style="width:4%"></div><span>3.3%</span></div></td></tr>
+        </table>
+      </div>
+      <div class="ai-layers" style="max-width:860px;margin-top:2rem">
         <div class="ai-layer reveal">
           <div class="layer-badge l1">①</div>
           <div class="layer-info">
-            <h4>YAML 規則</h4>
-            <p>關鍵字／加權（log-odds 正負分）／AND 邏輯組合。<b>可解釋、可維護、極輕、可遠端即時改</b>。缺點：靜態，需持續餵新話術。</p>
+            <h4>專家規則（可解釋）</h4>
+            <p>片語與加權關鍵字。<b>能說出「為什麼判定是詐騙」</b>，可遠端即時更新。規則只從<b>真實詐騙訊息</b>挖 —— 我們試過從 AI 改寫的話術挖 379 條，對真實訊息只命中 12%；改從真實訊息挖，28 條就到 92%。</p>
           </div>
         </div>
         <div class="ai-layer reveal">
           <div class="layer-badge l2">②</div>
           <div class="layer-info">
-            <h4>fastText（.ftz ~6MB）</h4>
-            <p>char-level 量化模型，<b>端上（WASM／Native）可跑</b>、機率泛化、抓字面外變體。缺點：黑盒（可用 occlusion 反查理由）。</p>
+            <h4>語意模型（泛化）</h4>
+            <p>char-level 量化模型，6.9MB，<b>端上直接跑、訊息不離開裝置</b>。抓字面沒見過的變體。低信心不計分，門檻每晚重新校準。</p>
           </div>
         </div>
       </div>
-      <p class="section-desc reveal" style="margin-top:1.5rem">合用＝級聯：AI 先判 + 規則補抓，分級 block（低誤報）／warn（撈長尾）。</p>
     </div>
   </section>
 
-  <!-- 4. 誠實限制 -->
-  <section class="problem">
-    <div class="container">
-      <div class="section-label">// 04 · HONEST LIMITS</div>
-      <h2 class="section-title reveal">誠實的限制（別過度樂觀）</h2>
-      <div class="moat-col reveal" style="max-width:860px;border-color:rgba(245,158,11,.4)">
-        <ul>
-          <li><span style="color:var(--warn)">①</span> 上面是 <b>in-domain 樂觀值</b>：Fraud-R1 為 LLM 生成、風格一致（雖按案例 held-out）。真實世界全新人為話術會更低。</li>
-          <li><span style="color:var(--warn)">②</span> 要有上線信心，需<b>真實多樣的台灣對話詐騙語料</b>（AegisTalk 使用者回報、165 curation）—— 由 AegisTrack 持續收集。</li>
-          <li><span style="color:var(--warn)">③</span> 詐騙話術逐年漂移，門檻與模型需定期重訓重校。</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. 資料來源 -->
+  <!-- 4. 每晚自動更新 -->
   <section class="cost">
     <div class="container">
-      <div class="section-label">// 05 · DATA</div>
-      <h2 class="section-title reveal">資料來源</h2>
+      <div class="section-label">// 04 · DAILY LOOP</div>
+      <h2 class="section-title reveal">每晚自動更新，退步就不上線</h2>
+      <p class="section-desc reveal" style="max-width:820px">
+        詐騙話術每月都在變。AegisTrack 每天凌晨自動採集新的真實詐騙訊息 → 重挖規則 → 重訓模型 →
+        跑驗收閘門，<b>三項指標任一退步就不更新線上</b>：
+      </p>
+      <div class="rpt-tablewrap reveal">
+        <table class="rpt">
+          <tr><th>閘門條件</th><th>要求</th></tr>
+          <tr><td class="l">真實詐騙訊息辨識率</td><td>不得低於線上 −1 個百分點</td></tr>
+          <tr><td class="l">難負樣本誤報率</td><td>不得高於線上 +2 個百分點，且硬上限 15%</td></tr>
+          <tr><td class="l">真人正常對話誤報率</td><td>不得高於線上 +1 個百分點</td></tr>
+        </table>
+      </div>
+      <p class="rpt-note reveal">閘門量的是<b>端上真正會跑的那顆模型</b>與實際判定門檻，不是訓練用的大模型 —— 這兩者行為差很多，我們吃過一次虧。</p>
+    </div>
+  </section>
+
+  <!-- 5. 誠實限制 -->
+  <section class="problem">
+    <div class="container">
+      <div class="section-label">// 05 · HONEST LIMITS</div>
+      <h2 class="section-title reveal">誠實的限制</h2>
+      <div class="moat-col reveal" style="max-width:860px;border-color:rgba(245,158,11,.4)">
+        <ul>
+          <li><span style="color:var(--warn)">①</span> <b>真實訊息只有 102 則</b>，且 7 成是簡訊釣魚。一對一養套殺、假冒親友這類慢節奏對話樣本仍少，那種訊息單看一句本來就很難判。</li>
+          <li><span style="color:var(--warn)">②</span> 樣本來自「有人截圖貼出來」的訊息，本身偏向<b>明顯到值得截圖</b>的那一類。手法越精細的，越不會出現在公開討論區。</li>
+          <li><span style="color:var(--warn)">③</span> 難負樣本 60 句由我們自己撰寫，數量少。真實使用者的正常訊息分布仍待更大規模驗證。</li>
+          <li><span style="color:var(--warn)">④</span> 判決書還原的話術由 AI 重寫，<b>不是原文</b>。我們逐卡比對原始判決稽核過，刪掉 24% 不合格的卡與夾帶真實姓名的句子，但重寫終究不等於真跡。</li>
+        </ul>
+      </div>
+      <p class="rpt-note reveal" style="max-width:860px;margin-left:auto;margin-right:auto">
+        我們把推翻自己舊數據的過程留在這一頁，因為反詐騙產品最怕的就是拿漂亮但不成立的分數說服自己。
+      </p>
+    </div>
+  </section>
+
+  <!-- 6. 資料來源 -->
+  <section class="cost">
+    <div class="container">
+      <div class="section-label">// 06 · DATA</div>
+      <h2 class="section-title reveal">訓練資料來源</h2>
       <div class="rpt-tablewrap reveal">
         <table class="rpt">
           <tr><th>來源</th><th>內容</th><th>用途</th></tr>
-          <tr><td class="l">Fraud-R1</td><td class="dim">多輪對話詐騙（冒充／釣魚／養套殺／假徵才／假服務）</td><td>社交工程正樣本</td></tr>
-          <tr><td class="l">中文 SMS 80萬</td><td class="dim">spam／ham 標註簡訊</td><td>短訊息 正／負樣本</td></tr>
-          <tr><td class="l">ChiFraud</td><td class="dim">網頁廣告詐騙 + 正常長文</td><td>廣告正樣本 + 長正常負樣本</td></tr>
-          <tr><td class="l">全部</td><td class="dim">opencc s2twp 轉繁體</td><td>對齊台灣產品</td></tr>
+          <tr><td class="l">司法院裁判書</td><td class="dim">1,489 篇詐欺刑事判決 → 856 篇一審有罪 → AI 還原話術，逐卡人工規格稽核</td><td>台灣詐騙正樣本</td></tr>
+          <tr><td class="l">真實詐騙訊息</td><td class="dim">PTT 使用者截圖 ＋ 165 官方圖卡，逐字轉錄</td><td>正樣本 ＋ 驗收測試集</td></tr>
+          <tr><td class="l">165 反詐騙公開通報</td><td class="dim">2017–2026 年公告</td><td>手法歸納</td></tr>
+          <tr><td class="l">繁中對話語料</td><td class="dim">公開字幕語料 5 萬句</td><td>正常對話對照組</td></tr>
+          <tr><td class="l">公開研究資料集</td><td class="dim">Fraud-R1（社交工程對話）、中文 SMS 標註語料</td><td>基礎泛化</td></tr>
         </table>
       </div>
-      <p class="rpt-note reveal" style="text-align:center">AegisAI · 資料收集由 AegisTrack 持續供給</p>
+      <p class="rpt-note reveal" style="text-align:center">情報採集與每日更新由 <a href="/安心追" style="color:var(--green)">AegisTrack</a> 供給</p>
       <p style="margin-top:2rem;text-align:center"><a href="/aegistalk" class="btn-ghost">← 回 AegisTalk 產品頁</a></p>
     </div>
   </section>
@@ -133,8 +176,6 @@ import Base from '../../layouts/Base.astro';
   table.rpt tr:last-child td { border-bottom: none; }
   table.rpt td.l { text-align: left; font-weight: 700; }
   table.rpt .dim { color: var(--text2); font-weight: 400; }
-  .tag { color:#fff; font-size:.72rem; padding:.1rem .6rem; border-radius:999px; }
-  .tag-s { background: rgba(239,68,68,.8); } .tag-n { background: rgba(139,149,168,.6); }
   .bar { position: relative; background: rgba(255,255,255,.06); border-radius: 6px; height: 20px; min-width: 110px; }
   .bar .fill { height: 100%; border-radius: 6px; }
   .bar .fill.g { background: var(--green); opacity:.75; } .bar .fill.r { background: var(--red); opacity:.75; }

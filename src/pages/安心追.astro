@@ -43,6 +43,44 @@ const judgmentCases = cards.reduce((s, c) => s + (c.sources || []).filter(x => (
     </div>
 
     <div class="ov" id="ov" role="dialog" aria-modal="true" aria-labelledby="mtitle"><div class="modal" id="modal"></div></div>
+
+    <section class="ax-engine">
+      <div class="container">
+        <h2>這些手法是怎麼來的</h2>
+        <p class="ax-engine-lead">
+          安心追是 <b>AegisTrack</b> 的公開面。AegisTrack 是我們的反詐騙情報引擎 ——
+          它不等使用者受害後才知道手法，而是主動去公開資料裡挖詐騙集團正在用的劇本，
+          再把結果餵回 <a href="/aegistalk/aegisai-report">AegisAI 防詐引擎</a>。
+        </p>
+        <div class="ax-steps">
+          <div class="ax-step">
+            <div class="ax-n">1</div>
+            <h3>抓判決書</h3>
+            <p>已爬取司法院裁判書 <b>1,489 篇</b>詐欺刑事判決，篩出有完整犯罪事實的一審有罪判決 856 篇，目前圖鑑引用其中 {judgmentCases.toLocaleString()} 則。法院認定過的事實，寫得比任何新聞都完整。</p>
+          </div>
+          <div class="ax-step">
+            <div class="ax-n">2</div>
+            <h3>還原劇本</h3>
+            <p>AI 把法律敘述還原成「詐騙者實際會說的話」，同手法合併成一張卡。每張卡逐卡比對原始判決稽核 —— 上一輪刪掉 24% 對不上原文的卡與夾帶真實姓名的句子。</p>
+          </div>
+          <div class="ax-step">
+            <div class="ax-n">3</div>
+            <h3>採集真跡</h3>
+            <p>判決是法官寫的、還原話術是 AI 寫的，都不是詐騙者本人打的字。所以我們另外採集<b>真實訊息截圖</b>（PTT 使用者分享、165 官方圖卡）逐字轉錄，作為模型的最終驗收題。</p>
+          </div>
+          <div class="ax-step">
+            <div class="ax-n">4</div>
+            <h3>回饋引擎</h3>
+            <p>每晚自動：採集新樣本 → 重挖規則 → 重訓模型 → 跑驗收閘門。<b>辨識率退步或誤報上升就不更新線上</b>。</p>
+          </div>
+        </div>
+        <p class="ax-engine-note">
+          我們在這條路上推翻過自己一次：早期用公開資料集訓練的模型帳面 98.5%，
+          拿真實台灣詐騙訊息一測是 <b>0%</b>。詳細經過與現行數據都寫在
+          <a href="/aegistalk/aegisai-report">實測報告</a>。
+        </p>
+      </div>
+    </section>
   </main>
 
   <script type="application/json" id="data" is:inline set:html={JSON.stringify(cards)}></script>
@@ -66,6 +104,20 @@ const judgmentCases = cards.reduce((s, c) => s + (c.sources || []).filter(x => (
     .hsearch svg{flex:none;width:27px;height:27px;color:var(--accent)}
     .hsearch input{border:0;background:transparent;color:var(--text);font:inherit;font-size:1.16rem;width:100%;outline:none}
     .hsearch input::placeholder{color:color-mix(in srgb,var(--accent) 45%,var(--text2))}
+
+    /* 情報引擎說明 */
+    .ax-engine{border-top:1px solid var(--border);margin-top:3rem;padding:3rem 0 1rem}
+    .ax-engine h2{font-size:clamp(1.3rem,2.6vw,1.9rem);font-weight:800;margin-bottom:.75rem}
+    .ax-engine-lead{color:var(--text2);max-width:760px;line-height:1.75;margin-bottom:2rem}
+    .ax-engine a{color:var(--green)}
+    .ax-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}
+    .ax-step{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.2rem}
+    .ax-step h3{font-size:1rem;font-weight:700;margin:.5rem 0 .4rem}
+    .ax-step p{color:var(--text2);font-size:.88rem;line-height:1.65}
+    .ax-n{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:.8rem;font-weight:800;
+      background:linear-gradient(135deg,var(--green),#16a34a);color:#04140a}
+    .ax-engine-note{margin-top:1.5rem;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);
+      border-radius:10px;padding:.9rem 1.1rem;font-size:.9rem;color:var(--text2);max-width:760px}
     .ax-statsband{margin-top:.25rem;margin-bottom:.5rem}
     .suggest{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;align-items:center;margin-bottom:0}
     .suggest .lbl{font-family:var(--mono);font-size:.78rem;letter-spacing:.5px;color:var(--text2)}
